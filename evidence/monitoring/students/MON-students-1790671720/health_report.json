@@ -1,0 +1,15 @@
+{
+  "overall_health": "HEALTHY",
+  "component_statuses": {
+    "schema_health": "HEALTHY",
+    "quality_health": "HEALTHY",
+    "feature_drift_health": "HEALTHY",
+    "target_drift_health": "HEALTHY",
+    "performance_health": "HEALTHY",
+    "fairness_health": "HEALTHY",
+    "calibration_health": "HEALTHY",
+    "artifact_integrity": "HEALTHY"
+  },
+  "is_healthy": true,
+  "requires_attention": false
+}

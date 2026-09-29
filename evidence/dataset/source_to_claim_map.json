@@ -1,0 +1,40 @@
+{
+  "claims": [
+    {
+      "claim_id": "DATA-001",
+      "claim": "Dataset contains protected attribute sex with categories Female and Male",
+      "evidence": "evidence/dataset/schema_snapshot.json",
+      "verification": "automated"
+    },
+    {
+      "claim_id": "DATA-002",
+      "claim": "Dataset contains protected attribute race with 5 demographic subgroups",
+      "evidence": "evidence/dataset/schema_snapshot.json",
+      "verification": "automated"
+    },
+    {
+      "claim_id": "DATA-003",
+      "claim": "Protected attributes sex and race are decoupled from feature matrix X",
+      "evidence": "src/data/preprocessor.py",
+      "verification": "automated_unit_test"
+    },
+    {
+      "claim_id": "AUDIT-001",
+      "claim": "Intersectional group safety threshold policy requires N >= 30 samples",
+      "evidence": "config/data_quality_config.json",
+      "verification": "automated"
+    },
+    {
+      "claim_id": "MIT-001",
+      "claim": "Fairlearn ExponentiatedGradient EqualizedOdds mitigation reduces intersectional disparity by 65.5%",
+      "evidence": "data/processed/tradeoff_results.json",
+      "verification": "automated"
+    },
+    {
+      "claim_id": "CAL-001",
+      "claim": "Probability calibration Brier Score and ECE are computed across 10 uniform probability bins",
+      "evidence": "src/fairness/calibration.py",
+      "verification": "automated_unit_test"
+    }
+  ]
+}

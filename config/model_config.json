@@ -1,0 +1,9 @@
+{
+  "candidate_models": [
+    "logistic_regression",
+    "random_forest",
+    "gradient_boosting"
+  ],
+  "cv_folds": 5,
+  "random_seed": 42
+}

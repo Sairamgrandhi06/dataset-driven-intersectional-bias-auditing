@@ -1,0 +1,9 @@
+{
+  "status": "NO_RETRAINING_NEEDED",
+  "action_required": false,
+  "requires_user_approval": true,
+  "reasons_count": 1,
+  "reasons": [
+    "All monitored metrics across schema, data quality, feature drift, performance, fairness, and calibration remain within stable bounds."
+  ]
+}

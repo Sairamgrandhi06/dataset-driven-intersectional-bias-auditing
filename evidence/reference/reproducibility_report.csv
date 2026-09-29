@@ -1,0 +1,6 @@
+metric,expected,reference,production,reference_difference,production_difference,status
+demographic_parity_difference,0.317073,0.317073,0.317073,0.0,0.0,PASS
+disparate_impact_ratio,0.133333,0.133333,0.133333,0.0,0.0,PASS
+equal_opportunity_difference,0.482456,0.482456,0.482456,0.0,0.0,PASS
+equalized_odds_difference,0.482456,0.482456,0.482456,0.0,0.0,PASS
+false_positive_rate_difference,0.145549,0.145549,0.145549,0.0,0.0,PASS

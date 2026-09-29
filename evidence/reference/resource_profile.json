@@ -1,0 +1,19 @@
+{
+  "resource_envelope": {
+    "dataset_id": "UCI-ADULT-1996",
+    "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+    "raw_row_count": 32561,
+    "test_sample_count": 6033,
+    "min_intersectional_group_size": 30,
+    "python_version": "3.14.6",
+    "operating_system": "Windows 11",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel"
+  },
+  "resource_metrics": {
+    "execution_time_seconds": 0.0645,
+    "memory_envelope_status": "OPTIMAL",
+    "discovered_subgroups_count": 10,
+    "primary_subgroups_count": 7,
+    "low_sample_subgroups_count": 3
+  }
+}

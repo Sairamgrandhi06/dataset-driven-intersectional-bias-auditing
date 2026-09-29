@@ -1,0 +1,570 @@
+{
+  "run_id": "RUN-adult_census_income-1789651457",
+  "timestamp": "2026-09-17T13:24:17.259738+00:00",
+  "dataset_id": "adult_census_income",
+  "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+  "config_version": "1.0.0",
+  "target_column": "income",
+  "positive_class": ">50K",
+  "protected_attributes": [
+    "sex",
+    "race"
+  ],
+  "feature_count": 91,
+  "train_size": 24129,
+  "test_size": 6033,
+  "baseline_metrics": {
+    "accuracy": 0.8398806563898558,
+    "precision": 0.7267343485617598,
+    "recall": 0.5719041278295606,
+    "f1_score": 0.6400894187779433,
+    "roc_auc": 0.884122868912222,
+    "confusion_matrix": {
+      "TN": 4208,
+      "FP": 323,
+      "FN": 643,
+      "TP": 859,
+      "matrix": [
+        [
+          4208,
+          323
+        ],
+        [
+          643,
+          859
+        ]
+      ]
+    }
+  },
+  "single_attribute_metrics": {
+    "sex": {
+      "attribute_name": "sex",
+      "status": "AVAILABLE",
+      "groups": {
+        "Female": {
+          "sample_count": 1968,
+          "selection_rate": 0.08689024390243902,
+          "true_positive_rate": 0.5191489361702127,
+          "false_positive_rate": 0.02827466820542412,
+          "false_negative_rate": 0.4808510638297872,
+          "true_negative_rate": 0.9717253317945759,
+          "confusion_matrix": {
+            "TP": 122,
+            "FP": 49,
+            "TN": 1684,
+            "FN": 113
+          }
+        },
+        "Male": {
+          "sample_count": 4065,
+          "selection_rate": 0.24870848708487084,
+          "true_positive_rate": 0.5816890292028414,
+          "false_positive_rate": 0.09792709077912795,
+          "false_negative_rate": 0.4183109707971586,
+          "true_negative_rate": 0.902072909220872,
+          "confusion_matrix": {
+            "TP": 737,
+            "FP": 274,
+            "TN": 2524,
+            "FN": 530
+          }
+        }
+      },
+      "disparities": {
+        "demographic_parity_difference": 0.16181824318243182,
+        "disparate_impact_ratio": 0.3493658174712311,
+        "equalized_odds_difference": 0.06965242257370383,
+        "equal_opportunity_difference": 0.06254009303262864,
+        "false_positive_rate_difference": 0.06965242257370383
+      },
+      "metric_definitions": {
+        "demographic_parity_difference": "max(Selection Rate) - min(Selection Rate) across groups.",
+        "disparate_impact_ratio": "min(Selection Rate) / max(Selection Rate) across groups.",
+        "equalized_odds_difference": "max(Equal Opportunity Difference, False Positive Rate Difference).",
+        "equal_opportunity_difference": "max(True Positive Rate) - min(True Positive Rate) across groups.",
+        "false_positive_rate_difference": "max(False Positive Rate) - min(False Positive Rate) across groups."
+      }
+    },
+    "race": {
+      "attribute_name": "race",
+      "status": "AVAILABLE",
+      "groups": {
+        "Amer-Indian-Eskimo": {
+          "sample_count": 64,
+          "selection_rate": 0.046875,
+          "true_positive_rate": 0.3333333333333333,
+          "false_positive_rate": 0.017241379310344827,
+          "false_negative_rate": 0.6666666666666666,
+          "true_negative_rate": 0.9827586206896551,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 1,
+            "TN": 57,
+            "FN": 4
+          }
+        },
+        "Asian-Pac-Islander": {
+          "sample_count": 186,
+          "selection_rate": 0.27956989247311825,
+          "true_positive_rate": 0.7954545454545454,
+          "false_positive_rate": 0.11971830985915492,
+          "false_negative_rate": 0.20454545454545456,
+          "true_negative_rate": 0.8802816901408451,
+          "confusion_matrix": {
+            "TP": 35,
+            "FP": 17,
+            "TN": 125,
+            "FN": 9
+          }
+        },
+        "Black": {
+          "sample_count": 559,
+          "selection_rate": 0.08765652951699464,
+          "true_positive_rate": 0.45,
+          "false_positive_rate": 0.027139874739039668,
+          "false_negative_rate": 0.55,
+          "true_negative_rate": 0.9728601252609603,
+          "confusion_matrix": {
+            "TP": 36,
+            "FP": 13,
+            "TN": 466,
+            "FN": 44
+          }
+        },
+        "Other": {
+          "sample_count": 38,
+          "selection_rate": 0.13157894736842105,
+          "true_positive_rate": 0.6666666666666666,
+          "false_positive_rate": 0.08571428571428572,
+          "false_negative_rate": 0.3333333333333333,
+          "true_negative_rate": 0.9142857142857143,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 3,
+            "TN": 32,
+            "FN": 1
+          }
+        },
+        "White": {
+          "sample_count": 5186,
+          "selection_rate": 0.20690320092556883,
+          "true_positive_rate": 0.5726807888970051,
+          "false_positive_rate": 0.07571391144878177,
+          "false_negative_rate": 0.42731921110299487,
+          "true_negative_rate": 0.9242860885512182,
+          "confusion_matrix": {
+            "TP": 784,
+            "FP": 289,
+            "TN": 3528,
+            "FN": 585
+          }
+        }
+      },
+      "disparities": {
+        "demographic_parity_difference": 0.23269489247311825,
+        "disparate_impact_ratio": 0.16766826923076925,
+        "equalized_odds_difference": 0.4621212121212121,
+        "equal_opportunity_difference": 0.4621212121212121,
+        "false_positive_rate_difference": 0.1024769305488101
+      },
+      "metric_definitions": {
+        "demographic_parity_difference": "max(Selection Rate) - min(Selection Rate) across groups.",
+        "disparate_impact_ratio": "min(Selection Rate) / max(Selection Rate) across groups.",
+        "equalized_odds_difference": "max(Equal Opportunity Difference, False Positive Rate Difference).",
+        "equal_opportunity_difference": "max(True Positive Rate) - min(True Positive Rate) across groups.",
+        "false_positive_rate_difference": "max(False Positive Rate) - min(False Positive Rate) across groups."
+      }
+    }
+  },
+  "fairness_metrics": {
+    "demographic_parity_difference": 0.3170731707317073,
+    "disparate_impact_ratio": 0.13333333333333333,
+    "equalized_odds_difference": 0.4824561403508772,
+    "equal_opportunity_difference": 0.4824561403508772,
+    "false_positive_rate_difference": 0.14554879423033582
+  },
+  "intersectional_metrics": {
+    "intersection_definition": "sex x race",
+    "attributes_combined": [
+      "sex",
+      "race"
+    ],
+    "min_group_size_threshold": 30,
+    "total_groups_discovered": 10,
+    "primary_group_count": 7,
+    "low_sample_group_count": 3,
+    "coverage_status": {
+      "code": "AVAILABLE",
+      "message": "Disparity metrics evaluated across 7 primary groups (N >= 30).",
+      "eligible_group_count": 7,
+      "total_group_count": 10,
+      "minimum_required_groups": 2,
+      "min_group_size": 30,
+      "eligible_groups": [
+        "Female + Asian-Pac-Islander",
+        "Female + Black",
+        "Female + White",
+        "Male + Amer-Indian-Eskimo",
+        "Male + Asian-Pac-Islander",
+        "Male + Black",
+        "Male + White"
+      ],
+      "low_sample_groups": [
+        "Female + Amer-Indian-Eskimo",
+        "Female + Other",
+        "Male + Other"
+      ],
+      "reason": null
+    },
+    "all_group_metrics": {
+      "Female + Amer-Indian-Eskimo": {
+        "sample_count": 23,
+        "selection_rate": 0.043478260869565216,
+        "true_positive_rate": 0.3333333333333333,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.6666666666666666,
+        "true_negative_rate": 1.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 20,
+          "FN": 2
+        }
+      },
+      "Female + Asian-Pac-Islander": {
+        "sample_count": 63,
+        "selection_rate": 0.1111111111111111,
+        "true_positive_rate": 0.6666666666666666,
+        "false_positive_rate": 0.05263157894736842,
+        "false_negative_rate": 0.3333333333333333,
+        "true_negative_rate": 0.9473684210526315,
+        "confusion_matrix": {
+          "TP": 4,
+          "FP": 3,
+          "TN": 54,
+          "FN": 2
+        }
+      },
+      "Female + Black": {
+        "sample_count": 279,
+        "selection_rate": 0.05017921146953405,
+        "true_positive_rate": 0.5,
+        "false_positive_rate": 0.019157088122605363,
+        "false_negative_rate": 0.5,
+        "true_negative_rate": 0.9808429118773946,
+        "confusion_matrix": {
+          "TP": 9,
+          "FP": 5,
+          "TN": 256,
+          "FN": 9
+        }
+      },
+      "Female + Other": {
+        "sample_count": 13,
+        "selection_rate": 0.07692307692307693,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 1.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 12,
+          "FN": 0
+        }
+      },
+      "Female + White": {
+        "sample_count": 1590,
+        "selection_rate": 0.0930817610062893,
+        "true_positive_rate": 0.5169082125603864,
+        "false_positive_rate": 0.02964569775849602,
+        "false_negative_rate": 0.4830917874396135,
+        "true_negative_rate": 0.970354302241504,
+        "confusion_matrix": {
+          "TP": 107,
+          "FP": 41,
+          "TN": 1342,
+          "FN": 100
+        }
+      },
+      "Male + Amer-Indian-Eskimo": {
+        "sample_count": 41,
+        "selection_rate": 0.04878048780487805,
+        "true_positive_rate": 0.3333333333333333,
+        "false_positive_rate": 0.02631578947368421,
+        "false_negative_rate": 0.6666666666666666,
+        "true_negative_rate": 0.9736842105263158,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 1,
+          "TN": 37,
+          "FN": 2
+        }
+      },
+      "Male + Asian-Pac-Islander": {
+        "sample_count": 123,
+        "selection_rate": 0.36585365853658536,
+        "true_positive_rate": 0.8157894736842105,
+        "false_positive_rate": 0.16470588235294117,
+        "false_negative_rate": 0.18421052631578946,
+        "true_negative_rate": 0.8352941176470589,
+        "confusion_matrix": {
+          "TP": 31,
+          "FP": 14,
+          "TN": 71,
+          "FN": 7
+        }
+      },
+      "Male + Black": {
+        "sample_count": 280,
+        "selection_rate": 0.125,
+        "true_positive_rate": 0.43548387096774194,
+        "false_positive_rate": 0.03669724770642202,
+        "false_negative_rate": 0.5645161290322581,
+        "true_negative_rate": 0.963302752293578,
+        "confusion_matrix": {
+          "TP": 27,
+          "FP": 8,
+          "TN": 210,
+          "FN": 35
+        }
+      },
+      "Male + Other": {
+        "sample_count": 25,
+        "selection_rate": 0.16,
+        "true_positive_rate": 0.5,
+        "false_positive_rate": 0.13043478260869565,
+        "false_negative_rate": 0.5,
+        "true_negative_rate": 0.8695652173913043,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 3,
+          "TN": 20,
+          "FN": 1
+        }
+      },
+      "Male + White": {
+        "sample_count": 3596,
+        "selection_rate": 0.257230255839822,
+        "true_positive_rate": 0.5826161790017211,
+        "false_positive_rate": 0.1018898931799507,
+        "false_negative_rate": 0.4173838209982788,
+        "true_negative_rate": 0.8981101068200493,
+        "confusion_matrix": {
+          "TP": 677,
+          "FP": 248,
+          "TN": 2186,
+          "FN": 485
+        }
+      }
+    },
+    "primary_groups": [
+      "Female + Asian-Pac-Islander",
+      "Female + Black",
+      "Female + White",
+      "Male + Amer-Indian-Eskimo",
+      "Male + Asian-Pac-Islander",
+      "Male + Black",
+      "Male + White"
+    ],
+    "low_sample_groups": [
+      "Female + Amer-Indian-Eskimo",
+      "Female + Other",
+      "Male + Other"
+    ],
+    "disparities": {
+      "demographic_parity_difference": 0.3170731707317073,
+      "disparate_impact_ratio": 0.13333333333333333,
+      "equalized_odds_difference": 0.4824561403508772,
+      "equal_opportunity_difference": 0.4824561403508772,
+      "false_positive_rate_difference": 0.14554879423033582
+    },
+    "rankings": {
+      "status": "AVAILABLE",
+      "highest_selection_rate": {
+        "group": "Male + Asian-Pac-Islander",
+        "value": 0.36585365853658536
+      },
+      "lowest_selection_rate": {
+        "group": "Male + Amer-Indian-Eskimo",
+        "value": 0.04878048780487805
+      },
+      "highest_tpr": {
+        "group": "Male + Asian-Pac-Islander",
+        "value": 0.8157894736842105
+      },
+      "lowest_tpr": {
+        "group": "Male + Amer-Indian-Eskimo",
+        "value": 0.3333333333333333
+      },
+      "highest_fpr": {
+        "group": "Male + Asian-Pac-Islander",
+        "value": 0.16470588235294117
+      },
+      "lowest_fpr": {
+        "group": "Female + Black",
+        "value": 0.019157088122605363
+      },
+      "most_disadvantaged_group": {
+        "group": "Male + Amer-Indian-Eskimo",
+        "value": 0.04878048780487805,
+        "criterion": "lowest_selection_rate"
+      },
+      "highest_performing_group": {
+        "group": "Male + Asian-Pac-Islander",
+        "value": 0.36585365853658536,
+        "criterion": "highest_selection_rate"
+      }
+    },
+    "metric_definitions": {
+      "demographic_parity_difference": "max(Selection Rate) - min(Selection Rate) across primary intersectional groups.",
+      "disparate_impact_ratio": "min(Selection Rate) / max(Selection Rate) across primary intersectional groups.",
+      "equalized_odds_difference": "max(Equal Opportunity Difference, False Positive Rate Difference).",
+      "equal_opportunity_difference": "max(True Positive Rate) - min(True Positive Rate) across primary intersectional groups.",
+      "false_positive_rate_difference": "max(False Positive Rate) - min(False Positive Rate) across primary intersectional groups."
+    },
+    "statistical_safety_policy": "Groups with sample size N < 30 are designated as low-sample groups. Their rate estimates are subject to statistical volatility and are excluded from primary disparity bounds to prevent small-sample noise from distorting conclusions."
+  },
+  "calibration_metrics": {
+    "status": "AVAILABLE",
+    "brier_score": 0.112778046157555,
+    "ece": 0.015069688249369908,
+    "expected_calibration_error": 0.015069688249369908,
+    "reliability_curve": {
+      "prob_true": [
+        0.030147058823529412,
+        0.18192627824019025,
+        0.2759170653907496,
+        0.30848329048843187,
+        0.4197080291970803,
+        0.48659003831417624,
+        0.6425531914893617,
+        0.7622377622377622,
+        0.8417721518987342,
+        0.9504132231404959
+      ],
+      "prob_pred": [
+        0.030718875236277487,
+        0.1538260129889402,
+        0.24900602949405648,
+        0.3441325685527245,
+        0.44743940537639154,
+        0.552345739799193,
+        0.6557650047240297,
+        0.7545958552286945,
+        0.8436788584938955,
+        0.9695649607344612
+      ]
+    },
+    "n_bins": 10,
+    "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+  },
+  "mitigation_metrics": {
+    "demographic_parity_difference": 0.03647798742138365,
+    "disparate_impact_ratio": 0.0,
+    "equalized_odds_difference": 0.16666666666666666,
+    "equal_opportunity_difference": 0.16666666666666666,
+    "false_positive_rate_difference": 0.02681992337164751
+  },
+  "tradeoff_metrics": {
+    "performance": {
+      "Accuracy": {
+        "baseline": 0.8398806563898558,
+        "mitigated": 0.7603182496270512,
+        "absolute_change": -0.07956240676280457,
+        "percentage_change": -9.473060982830077,
+        "impact_status": "Worsened"
+      },
+      "Precision": {
+        "baseline": 0.7267343485617598,
+        "mitigated": 0.6428571428571429,
+        "absolute_change": -0.08387720570461688,
+        "percentage_change": -11.541659737235989,
+        "impact_status": "Worsened"
+      },
+      "Recall": {
+        "baseline": 0.5719041278295606,
+        "mitigated": 0.08388814913448735,
+        "absolute_change": -0.48801597869507324,
+        "percentage_change": -85.33178114086148,
+        "impact_status": "Worsened"
+      },
+      "F1-Score": {
+        "baseline": 0.6400894187779433,
+        "mitigated": 0.14840989399293286,
+        "absolute_change": -0.4916795247850105,
+        "percentage_change": -76.81419351123215,
+        "impact_status": "Worsened"
+      },
+      "ROC-AUC": {
+        "baseline": 0.884122868912222,
+        "mitigated": 0.7506260320602471,
+        "absolute_change": -0.1334968368519749,
+        "percentage_change": -15.099353443512022,
+        "impact_status": "Worsened"
+      }
+    },
+    "calibration": {
+      "brier_score": {
+        "baseline": 0.112778046157555,
+        "mitigated": 0.21556474994990446,
+        "absolute_change": 0.10278670379234946,
+        "percentage_change": 91.14070272928183,
+        "impact_status": "Worsened"
+      },
+      "expected_calibration_error": {
+        "baseline": 0.015069688249369908,
+        "mitigated": 0.21658042944065217,
+        "absolute_change": 0.20151074119128226,
+        "percentage_change": 1337.192500977635,
+        "impact_status": "Worsened"
+      },
+      "interpretation": "Brier Score changed from 0.1128 to 0.2156 (Abs Change: +0.1028, +91.14%). Status: Worsened."
+    },
+    "fairness": {
+      "Demographic Parity Difference": {
+        "baseline": 0.3170731707317073,
+        "mitigated": 0.03647798742138365,
+        "absolute_change": -0.2805951833103237,
+        "percentage_change": -88.49540396710208,
+        "impact_status": "Improved"
+      },
+      "Disparate Impact Ratio": {
+        "baseline": 0.13333333333333333,
+        "mitigated": 0.0,
+        "absolute_change": -0.13333333333333333,
+        "percentage_change": -100.0,
+        "impact_status": "Worsened"
+      },
+      "Equalized Odds Difference": {
+        "baseline": 0.4824561403508772,
+        "mitigated": 0.16666666666666666,
+        "absolute_change": -0.3157894736842105,
+        "percentage_change": -65.45454545454545,
+        "impact_status": "Improved"
+      },
+      "Equal Opportunity Difference (TPR)": {
+        "baseline": 0.4824561403508772,
+        "mitigated": 0.16666666666666666,
+        "absolute_change": -0.3157894736842105,
+        "percentage_change": -65.45454545454545,
+        "impact_status": "Improved"
+      },
+      "False Positive Rate Difference": {
+        "baseline": 0.14554879423033582,
+        "mitigated": 0.02681992337164751,
+        "absolute_change": -0.1187288708586883,
+        "percentage_change": -81.57324248993496,
+        "impact_status": "Improved"
+      }
+    },
+    "intersectional_threshold_policy": "Minimum group size threshold N >= 30 enforced for primary disparity bounds.",
+    "interpretation": "Intersectional fairness disparity (Equalized Odds Difference) changed from 0.4825 to 0.1667 (absolute change of -0.3158). Simultaneously, model predictive accuracy changed from 0.8399 to 0.7603 (-0.0796, -9.47%), and probability calibration Brier Score changed from 0.1128 to 0.2156 (worsened). Therefore, the bias mitigation algorithm produced quantifiable changes in performance, calibration, and fairness."
+  },
+  "warnings": [],
+  "errors": [],
+  "execution_metadata": {
+    "status": "COMPLETED",
+    "framework_version": "1.0.0"
+  }
+}

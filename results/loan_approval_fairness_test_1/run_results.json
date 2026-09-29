@@ -1,0 +1,365 @@
+{
+  "run_id": "RUN-loan_approval_fairness_test_1-1786467267",
+  "timestamp": "2026-08-11T16:54:27.197715Z",
+  "dataset_id": "loan_approval_fairness_test_1",
+  "dataset_hash": "261bc66754477555eda1bd5c81f755b0d1c3790f27f690db6537c58daec1935e",
+  "config_version": "1.0.0",
+  "target_column": "loan_status",
+  "positive_class": "approved",
+  "protected_attributes": [
+    "gender",
+    "race"
+  ],
+  "feature_count": 4,
+  "train_size": 400,
+  "test_size": 100,
+  "baseline_metrics": {
+    "accuracy": 0.66,
+    "precision": 0.6739130434782609,
+    "recall": 0.9393939393939394,
+    "f1_score": 0.7848101265822784,
+    "roc_auc": 0.6122994652406417,
+    "confusion_matrix": {
+      "TN": 4,
+      "FP": 30,
+      "FN": 4,
+      "TP": 62,
+      "matrix": [
+        [
+          4,
+          30
+        ],
+        [
+          4,
+          62
+        ]
+      ]
+    }
+  },
+  "fairness_metrics": {
+    "demographic_parity_difference": 0.2222222222222222,
+    "disparate_impact_ratio": 0.7777777777777778,
+    "equalized_odds_difference": 0.375,
+    "equal_opportunity_difference": 0.125,
+    "false_positive_rate_difference": 0.375
+  },
+  "intersectional_metrics": {
+    "intersection_definition": "gender x race",
+    "attributes_combined": [
+      "gender",
+      "race"
+    ],
+    "min_group_size_threshold": 30,
+    "total_groups_discovered": 8,
+    "primary_group_count": 0,
+    "low_sample_group_count": 8,
+    "all_group_metrics": {
+      "Female + GroupA": {
+        "sample_count": 15,
+        "selection_rate": 0.8666666666666667,
+        "true_positive_rate": 0.9090909090909091,
+        "false_positive_rate": 0.75,
+        "false_negative_rate": 0.09090909090909091,
+        "true_negative_rate": 0.25,
+        "confusion_matrix": {
+          "TP": 10,
+          "FP": 3,
+          "TN": 1,
+          "FN": 1
+        }
+      },
+      "Female + GroupB": {
+        "sample_count": 12,
+        "selection_rate": 0.9166666666666666,
+        "true_positive_rate": 0.8888888888888888,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.1111111111111111,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 8,
+          "FP": 3,
+          "TN": 0,
+          "FN": 1
+        }
+      },
+      "Female + GroupC": {
+        "sample_count": 11,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 9,
+          "FP": 2,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupD": {
+        "sample_count": 4,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 2,
+          "FP": 2,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA": {
+        "sample_count": 20,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 12,
+          "FP": 8,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB": {
+        "sample_count": 18,
+        "selection_rate": 0.7777777777777778,
+        "true_positive_rate": 0.9,
+        "false_positive_rate": 0.625,
+        "false_negative_rate": 0.1,
+        "true_negative_rate": 0.375,
+        "confusion_matrix": {
+          "TP": 9,
+          "FP": 5,
+          "TN": 3,
+          "FN": 1
+        }
+      },
+      "Male + GroupC": {
+        "sample_count": 8,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 5,
+          "FP": 3,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupD": {
+        "sample_count": 12,
+        "selection_rate": 0.9166666666666666,
+        "true_positive_rate": 0.875,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.125,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 7,
+          "FP": 4,
+          "TN": 0,
+          "FN": 1
+        }
+      }
+    },
+    "primary_groups": [],
+    "low_sample_groups": [
+      "Female + GroupA",
+      "Female + GroupB",
+      "Female + GroupC",
+      "Female + GroupD",
+      "Male + GroupA",
+      "Male + GroupB",
+      "Male + GroupC",
+      "Male + GroupD"
+    ],
+    "disparities": {
+      "demographic_parity_difference": 0.2222222222222222,
+      "disparate_impact_ratio": 0.7777777777777778,
+      "equalized_odds_difference": 0.375,
+      "equal_opportunity_difference": 0.125,
+      "false_positive_rate_difference": 0.375
+    },
+    "rankings": {
+      "highest_selection_rate": {
+        "group": "Female + GroupC",
+        "value": 1.0
+      },
+      "lowest_selection_rate": {
+        "group": "Male + GroupB",
+        "value": 0.7777777777777778
+      },
+      "highest_tpr": {
+        "group": "Female + GroupC",
+        "value": 1.0
+      },
+      "lowest_tpr": {
+        "group": "Male + GroupD",
+        "value": 0.875
+      },
+      "highest_fpr": {
+        "group": "Female + GroupB",
+        "value": 1.0
+      },
+      "lowest_fpr": {
+        "group": "Male + GroupB",
+        "value": 0.625
+      },
+      "most_disadvantaged_group": {
+        "group": "Male + GroupB",
+        "value": 0.7777777777777778,
+        "criterion": "lowest_selection_rate"
+      },
+      "highest_performing_group": {
+        "group": "Female + GroupC",
+        "value": 1.0,
+        "criterion": "highest_selection_rate"
+      }
+    },
+    "metric_definitions": {
+      "demographic_parity_difference": "max(Selection Rate) - min(Selection Rate) across primary intersectional groups.",
+      "disparate_impact_ratio": "min(Selection Rate) / max(Selection Rate) across primary intersectional groups.",
+      "equalized_odds_difference": "max(Equal Opportunity Difference, False Positive Rate Difference).",
+      "equal_opportunity_difference": "max(True Positive Rate) - min(True Positive Rate) across primary intersectional groups.",
+      "false_positive_rate_difference": "max(False Positive Rate) - min(False Positive Rate) across primary intersectional groups."
+    },
+    "statistical_safety_policy": "Groups with sample size N < 30 are designated as low-sample groups. Their rate estimates are subject to statistical volatility and are excluded from primary disparity bounds to prevent small-sample noise from distorting conclusions."
+  },
+  "calibration_metrics": {
+    "brier_score": 0.2150397959388928,
+    "expected_calibration_error": 0.038576137693758186,
+    "reliability_curve": {
+      "prob_true": [
+        0.0,
+        0.5714285714285714,
+        0.5714285714285714,
+        0.6764705882352942,
+        0.7407407407407407,
+        0.7
+      ],
+      "prob_pred": [
+        0.2957679046464267,
+        0.4575125824957908,
+        0.5594816700271474,
+        0.6506964902042799,
+        0.7502533426314227,
+        0.8380389428667121
+      ]
+    },
+    "n_bins": 10,
+    "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+  },
+  "mitigation_metrics": {
+    "demographic_parity_difference": 0.0,
+    "disparate_impact_ratio": 1.0,
+    "equalized_odds_difference": 0.0,
+    "equal_opportunity_difference": 0.0,
+    "false_positive_rate_difference": 0.0
+  },
+  "tradeoff_metrics": {
+    "performance": {
+      "Accuracy": {
+        "baseline": 0.66,
+        "mitigated": 0.66,
+        "absolute_change": 0.0,
+        "percentage_change": 0.0,
+        "impact_status": "Neutral"
+      },
+      "Precision": {
+        "baseline": 0.6739130434782609,
+        "mitigated": 0.66,
+        "absolute_change": -0.013913043478260834,
+        "percentage_change": -2.0645161290322527,
+        "impact_status": "Worsened"
+      },
+      "Recall": {
+        "baseline": 0.9393939393939394,
+        "mitigated": 1.0,
+        "absolute_change": 0.06060606060606055,
+        "percentage_change": 6.451612903225801,
+        "impact_status": "Improved"
+      },
+      "F1-Score": {
+        "baseline": 0.7848101265822784,
+        "mitigated": 0.7951807228915663,
+        "absolute_change": 0.010370596309287827,
+        "percentage_change": 1.3214146910221587,
+        "impact_status": "Improved"
+      },
+      "ROC-AUC": {
+        "baseline": 0.6122994652406417,
+        "mitigated": 0.5,
+        "absolute_change": -0.11229946524064172,
+        "percentage_change": -18.340611353711793,
+        "impact_status": "Worsened"
+      }
+    },
+    "calibration": {
+      "brier_score": {
+        "baseline": 0.2150397959388928,
+        "mitigated": 0.34,
+        "absolute_change": 0.12496020406110722,
+        "percentage_change": 58.110269085549525,
+        "impact_status": "Worsened"
+      },
+      "expected_calibration_error": {
+        "baseline": 0.038576137693758186,
+        "mitigated": 0.33999999999999997,
+        "absolute_change": 0.3014238623062418,
+        "percentage_change": 781.3738759933287,
+        "impact_status": "Worsened"
+      },
+      "interpretation": "Brier Score changed from 0.2150 to 0.3400 (Abs Change: +0.1250, +58.11%). Status: Worsened."
+    },
+    "fairness": {
+      "Demographic Parity Difference": {
+        "baseline": 0.2222222222222222,
+        "mitigated": 0.0,
+        "absolute_change": -0.2222222222222222,
+        "percentage_change": -100.0,
+        "impact_status": "Improved"
+      },
+      "Disparate Impact Ratio": {
+        "baseline": 0.7777777777777778,
+        "mitigated": 1.0,
+        "absolute_change": 0.2222222222222222,
+        "percentage_change": 28.57142857142857,
+        "impact_status": "Improved"
+      },
+      "Equalized Odds Difference": {
+        "baseline": 0.375,
+        "mitigated": 0.0,
+        "absolute_change": -0.375,
+        "percentage_change": -100.0,
+        "impact_status": "Improved"
+      },
+      "Equal Opportunity Difference (TPR)": {
+        "baseline": 0.125,
+        "mitigated": 0.0,
+        "absolute_change": -0.125,
+        "percentage_change": -100.0,
+        "impact_status": "Improved"
+      },
+      "False Positive Rate Difference": {
+        "baseline": 0.375,
+        "mitigated": 0.0,
+        "absolute_change": -0.375,
+        "percentage_change": -100.0,
+        "impact_status": "Improved"
+      }
+    },
+    "intersectional_threshold_policy": "Minimum group size threshold N >= 30 enforced for primary disparity bounds.",
+    "interpretation": "Intersectional fairness disparity (Equalized Odds Difference) decreased from 0.3750 to 0.0000 (a disparity reduction of 0.3750). Simultaneously, model predictive accuracy changed from 0.6600 to 0.6600 (+0.0000, +0.00%), and probability calibration Brier Score changed from 0.2150 to 0.3400 (worsened). Therefore, the bias mitigation algorithm produced a measurable reduction in intersectional fairness disparity accompanied by quantifiable changes in predictive accuracy and calibration."
+  },
+  "warnings": [],
+  "errors": [],
+  "execution_metadata": {
+    "status": "COMPLETED",
+    "framework_version": "1.0.0"
+  }
+}

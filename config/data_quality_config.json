@@ -1,0 +1,15 @@
+{
+  "config_version": "1.0",
+  "dataset_path": "data/raw/adult.csv",
+  "minimum_rows": 30000,
+  "maximum_missing_percent": 10.0,
+  "allow_duplicates": true,
+  "require_binary_target": true,
+  "target_column": "income",
+  "expected_target_classes": ["<=50K", ">50K"],
+  "required_protected_attributes": [
+    "sex",
+    "race"
+  ],
+  "minimum_intersectional_group_size": 30
+}

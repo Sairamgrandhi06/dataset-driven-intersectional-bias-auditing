@@ -1,0 +1,85 @@
+{
+  "run_id": "RUN-PHASE10-001",
+  "dataset_id": "UCI-ADULT-1996",
+  "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+  "model_id": "BASELINE_LOGISTIC_REGRESSION",
+  "configuration_version": "1.0.0",
+  "selected_criteria": [
+    "demographic_parity",
+    "disparate_impact",
+    "equal_opportunity",
+    "equalized_odds",
+    "fpr_difference"
+  ],
+  "metric_values": {
+    "demographic_parity_difference": 0.3170731707317073,
+    "disparate_impact_ratio": 0.13333333333333333,
+    "equalized_odds_difference": 0.4824561403508772,
+    "equal_opportunity_difference": 0.4824561403508772,
+    "false_positive_rate_difference": 0.14554879423033582
+  },
+  "configured_thresholds": {
+    "demographic_parity_difference_max": 0.1,
+    "disparate_impact_min": 0.8,
+    "equal_opportunity_difference_max": 0.1,
+    "equalized_odds_difference_max": 0.1,
+    "fpr_difference_max": 0.1
+  },
+  "per_criterion_status": [
+    {
+      "criterion": "demographic_parity",
+      "display_name": "Demographic Parity Difference",
+      "observed_value": 0.317073,
+      "configured_threshold": 0.1,
+      "threshold_key": "demographic_parity_difference_max",
+      "better_direction": "lower",
+      "status": "FAIL",
+      "reason": "Observed value (0.3171) breaches configured threshold (0.1000)"
+    },
+    {
+      "criterion": "disparate_impact",
+      "display_name": "Disparate Impact Ratio",
+      "observed_value": 0.133333,
+      "configured_threshold": 0.8,
+      "threshold_key": "disparate_impact_min",
+      "better_direction": "higher",
+      "status": "FAIL",
+      "reason": "Observed value (0.1333) breaches configured threshold (0.8000)"
+    },
+    {
+      "criterion": "equal_opportunity",
+      "display_name": "Equal Opportunity Difference (TPR)",
+      "observed_value": 0.482456,
+      "configured_threshold": 0.1,
+      "threshold_key": "equal_opportunity_difference_max",
+      "better_direction": "lower",
+      "status": "FAIL",
+      "reason": "Observed value (0.4825) breaches configured threshold (0.1000)"
+    },
+    {
+      "criterion": "equalized_odds",
+      "display_name": "Equalized Odds Difference",
+      "observed_value": 0.482456,
+      "configured_threshold": 0.1,
+      "threshold_key": "equalized_odds_difference_max",
+      "better_direction": "lower",
+      "status": "FAIL",
+      "reason": "Observed value (0.4825) breaches configured threshold (0.1000)"
+    },
+    {
+      "criterion": "fpr_difference",
+      "display_name": "False Positive Rate Difference",
+      "observed_value": 0.145549,
+      "configured_threshold": 0.1,
+      "threshold_key": "fpr_difference_max",
+      "better_direction": "lower",
+      "status": "FAIL",
+      "reason": "Observed value (0.1455) breaches configured threshold (0.1000)"
+    }
+  ],
+  "compatibility_status": "CONFLICT_DETECTED",
+  "conflict_reason": "All 5 criteria failed their configured thresholds. Simultaneous satisfaction not demonstrated.",
+  "silent_priority_detected": false,
+  "operator_decision_required": true,
+  "timestamp": "2026-08-11T20:28:06.671748"
+}

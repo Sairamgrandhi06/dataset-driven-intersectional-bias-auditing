@@ -1,0 +1,50 @@
+{
+  "status": "STABLE",
+  "labels_available": true,
+  "current_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0,
+    "confusion_matrix": {
+      "TN": 68,
+      "FP": 0,
+      "FN": 0,
+      "TP": 1932
+    }
+  },
+  "reference_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0,
+    "confusion_matrix": {
+      "TN": 78,
+      "FP": 0,
+      "FN": 0,
+      "TP": 1922,
+      "matrix": [
+        [
+          78,
+          0
+        ],
+        [
+          0,
+          1922
+        ]
+      ]
+    }
+  },
+  "deltas": {
+    "accuracy_delta": 0.0,
+    "accuracy_pct_change": 0.0,
+    "precision_delta": 0.0,
+    "precision_pct_change": 0.0,
+    "recall_delta": 0.0,
+    "recall_pct_change": 0.0,
+    "f1_score_delta": 0.0,
+    "f1_score_pct_change": 0.0
+  }
+}

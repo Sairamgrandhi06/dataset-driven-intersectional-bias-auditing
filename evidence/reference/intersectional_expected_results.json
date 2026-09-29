@@ -1,0 +1,205 @@
+{
+  "oracle_metadata": {
+    "oracle_name": "Phase 3 Intersectional Expected-Result Oracle",
+    "dataset_id": "UCI-ADULT-1996",
+    "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+    "test_sample_count": 6033,
+    "min_group_size_threshold": 30,
+    "source_file": "data/processed/intersectional_results.json",
+    "attributes_combined": [
+      "sex",
+      "race"
+    ]
+  },
+  "expected_group_summary": {
+    "total_groups_discovered": 10,
+    "primary_group_count": 7,
+    "low_sample_group_count": 3
+  },
+  "expected_group_metrics": {
+    "Female + Amer-Indian-Eskimo": {
+      "sample_count": 23,
+      "selection_rate": 0.043478260869565216,
+      "true_positive_rate": 0.3333333333333333,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.6666666666666666,
+      "true_negative_rate": 1.0,
+      "confusion_matrix": {
+        "TP": 1,
+        "FP": 0,
+        "TN": 20,
+        "FN": 2
+      }
+    },
+    "Female + Asian-Pac-Islander": {
+      "sample_count": 63,
+      "selection_rate": 0.1111111111111111,
+      "true_positive_rate": 0.6666666666666666,
+      "false_positive_rate": 0.05263157894736842,
+      "false_negative_rate": 0.3333333333333333,
+      "true_negative_rate": 0.9473684210526315,
+      "confusion_matrix": {
+        "TP": 4,
+        "FP": 3,
+        "TN": 54,
+        "FN": 2
+      }
+    },
+    "Female + Black": {
+      "sample_count": 279,
+      "selection_rate": 0.05017921146953405,
+      "true_positive_rate": 0.5,
+      "false_positive_rate": 0.019157088122605363,
+      "false_negative_rate": 0.5,
+      "true_negative_rate": 0.9808429118773946,
+      "confusion_matrix": {
+        "TP": 9,
+        "FP": 5,
+        "TN": 256,
+        "FN": 9
+      }
+    },
+    "Female + Other": {
+      "sample_count": 13,
+      "selection_rate": 0.07692307692307693,
+      "true_positive_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "true_negative_rate": 1.0,
+      "confusion_matrix": {
+        "TP": 1,
+        "FP": 0,
+        "TN": 12,
+        "FN": 0
+      }
+    },
+    "Female + White": {
+      "sample_count": 1590,
+      "selection_rate": 0.0930817610062893,
+      "true_positive_rate": 0.5169082125603864,
+      "false_positive_rate": 0.02964569775849602,
+      "false_negative_rate": 0.4830917874396135,
+      "true_negative_rate": 0.970354302241504,
+      "confusion_matrix": {
+        "TP": 107,
+        "FP": 41,
+        "TN": 1342,
+        "FN": 100
+      }
+    },
+    "Male + Amer-Indian-Eskimo": {
+      "sample_count": 41,
+      "selection_rate": 0.04878048780487805,
+      "true_positive_rate": 0.3333333333333333,
+      "false_positive_rate": 0.02631578947368421,
+      "false_negative_rate": 0.6666666666666666,
+      "true_negative_rate": 0.9736842105263158,
+      "confusion_matrix": {
+        "TP": 1,
+        "FP": 1,
+        "TN": 37,
+        "FN": 2
+      }
+    },
+    "Male + Asian-Pac-Islander": {
+      "sample_count": 123,
+      "selection_rate": 0.36585365853658536,
+      "true_positive_rate": 0.8157894736842105,
+      "false_positive_rate": 0.16470588235294117,
+      "false_negative_rate": 0.18421052631578946,
+      "true_negative_rate": 0.8352941176470589,
+      "confusion_matrix": {
+        "TP": 31,
+        "FP": 14,
+        "TN": 71,
+        "FN": 7
+      }
+    },
+    "Male + Black": {
+      "sample_count": 280,
+      "selection_rate": 0.125,
+      "true_positive_rate": 0.43548387096774194,
+      "false_positive_rate": 0.03669724770642202,
+      "false_negative_rate": 0.5645161290322581,
+      "true_negative_rate": 0.963302752293578,
+      "confusion_matrix": {
+        "TP": 27,
+        "FP": 8,
+        "TN": 210,
+        "FN": 35
+      }
+    },
+    "Male + Other": {
+      "sample_count": 25,
+      "selection_rate": 0.16,
+      "true_positive_rate": 0.5,
+      "false_positive_rate": 0.13043478260869565,
+      "false_negative_rate": 0.5,
+      "true_negative_rate": 0.8695652173913043,
+      "confusion_matrix": {
+        "TP": 1,
+        "FP": 3,
+        "TN": 20,
+        "FN": 1
+      }
+    },
+    "Male + White": {
+      "sample_count": 3596,
+      "selection_rate": 0.257230255839822,
+      "true_positive_rate": 0.5826161790017211,
+      "false_positive_rate": 0.1018898931799507,
+      "false_negative_rate": 0.4173838209982788,
+      "true_negative_rate": 0.8981101068200493,
+      "confusion_matrix": {
+        "TP": 677,
+        "FP": 248,
+        "TN": 2186,
+        "FN": 485
+      }
+    }
+  },
+  "expected_disparities": {
+    "demographic_parity_difference": 0.3170731707317073,
+    "disparate_impact_ratio": 0.13333333333333333,
+    "equalized_odds_difference": 0.4824561403508772,
+    "equal_opportunity_difference": 0.4824561403508772,
+    "false_positive_rate_difference": 0.14554879423033582
+  },
+  "expected_rankings": {
+    "highest_selection_rate": {
+      "group": "Male + Asian-Pac-Islander",
+      "value": 0.36585365853658536
+    },
+    "lowest_selection_rate": {
+      "group": "Male + Amer-Indian-Eskimo",
+      "value": 0.04878048780487805
+    },
+    "highest_tpr": {
+      "group": "Male + Asian-Pac-Islander",
+      "value": 0.8157894736842105
+    },
+    "lowest_tpr": {
+      "group": "Male + Amer-Indian-Eskimo",
+      "value": 0.3333333333333333
+    },
+    "highest_fpr": {
+      "group": "Male + Asian-Pac-Islander",
+      "value": 0.16470588235294117
+    },
+    "lowest_fpr": {
+      "group": "Female + Black",
+      "value": 0.019157088122605363
+    },
+    "most_disadvantaged_group": {
+      "group": "Male + Amer-Indian-Eskimo",
+      "value": 0.04878048780487805,
+      "criterion": "lowest_selection_rate"
+    },
+    "highest_performing_group": {
+      "group": "Male + Asian-Pac-Islander",
+      "value": 0.36585365853658536,
+      "criterion": "highest_selection_rate"
+    }
+  },
+  "overall_audit_result": "PASS"
+}

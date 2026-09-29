@@ -1,0 +1,19 @@
+{
+  "criteria": [
+    "demographic_parity",
+    "disparate_impact",
+    "equal_opportunity",
+    "equalized_odds",
+    "fpr_difference"
+  ],
+  "thresholds": {
+    "demographic_parity_difference_max": 0.10,
+    "disparate_impact_min": 0.80,
+    "equal_opportunity_difference_max": 0.10,
+    "equalized_odds_difference_max": 0.10,
+    "fpr_difference_max": 0.10
+  },
+  "conflict_policy": "report_all_do_not_silently_prioritize",
+  "minimum_group_size": 30,
+  "configuration_version": "1.0.0"
+}

@@ -1,0 +1,61 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data directory contents (keep folder structure, ignore dataset files)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Environments & virtualenvs
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / OS specific files
+.vscode/
+.idea/
+.DS_Store/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Large historical model artifacts
+models/adult_census_income/
+
+# Other generated model collections not required for the final verified demo
+models/loan_approval/
+models/loan_approval_fairness_test/
+models/loan_monitoring_shifted_batch/
+models/student_performance/
+models/test_ds_unique/
+models/test_interactive_ds/
+
+# Historical monitoring evidence not required for final verified demo
+evidence/monitoring/adult_census_income/
+evidence/monitoring/final_project_loan_demo__1/
+evidence/monitoring/loan_approval/
+evidence/monitoring/student_performance/
+
+# Historical model artifacts
+models/final_project_loan_demo__1/
+
+# Historical run manifests
+evidence/runs/
+
+# Keep final verified Students run evidence
+!evidence/runs/students/
+!evidence/runs/students/**
+
+# Keep only the authoritative final Students model run
+models/students/*
+!models/students/run_RUN-students-1790668833/
+!models/students/run_RUN-students-1790668833/**
+
+# Local gitignore backup
+.gitignore.backup

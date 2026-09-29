@@ -1,0 +1,132 @@
+{
+  "overall_status": "PASS",
+  "config_version": "1.0",
+  "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+  "file_size_bytes": 3551168,
+  "raw_row_count": 32561,
+  "raw_column_count": 15,
+  "missing_value_percentage": 0.8726185723206699,
+  "duplicate_row_count": 24,
+  "quality_gates_passed": 15,
+  "quality_gates_failed": 0,
+  "group_distributions": {
+    "sex": {
+      "Male": 21790,
+      "Female": 10771
+    },
+    "race": {
+      "White": 27816,
+      "Black": 3124,
+      "Asian-Pac-Islander": 1039,
+      "Amer-Indian-Eskimo": 311,
+      "Other": 271
+    }
+  },
+  "intersectional_group_counts": {
+    "Male + White": 19174,
+    "Female + White": 8642,
+    "Male + Black": 1569,
+    "Female + Black": 1555,
+    "Male + Asian-Pac-Islander": 693,
+    "Female + Asian-Pac-Islander": 346,
+    "Male + Amer-Indian-Eskimo": 192,
+    "Male + Other": 162,
+    "Female + Amer-Indian-Eskimo": 119,
+    "Female + Other": 109
+  },
+  "checks": [
+    {
+      "name": "dataset_exists",
+      "status": "PASS",
+      "observed": "File exists at 'data/raw/adult.csv'",
+      "expected": "Dataset file must exist at 'data/raw/adult.csv'"
+    },
+    {
+      "name": "dataset_hash_calculated",
+      "status": "PASS",
+      "observed": "SHA256: 9007ff524acf0776... (Size: 3,551,168 bytes)",
+      "expected": "SHA-256 file hash and size must be calculated"
+    },
+    {
+      "name": "dataset_readable",
+      "status": "PASS",
+      "observed": "DataFrame loaded (32,561 rows, 15 columns)",
+      "expected": "Dataset must be readable into pandas DataFrame"
+    },
+    {
+      "name": "target_exists",
+      "status": "PASS",
+      "observed": "Target column 'income' present",
+      "expected": "Target column 'income' required"
+    },
+    {
+      "name": "protected_attributes_exist",
+      "status": "PASS",
+      "observed": "Protected attributes present: ['sex', 'race']",
+      "expected": "Protected attributes required: ['sex', 'race']"
+    },
+    {
+      "name": "target_binary_compatible",
+      "status": "PASS",
+      "observed": "Target classes: ['<=50K', '>50K'] (Count: 2)",
+      "expected": "Binary target required (['<=50K', '>50K'])"
+    },
+    {
+      "name": "no_empty_columns",
+      "status": "PASS",
+      "observed": "No completely empty columns",
+      "expected": "All columns must contain at least one valid non-null value"
+    },
+    {
+      "name": "missing_value_percentage",
+      "status": "PASS",
+      "observed": "0.87% missing/sentinel values",
+      "expected": "Missing value percentage <= 10.0%"
+    },
+    {
+      "name": "duplicate_rows_measured",
+      "status": "PASS",
+      "observed": "24 duplicate rows (0.07%)",
+      "expected": "Duplicate rows measured and recorded"
+    },
+    {
+      "name": "row_count_above_minimum",
+      "status": "PASS",
+      "observed": "32,561 raw rows",
+      "expected": "Row count >= 30,000 rows"
+    },
+    {
+      "name": "protected_attribute_group_counts",
+      "status": "PASS",
+      "observed": "Group distributions measured for ['sex', 'race']",
+      "expected": "Distributions measured for all protected attributes: ['sex', 'race']"
+    },
+    {
+      "name": "intersectional_groups_measurable",
+      "status": "PASS",
+      "observed": "10 subgroups (0 low-sample groups N < 30)",
+      "expected": "Intersectional subgroup distributions measured against safety threshold (N >= 30)"
+    },
+    {
+      "name": "schema_compatibility",
+      "status": "PASS",
+      "observed": "Total columns: 15, Features: 12",
+      "expected": "Schema must contain target, protected attributes, and feature columns"
+    },
+    {
+      "name": "no_silent_schema_changes",
+      "status": "PASS",
+      "observed": "Observed column count: 15",
+      "expected": "Expected raw column count: 15"
+    },
+    {
+      "name": "config_validity",
+      "status": "PASS",
+      "observed": "Quality configuration object valid",
+      "expected": "Quality gate configuration dictionary must be valid"
+    }
+  ],
+  "warnings": [],
+  "failures": [],
+  "execution_timestamp": "2026-09-28T17:08:56.640084"
+}

@@ -1,0 +1,27 @@
+{
+  "monitoring_run_id": "MON-students-1790671720",
+  "dataset_id": "students",
+  "monitoring_dataset_id": "students",
+  "monitoring_dataset_hash": "982e8e3b17a3c483994f0963b0b4e8b49ca82230a96ae98ead4accaffc5dbfa8",
+  "reference_dataset_id": "students",
+  "reference_dataset_hash": "47940e922aa594be237114b350cf9f3da8610b7406b631436d3310ea8212d048",
+  "reference_model_version": "v3",
+  "reference_run_id": "RUN-students-1790668833",
+  "current_data_hash": "982e8e3b17a3c483994f0963b0b4e8b49ca82230a96ae98ead4accaffc5dbfa8",
+  "timestamp": "2026-09-29T08:48:40Z",
+  "schema_status": "SCHEMA_OK",
+  "feature_drift_status": "NO_DRIFT",
+  "performance_status": "STABLE",
+  "fairness_status": "FAIRNESS_STABLE",
+  "calibration_status": "STABLE",
+  "overall_health": "HEALTHY",
+  "retraining_recommendation": "NO_RETRAINING_NEEDED",
+  "artifact_paths": {
+    "drift_report.json": "D:/personal_proj/evidence/monitoring/students/MON-students-1790671720/drift_report.json",
+    "performance_monitoring.json": "D:/personal_proj/evidence/monitoring/students/MON-students-1790671720/performance_monitoring.json",
+    "fairness_monitoring.json": "D:/personal_proj/evidence/monitoring/students/MON-students-1790671720/fairness_monitoring.json",
+    "calibration_monitoring.json": "D:/personal_proj/evidence/monitoring/students/MON-students-1790671720/calibration_monitoring.json",
+    "health_report.json": "D:/personal_proj/evidence/monitoring/students/MON-students-1790671720/health_report.json",
+    "retraining_recommendation.json": "D:/personal_proj/evidence/monitoring/students/MON-students-1790671720/retraining_recommendation.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "random_seed": 42,
+  "dataset": {
+    "name": "Adult Census Income",
+    "url": "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data",
+    "raw_path": "data/raw/adult.csv",
+    "processed_path": "data/processed/adult_cleaned.csv",
+    "columns": [
+      "age", "workclass", "fnlwgt", "education", "education_num",
+      "marital_status", "occupation", "relationship", "race", "sex",
+      "capital_gain", "capital_loss", "hours_per_week", "native_country", "income"
+    ],
+    "target_column": "income",
+    "positive_target_value": ">50K",
+    "protected_attributes": ["sex", "race"],
+    "drop_protected_from_features": true
+  },
+  "test_size": 0.2
+}

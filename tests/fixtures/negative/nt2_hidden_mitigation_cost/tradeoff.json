@@ -1,0 +1,20 @@
+{
+  "test_fixture_id": "NT-2-HIDDEN-MITIGATION-COST-FIXTURE",
+  "description": "Simulates incomplete mitigation result missing mandatory calibration and recall cost metrics.",
+  "performance_metrics": {
+    "baseline": {
+      "accuracy": 0.8399
+    },
+    "mitigated": {
+      "accuracy": 0.7578
+    }
+  },
+  "fairness_metrics": {
+    "baseline": {
+      "equalized_odds_difference": 0.4825
+    },
+    "mitigated": {
+      "equalized_odds_difference": 0.1667
+    }
+  }
+}

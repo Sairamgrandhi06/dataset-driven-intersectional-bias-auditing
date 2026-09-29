@@ -1,0 +1,6 @@
+criterion,display_name,observed_value,configured_threshold,threshold_key,better_direction,status,reason
+demographic_parity,Demographic Parity Difference,0.317073,0.1,demographic_parity_difference_max,lower,FAIL,Observed value (0.3171) breaches configured threshold (0.1000)
+disparate_impact,Disparate Impact Ratio,0.133333,0.8,disparate_impact_min,higher,FAIL,Observed value (0.1333) breaches configured threshold (0.8000)
+equal_opportunity,Equal Opportunity Difference (TPR),0.482456,0.1,equal_opportunity_difference_max,lower,FAIL,Observed value (0.4825) breaches configured threshold (0.1000)
+equalized_odds,Equalized Odds Difference,0.482456,0.1,equalized_odds_difference_max,lower,FAIL,Observed value (0.4825) breaches configured threshold (0.1000)
+fpr_difference,False Positive Rate Difference,0.145549,0.1,fpr_difference_max,lower,FAIL,Observed value (0.1455) breaches configured threshold (0.1000)

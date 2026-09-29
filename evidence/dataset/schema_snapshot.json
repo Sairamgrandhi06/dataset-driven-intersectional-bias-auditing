@@ -1,0 +1,225 @@
+{
+  "generated_timestamp": "2026-09-28T17:08:56.715092",
+  "column_count": 15,
+  "columns": [
+    {
+      "name": "age",
+      "dtype": "int64",
+      "unique_count": 73,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "39",
+        "50",
+        "38",
+        "53",
+        "28"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "workclass",
+      "dtype": "str",
+      "unique_count": 9,
+      "missing_count": 1836,
+      "missing_percent": 5.6386,
+      "sample_values": [
+        "State-gov",
+        "Self-emp-not-inc",
+        "Private",
+        "Federal-gov",
+        "Local-gov"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "fnlwgt",
+      "dtype": "int64",
+      "unique_count": 21648,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "77516",
+        "83311",
+        "215646",
+        "234721",
+        "338409"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "education",
+      "dtype": "str",
+      "unique_count": 16,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "Bachelors",
+        "HS-grad",
+        "11th",
+        "Masters",
+        "9th"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "education_num",
+      "dtype": "int64",
+      "unique_count": 16,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "13",
+        "9",
+        "7",
+        "14",
+        "5"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "marital_status",
+      "dtype": "str",
+      "unique_count": 7,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "Never-married",
+        "Married-civ-spouse",
+        "Divorced",
+        "Married-spouse-absent",
+        "Separated"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "occupation",
+      "dtype": "str",
+      "unique_count": 15,
+      "missing_count": 1843,
+      "missing_percent": 5.6601,
+      "sample_values": [
+        "Adm-clerical",
+        "Exec-managerial",
+        "Handlers-cleaners",
+        "Prof-specialty",
+        "Other-service"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "relationship",
+      "dtype": "str",
+      "unique_count": 6,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "Not-in-family",
+        "Husband",
+        "Wife",
+        "Own-child",
+        "Unmarried"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "race",
+      "dtype": "str",
+      "unique_count": 5,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "White",
+        "Black",
+        "Asian-Pac-Islander",
+        "Amer-Indian-Eskimo",
+        "Other"
+      ],
+      "role": "protected"
+    },
+    {
+      "name": "sex",
+      "dtype": "str",
+      "unique_count": 2,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "Male",
+        "Female"
+      ],
+      "role": "protected"
+    },
+    {
+      "name": "capital_gain",
+      "dtype": "int64",
+      "unique_count": 119,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "2174",
+        "0",
+        "14084",
+        "5178",
+        "5013"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "capital_loss",
+      "dtype": "int64",
+      "unique_count": 92,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "0",
+        "2042",
+        "1408",
+        "1902",
+        "1573"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "hours_per_week",
+      "dtype": "int64",
+      "unique_count": 94,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "40",
+        "13",
+        "16",
+        "45",
+        "50"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "native_country",
+      "dtype": "str",
+      "unique_count": 42,
+      "missing_count": 583,
+      "missing_percent": 1.7905,
+      "sample_values": [
+        "United-States",
+        "Cuba",
+        "Jamaica",
+        "India",
+        "?"
+      ],
+      "role": "feature"
+    },
+    {
+      "name": "income",
+      "dtype": "str",
+      "unique_count": 2,
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "sample_values": [
+        "<=50K",
+        ">50K"
+      ],
+      "role": "target"
+    }
+  ]
+}

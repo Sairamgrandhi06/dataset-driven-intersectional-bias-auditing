@@ -1,0 +1,11 @@
+{
+  "fairness_constraints": {
+    "equalized_odds_difference": {
+      "enabled": true,
+      "max_allowed": 0.20
+    }
+  },
+  "performance_metric": "cv_accuracy",
+  "direction": "maximize",
+  "allow_fallback": true
+}

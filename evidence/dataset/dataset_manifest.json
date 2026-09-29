@@ -1,0 +1,38 @@
+{
+  "dataset_name": "UCI Adult Census Income Dataset",
+  "dataset_id": "UCI-ADULT-1996",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/adult",
+  "access_date": "2026-09-28",
+  "source_version": "NOT_SPECIFIED",
+  "local_file": "data/raw/adult.csv",
+  "file_sha256": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+  "file_size_bytes": 3551168,
+  "task_type": "binary_classification",
+  "target_column": "income",
+  "protected_attributes": [
+    "sex",
+    "race"
+  ],
+  "feature_columns": [
+    "age",
+    "workclass",
+    "fnlwgt",
+    "education",
+    "education_num",
+    "marital_status",
+    "occupation",
+    "relationship",
+    "capital_gain",
+    "capital_loss",
+    "hours_per_week",
+    "native_country"
+  ],
+  "raw_row_count": 32561,
+  "raw_column_count": 15,
+  "encoding": "UTF-8",
+  "license_or_usage_note": "Public Domain / Creative Commons Attribution 4.0 International",
+  "provenance_status": "ACQUIRED_UCI_REPOSITORY",
+  "verification_status": "VERIFIED_LOCAL_FILE",
+  "config_version": "1.0"
+}

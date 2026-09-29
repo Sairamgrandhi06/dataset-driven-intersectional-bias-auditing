@@ -1,0 +1,37 @@
+{
+  "dataset_id": "student_performance",
+  "path": "data/raw/student_performance.csv",
+  "target": {
+    "column": "passed",
+    "positive_class": "yes",
+    "negative_class": "no"
+  },
+  "protected_attributes": [
+    "gender",
+    "race"
+  ],
+  "id_columns": [
+    "student_id"
+  ],
+  "ignore_columns": [],
+  "test_size": 0.2,
+  "random_state": 42,
+  "intersectional": {
+    "min_group_size": 30
+  },
+  "model_config": {
+    "algorithm": "LogisticRegression",
+    "max_iter": 1000,
+    "solver": "lbfgs"
+  },
+  "fairness_thresholds": {
+    "demographic_parity_difference_max": 0.10,
+    "disparate_impact_min": 0.80,
+    "equal_opportunity_difference_max": 0.10,
+    "equalized_odds_difference_max": 0.10,
+    "fpr_difference_max": 0.10
+  },
+  "calibration_settings": {
+    "n_bins": 10
+  }
+}

@@ -1,0 +1,2265 @@
+{
+  "run_id": "RUN-loan_monitoring_shifted_batch-1786716530",
+  "timestamp": "2026-08-14T14:08:50.976453+00:00",
+  "dataset_id": "loan_monitoring_shifted_batch",
+  "dataset_hash": "313ee406af148bd77768c119126e8797b8e470741ade9492a127fcf51c641a7e",
+  "config_version": "1.0.0",
+  "target_column": "loan_status",
+  "positive_class": "Approved",
+  "protected_attributes": [
+    "gender",
+    "race",
+    "age"
+  ],
+  "feature_count": 2,
+  "train_size": 400,
+  "test_size": 100,
+  "baseline_metrics": {
+    "accuracy": 0.72,
+    "precision": 0.7272727272727273,
+    "recall": 0.9863013698630136,
+    "f1_score": 0.8372093023255814,
+    "roc_auc": 0.5631659056316591,
+    "confusion_matrix": {
+      "TN": 0,
+      "FP": 27,
+      "FN": 1,
+      "TP": 72,
+      "matrix": [
+        [
+          0,
+          27
+        ],
+        [
+          1,
+          72
+        ]
+      ]
+    }
+  },
+  "single_attribute_metrics": {
+    "gender": {
+      "attribute_name": "gender",
+      "status": "AVAILABLE",
+      "groups": {
+        "Female": {
+          "sample_count": 43,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 31,
+            "FP": 12,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "Male": {
+          "sample_count": 57,
+          "selection_rate": 0.9824561403508771,
+          "true_positive_rate": 0.9761904761904762,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.023809523809523808,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 41,
+            "FP": 15,
+            "TN": 0,
+            "FN": 1
+          }
+        }
+      },
+      "disparities": {
+        "demographic_parity_difference": 0.01754385964912286,
+        "disparate_impact_ratio": 0.9824561403508771,
+        "equalized_odds_difference": 0.023809523809523836,
+        "equal_opportunity_difference": 0.023809523809523836,
+        "false_positive_rate_difference": 0.0
+      },
+      "metric_definitions": {
+        "demographic_parity_difference": "max(Selection Rate) - min(Selection Rate) across groups.",
+        "disparate_impact_ratio": "min(Selection Rate) / max(Selection Rate) across groups.",
+        "equalized_odds_difference": "max(Equal Opportunity Difference, False Positive Rate Difference).",
+        "equal_opportunity_difference": "max(True Positive Rate) - min(True Positive Rate) across groups.",
+        "false_positive_rate_difference": "max(False Positive Rate) - min(False Positive Rate) across groups."
+      }
+    },
+    "race": {
+      "attribute_name": "race",
+      "status": "AVAILABLE",
+      "groups": {
+        "GroupA": {
+          "sample_count": 46,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 32,
+            "FP": 14,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "GroupB": {
+          "sample_count": 27,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 18,
+            "FP": 9,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "GroupC": {
+          "sample_count": 19,
+          "selection_rate": 0.9473684210526315,
+          "true_positive_rate": 0.9375,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0625,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 15,
+            "FP": 3,
+            "TN": 0,
+            "FN": 1
+          }
+        },
+        "GroupD": {
+          "sample_count": 8,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 7,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        }
+      },
+      "disparities": {
+        "demographic_parity_difference": 0.052631578947368474,
+        "disparate_impact_ratio": 0.9473684210526315,
+        "equalized_odds_difference": 0.0625,
+        "equal_opportunity_difference": 0.0625,
+        "false_positive_rate_difference": 0.0
+      },
+      "metric_definitions": {
+        "demographic_parity_difference": "max(Selection Rate) - min(Selection Rate) across groups.",
+        "disparate_impact_ratio": "min(Selection Rate) / max(Selection Rate) across groups.",
+        "equalized_odds_difference": "max(Equal Opportunity Difference, False Positive Rate Difference).",
+        "equal_opportunity_difference": "max(True Positive Rate) - min(True Positive Rate) across groups.",
+        "false_positive_rate_difference": "max(False Positive Rate) - min(False Positive Rate) across groups."
+      }
+    },
+    "age": {
+      "attribute_name": "age",
+      "status": "AVAILABLE",
+      "groups": {
+        "21": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "22": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 0,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "23": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "24": {
+          "sample_count": 5,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 5,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "25": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "26": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 3,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "27": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "28": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "29": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "30": {
+          "sample_count": 8,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 4,
+            "FP": 4,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "31": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "32": {
+          "sample_count": 4,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 3,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "33": {
+          "sample_count": 3,
+          "selection_rate": 0.6666666666666666,
+          "true_positive_rate": 0.6666666666666666,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.3333333333333333,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 0,
+            "TN": 0,
+            "FN": 1
+          }
+        },
+        "34": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "35": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "37": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "38": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "39": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "40": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "41": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "42": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "43": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "44": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 3,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "45": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 3,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "46": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "47": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 3,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "48": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "49": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "51": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "52": {
+          "sample_count": 6,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 3,
+            "FP": 3,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "53": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 0,
+            "FP": 2,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "54": {
+          "sample_count": 5,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 5,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "55": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 0,
+            "FP": 2,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "56": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 0,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "57": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 2,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "59": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 2,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "60": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "61": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "62": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 0,
+            "FP": 1,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "63": {
+          "sample_count": 3,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 3,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "64": {
+          "sample_count": 2,
+          "selection_rate": 1.0,
+          "true_positive_rate": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 0,
+            "FP": 2,
+            "TN": 0,
+            "FN": 0
+          }
+        },
+        "65": {
+          "sample_count": 1,
+          "selection_rate": 1.0,
+          "true_positive_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_negative_rate": 0.0,
+          "confusion_matrix": {
+            "TP": 1,
+            "FP": 0,
+            "TN": 0,
+            "FN": 0
+          }
+        }
+      },
+      "disparities": {
+        "demographic_parity_difference": 0.33333333333333337,
+        "disparate_impact_ratio": 0.6666666666666666,
+        "equalized_odds_difference": 1.0,
+        "equal_opportunity_difference": 1.0,
+        "false_positive_rate_difference": 1.0
+      },
+      "metric_definitions": {
+        "demographic_parity_difference": "max(Selection Rate) - min(Selection Rate) across groups.",
+        "disparate_impact_ratio": "min(Selection Rate) / max(Selection Rate) across groups.",
+        "equalized_odds_difference": "max(Equal Opportunity Difference, False Positive Rate Difference).",
+        "equal_opportunity_difference": "max(True Positive Rate) - min(True Positive Rate) across groups.",
+        "false_positive_rate_difference": "max(False Positive Rate) - min(False Positive Rate) across groups."
+      }
+    }
+  },
+  "fairness_metrics": {
+    "demographic_parity_difference": null,
+    "disparate_impact_ratio": null,
+    "equalized_odds_difference": null,
+    "equal_opportunity_difference": null,
+    "false_positive_rate_difference": null
+  },
+  "intersectional_metrics": {
+    "intersection_definition": "gender x race x age",
+    "attributes_combined": [
+      "gender",
+      "race",
+      "age"
+    ],
+    "min_group_size_threshold": 30,
+    "total_groups_discovered": 81,
+    "primary_group_count": 0,
+    "low_sample_group_count": 81,
+    "coverage_status": {
+      "code": "INSUFFICIENT_GROUP_COVERAGE",
+      "message": "Only 0 of 81 intersectional groups satisfies N >= 30. At least 2 eligible groups are required to calculate a meaningful disparity.",
+      "eligible_group_count": 0,
+      "total_group_count": 81,
+      "minimum_required_groups": 2,
+      "min_group_size": 30,
+      "eligible_groups": [],
+      "low_sample_groups": [
+        "Female + GroupA + 24",
+        "Female + GroupA + 26",
+        "Female + GroupA + 28",
+        "Female + GroupA + 29",
+        "Female + GroupA + 31",
+        "Female + GroupA + 32",
+        "Female + GroupA + 33",
+        "Female + GroupA + 39",
+        "Female + GroupA + 43",
+        "Female + GroupA + 45",
+        "Female + GroupA + 51",
+        "Female + GroupA + 52",
+        "Female + GroupA + 55",
+        "Female + GroupA + 60",
+        "Female + GroupB + 21",
+        "Female + GroupB + 24",
+        "Female + GroupB + 25",
+        "Female + GroupB + 29",
+        "Female + GroupB + 30",
+        "Female + GroupB + 44",
+        "Female + GroupB + 49",
+        "Female + GroupB + 57",
+        "Female + GroupB + 59",
+        "Female + GroupB + 61",
+        "Female + GroupB + 64",
+        "Female + GroupC + 21",
+        "Female + GroupC + 23",
+        "Female + GroupC + 24",
+        "Female + GroupC + 30",
+        "Female + GroupC + 35",
+        "Female + GroupC + 53",
+        "Female + GroupC + 54",
+        "Female + GroupC + 61",
+        "Female + GroupD + 34",
+        "Female + GroupD + 40",
+        "Female + GroupD + 63",
+        "Male + GroupA + 22",
+        "Male + GroupA + 24",
+        "Male + GroupA + 26",
+        "Male + GroupA + 27",
+        "Male + GroupA + 30",
+        "Male + GroupA + 31",
+        "Male + GroupA + 32",
+        "Male + GroupA + 34",
+        "Male + GroupA + 37",
+        "Male + GroupA + 40",
+        "Male + GroupA + 41",
+        "Male + GroupA + 43",
+        "Male + GroupA + 45",
+        "Male + GroupA + 46",
+        "Male + GroupA + 47",
+        "Male + GroupA + 51",
+        "Male + GroupA + 52",
+        "Male + GroupA + 53",
+        "Male + GroupA + 55",
+        "Male + GroupA + 56",
+        "Male + GroupA + 62",
+        "Male + GroupA + 63",
+        "Male + GroupA + 65",
+        "Male + GroupB + 25",
+        "Male + GroupB + 26",
+        "Male + GroupB + 34",
+        "Male + GroupB + 37",
+        "Male + GroupB + 38",
+        "Male + GroupB + 43",
+        "Male + GroupB + 44",
+        "Male + GroupB + 47",
+        "Male + GroupB + 48",
+        "Male + GroupB + 52",
+        "Male + GroupB + 59",
+        "Male + GroupC + 30",
+        "Male + GroupC + 33",
+        "Male + GroupC + 37",
+        "Male + GroupC + 42",
+        "Male + GroupC + 45",
+        "Male + GroupC + 48",
+        "Male + GroupC + 54",
+        "Male + GroupD + 24",
+        "Male + GroupD + 30",
+        "Male + GroupD + 39",
+        "Male + GroupD + 63"
+      ],
+      "reason": "Fewer than 2 primary groups met the minimum group size threshold (N >= 30)."
+    },
+    "all_group_metrics": {
+      "Female + GroupA + 24": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 26": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 28": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 29": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 2,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 31": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 32": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 2,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 33": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 39": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 43": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 45": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 51": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 52": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 55": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupA + 60": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 21": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 24": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 25": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 29": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 30": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 44": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 49": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 57": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 2,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 59": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 2,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 61": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupB + 64": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 2,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupC + 21": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupC + 23": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupC + 24": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupC + 30": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupC + 35": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupC + 53": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupC + 54": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 2,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupC + 61": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupD + 34": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupD + 40": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Female + GroupD + 63": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 22": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 24": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 26": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 27": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 2,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 30": {
+        "sample_count": 3,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 2,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 31": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 32": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 34": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 37": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 40": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 41": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 43": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 45": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 46": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 47": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 2,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 51": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 52": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 53": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 55": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 56": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 62": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 63": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupA + 65": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 25": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 26": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 34": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 37": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 38": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 43": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 44": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 2,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 47": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 48": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 52": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupB + 59": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupC + 30": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 0,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupC + 33": {
+        "sample_count": 2,
+        "selection_rate": 0.5,
+        "true_positive_rate": 0.5,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.5,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 1
+        }
+      },
+      "Male + GroupC + 37": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupC + 42": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupC + 45": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupC + 48": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupC + 54": {
+        "sample_count": 3,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 3,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupD + 24": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupD + 30": {
+        "sample_count": 2,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 1,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupD + 39": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      },
+      "Male + GroupD + 63": {
+        "sample_count": 1,
+        "selection_rate": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0,
+        "true_negative_rate": 0.0,
+        "confusion_matrix": {
+          "TP": 1,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        }
+      }
+    },
+    "primary_groups": [],
+    "low_sample_groups": [
+      "Female + GroupA + 24",
+      "Female + GroupA + 26",
+      "Female + GroupA + 28",
+      "Female + GroupA + 29",
+      "Female + GroupA + 31",
+      "Female + GroupA + 32",
+      "Female + GroupA + 33",
+      "Female + GroupA + 39",
+      "Female + GroupA + 43",
+      "Female + GroupA + 45",
+      "Female + GroupA + 51",
+      "Female + GroupA + 52",
+      "Female + GroupA + 55",
+      "Female + GroupA + 60",
+      "Female + GroupB + 21",
+      "Female + GroupB + 24",
+      "Female + GroupB + 25",
+      "Female + GroupB + 29",
+      "Female + GroupB + 30",
+      "Female + GroupB + 44",
+      "Female + GroupB + 49",
+      "Female + GroupB + 57",
+      "Female + GroupB + 59",
+      "Female + GroupB + 61",
+      "Female + GroupB + 64",
+      "Female + GroupC + 21",
+      "Female + GroupC + 23",
+      "Female + GroupC + 24",
+      "Female + GroupC + 30",
+      "Female + GroupC + 35",
+      "Female + GroupC + 53",
+      "Female + GroupC + 54",
+      "Female + GroupC + 61",
+      "Female + GroupD + 34",
+      "Female + GroupD + 40",
+      "Female + GroupD + 63",
+      "Male + GroupA + 22",
+      "Male + GroupA + 24",
+      "Male + GroupA + 26",
+      "Male + GroupA + 27",
+      "Male + GroupA + 30",
+      "Male + GroupA + 31",
+      "Male + GroupA + 32",
+      "Male + GroupA + 34",
+      "Male + GroupA + 37",
+      "Male + GroupA + 40",
+      "Male + GroupA + 41",
+      "Male + GroupA + 43",
+      "Male + GroupA + 45",
+      "Male + GroupA + 46",
+      "Male + GroupA + 47",
+      "Male + GroupA + 51",
+      "Male + GroupA + 52",
+      "Male + GroupA + 53",
+      "Male + GroupA + 55",
+      "Male + GroupA + 56",
+      "Male + GroupA + 62",
+      "Male + GroupA + 63",
+      "Male + GroupA + 65",
+      "Male + GroupB + 25",
+      "Male + GroupB + 26",
+      "Male + GroupB + 34",
+      "Male + GroupB + 37",
+      "Male + GroupB + 38",
+      "Male + GroupB + 43",
+      "Male + GroupB + 44",
+      "Male + GroupB + 47",
+      "Male + GroupB + 48",
+      "Male + GroupB + 52",
+      "Male + GroupB + 59",
+      "Male + GroupC + 30",
+      "Male + GroupC + 33",
+      "Male + GroupC + 37",
+      "Male + GroupC + 42",
+      "Male + GroupC + 45",
+      "Male + GroupC + 48",
+      "Male + GroupC + 54",
+      "Male + GroupD + 24",
+      "Male + GroupD + 30",
+      "Male + GroupD + 39",
+      "Male + GroupD + 63"
+    ],
+    "disparities": {
+      "demographic_parity_difference": null,
+      "disparate_impact_ratio": null,
+      "equalized_odds_difference": null,
+      "equal_opportunity_difference": null,
+      "false_positive_rate_difference": null
+    },
+    "rankings": {
+      "status": "UNAVAILABLE",
+      "reason": "Only 0 of 81 intersectional groups satisfies N >= 30. At least 2 eligible groups are required to calculate a meaningful disparity.",
+      "highest_selection_rate": null,
+      "lowest_selection_rate": null,
+      "highest_tpr": null,
+      "lowest_tpr": null,
+      "highest_fpr": null,
+      "lowest_fpr": null,
+      "most_disadvantaged_group": null,
+      "highest_performing_group": null
+    },
+    "metric_definitions": {
+      "demographic_parity_difference": "max(Selection Rate) - min(Selection Rate) across primary intersectional groups.",
+      "disparate_impact_ratio": "min(Selection Rate) / max(Selection Rate) across primary intersectional groups.",
+      "equalized_odds_difference": "max(Equal Opportunity Difference, False Positive Rate Difference).",
+      "equal_opportunity_difference": "max(True Positive Rate) - min(True Positive Rate) across primary intersectional groups.",
+      "false_positive_rate_difference": "max(False Positive Rate) - min(False Positive Rate) across primary intersectional groups."
+    },
+    "statistical_safety_policy": "Groups with sample size N < 30 are designated as low-sample groups. Their rate estimates are subject to statistical volatility and are excluded from primary disparity bounds to prevent small-sample noise from distorting conclusions."
+  },
+  "calibration_metrics": {
+    "status": "AVAILABLE",
+    "brier_score": 0.19896671617919565,
+    "ece": 0.04582027358581006,
+    "expected_calibration_error": 0.04582027358581006,
+    "reliability_curve": {
+      "prob_true": [
+        1.0,
+        0.7142857142857143,
+        0.6666666666666666,
+        0.7391304347826086,
+        0.75
+      ],
+      "prob_pred": [
+        0.4689196366011002,
+        0.5673642609374755,
+        0.6606209342632271,
+        0.7483768229177236,
+        0.8388692780095445
+      ]
+    },
+    "n_bins": 10,
+    "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+  },
+  "mitigation_metrics": {
+    "demographic_parity_difference": null,
+    "disparate_impact_ratio": null,
+    "equalized_odds_difference": null,
+    "equal_opportunity_difference": null,
+    "false_positive_rate_difference": null
+  },
+  "tradeoff_metrics": {
+    "performance": {
+      "Accuracy": {
+        "baseline": 0.72,
+        "mitigated": 0.73,
+        "absolute_change": 0.010000000000000009,
+        "percentage_change": 1.3888888888888902,
+        "impact_status": "Improved"
+      },
+      "Precision": {
+        "baseline": 0.7272727272727273,
+        "mitigated": 0.73,
+        "absolute_change": 0.0027272727272726893,
+        "percentage_change": 0.3749999999999948,
+        "impact_status": "Improved"
+      },
+      "Recall": {
+        "baseline": 0.9863013698630136,
+        "mitigated": 1.0,
+        "absolute_change": 0.013698630136986356,
+        "percentage_change": 1.3888888888888946,
+        "impact_status": "Improved"
+      },
+      "F1-Score": {
+        "baseline": 0.8372093023255814,
+        "mitigated": 0.8439306358381503,
+        "absolute_change": 0.006721333512568872,
+        "percentage_change": 0.8028259473346153,
+        "impact_status": "Improved"
+      },
+      "ROC-AUC": {
+        "baseline": 0.5631659056316591,
+        "mitigated": 0.5,
+        "absolute_change": -0.06316590563165914,
+        "percentage_change": -11.21621621621623,
+        "impact_status": "Worsened"
+      }
+    },
+    "calibration": {
+      "brier_score": {
+        "baseline": 0.19896671617919565,
+        "mitigated": 0.27,
+        "absolute_change": 0.07103328382080437,
+        "percentage_change": 35.70108869708116,
+        "impact_status": "Worsened"
+      },
+      "expected_calibration_error": {
+        "baseline": 0.04582027358581006,
+        "mitigated": 0.27,
+        "absolute_change": 0.22417972641418996,
+        "percentage_change": 489.2588124650907,
+        "impact_status": "Worsened"
+      },
+      "interpretation": "Brier Score changed from 0.1990 to 0.2700 (Abs Change: +0.0710, +35.70%). Status: Worsened."
+    },
+    "fairness": {
+      "Demographic Parity Difference": {
+        "baseline": null,
+        "mitigated": null,
+        "absolute_change": null,
+        "percentage_change": null,
+        "impact_status": "Not estimable"
+      },
+      "Disparate Impact Ratio": {
+        "baseline": null,
+        "mitigated": null,
+        "absolute_change": null,
+        "percentage_change": null,
+        "impact_status": "Not estimable"
+      },
+      "Equalized Odds Difference": {
+        "baseline": null,
+        "mitigated": null,
+        "absolute_change": null,
+        "percentage_change": null,
+        "impact_status": "Not estimable"
+      },
+      "Equal Opportunity Difference (TPR)": {
+        "baseline": null,
+        "mitigated": null,
+        "absolute_change": null,
+        "percentage_change": null,
+        "impact_status": "Not estimable"
+      },
+      "False Positive Rate Difference": {
+        "baseline": null,
+        "mitigated": null,
+        "absolute_change": null,
+        "percentage_change": null,
+        "impact_status": "Not estimable"
+      }
+    },
+    "intersectional_threshold_policy": "Minimum group size threshold N >= 30 enforced for primary disparity bounds.",
+    "interpretation": "Intersectional fairness disparity metrics were not estimable due to insufficient group coverage (N < min_group_size). Simultaneously, model predictive accuracy changed from 0.7200 to 0.7300 (+0.0100, +1.39%), and probability calibration Brier Score changed from 0.1990 to 0.2700 (worsened). Therefore, the bias mitigation algorithm produced quantifiable changes in performance, calibration, and fairness."
+  },
+  "warnings": [],
+  "errors": [],
+  "execution_metadata": {
+    "status": "COMPLETED",
+    "framework_version": "1.0.0"
+  }
+}

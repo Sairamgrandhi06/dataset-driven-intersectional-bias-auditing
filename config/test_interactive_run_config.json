@@ -1,0 +1,36 @@
+{
+  "dataset_id": "test_interactive_run",
+  "path": "data/raw/test_interactive_run.csv",
+  "target": {
+    "column": "passed",
+    "positive_class": "yes"
+  },
+  "protected_attributes": [
+    "gender",
+    "race"
+  ],
+  "id_columns": [
+    "student_id"
+  ],
+  "ignore_columns": [],
+  "test_size": 0.2,
+  "random_state": 42,
+  "intersectional": {
+    "min_group_size": 10
+  },
+  "model_config": {
+    "algorithm": "LogisticRegression",
+    "max_iter": 1000,
+    "solver": "lbfgs"
+  },
+  "fairness_thresholds": {
+    "demographic_parity_difference_max": 0.1,
+    "disparate_impact_min": 0.8,
+    "equal_opportunity_difference_max": 0.1,
+    "equalized_odds_difference_max": 0.1,
+    "fpr_difference_max": 0.1
+  },
+  "calibration_settings": {
+    "n_bins": 10
+  }
+}

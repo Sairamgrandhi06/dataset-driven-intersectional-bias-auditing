@@ -1,0 +1,61 @@
+{
+  "execution_timestamp": "2026-08-11T13:27:53.243795",
+  "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+  "dataset_row_count": 32561,
+  "test_set_size": 6033,
+  "source_result_file": "data/processed/intersectional_results.json",
+  "reference_result_file": "reference/intersectional_reference.py",
+  "expected_result_file": "evidence/reference/intersectional_expected_results.json",
+  "tolerance": 0.0001,
+  "total_metrics_compared": 5,
+  "matched_count": 5,
+  "mismatched_count": 0,
+  "overall_status": "PASS",
+  "reconciliation_details": [
+    {
+      "metric": "demographic_parity_difference",
+      "expected": 0.317073,
+      "reference": 0.317073,
+      "production": 0.317073,
+      "reference_difference": 0.0,
+      "production_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "metric": "disparate_impact_ratio",
+      "expected": 0.133333,
+      "reference": 0.133333,
+      "production": 0.133333,
+      "reference_difference": 0.0,
+      "production_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "metric": "equal_opportunity_difference",
+      "expected": 0.482456,
+      "reference": 0.482456,
+      "production": 0.482456,
+      "reference_difference": 0.0,
+      "production_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "metric": "equalized_odds_difference",
+      "expected": 0.482456,
+      "reference": 0.482456,
+      "production": 0.482456,
+      "reference_difference": 0.0,
+      "production_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "metric": "false_positive_rate_difference",
+      "expected": 0.145549,
+      "reference": 0.145549,
+      "production": 0.145549,
+      "reference_difference": 0.0,
+      "production_difference": 0.0,
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "dataset_id": "students",
+  "run_id": "RUN-students-1790668833",
+  "timestamp": "2026-09-29T08:00:33.974307+00:00",
+  "dataset_hash": "47940e922aa594be237114b350cf9f3da8610b7406b631436d3310ea8212d048",
+  "selected_model": "random_forest",
+  "selection_status": "SELECTED",
+  "selection_reason": "Selected candidate 'random_forest' with highest CV accuracy (1.0000) satisfying all fairness constraints.",
+  "comparison_table": [
+    {
+      "model": "logistic_regression",
+      "cv_accuracy": 0.9915,
+      "test_accuracy": 0.992,
+      "f1_score": 0.9958,
+      "roc_auc": 0.9986,
+      "brier_score": 0.0059,
+      "ece": 0.0047,
+      "eod": 0.3,
+      "status": "FAIL_CONSTRAINT",
+      "failure_reason": "Equalized Odds Difference (0.3000) exceeds threshold (0.2000)."
+    },
+    {
+      "model": "random_forest",
+      "cv_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "f1_score": 1.0,
+      "roc_auc": 1.0,
+      "brier_score": 0.0009,
+      "ece": 0.0082,
+      "eod": 0.0,
+      "status": "PASS",
+      "failure_reason": "Satisfies all configured fairness constraints (EOD <= 0.20)."
+    },
+    {
+      "model": "gradient_boosting",
+      "cv_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "f1_score": 1.0,
+      "roc_auc": 1.0,
+      "brier_score": 0.0,
+      "ece": 0.0,
+      "eod": 0.0,
+      "status": "PASS",
+      "failure_reason": "Satisfies all configured fairness constraints (EOD <= 0.20)."
+    }
+  ],
+  "config": {
+    "dataset_id": "students",
+    "path": "data/raw/students.csv",
+    "target": {
+      "column": "passed",
+      "positive_class": "1"
+    },
+    "protected_attributes": [
+      "gender",
+      "ethnicity"
+    ],
+    "ignore_columns": [],
+    "id_columns": [
+      "student_id"
+    ],
+    "test_size": 0.2,
+    "random_state": 42,
+    "intersectional": {
+      "min_group_size": 30
+    },
+    "model_config": {
+      "algorithm": "LogisticRegression",
+      "max_iter": 1000,
+      "solver": "lbfgs",
+      "random_state": 42
+    },
+    "fairness_thresholds": {
+      "demographic_parity_difference_max": 0.1,
+      "disparate_impact_min": 0.8,
+      "equal_opportunity_difference_max": 0.1,
+      "equalized_odds_difference_max": 0.1,
+      "fpr_difference_max": 0.1
+    },
+    "calibration_settings": {
+      "n_bins": 10
+    },
+    "drop_protected_from_features": true
+  }
+}

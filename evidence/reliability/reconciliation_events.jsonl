@@ -1,0 +1,900 @@
+{"status": "MISMATCH", "total_compared": 1, "matched_count": 0, "mismatched_count": 1, "matches": [], "mismatches": ["Metric 'discovered_groups_count' mismatch: Expected=10.000000, Recovered=7.000000, Diff=3.000000"]}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 3, "mismatched_count": 1, "matches": ["accuracy", "brier_score", "expected_calibration_error"], "mismatches": ["Metric 'equalized_odds_difference' mismatch: Expected=0.166700, Recovered=0.101400, Diff=0.065300"]}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 3, "mismatched_count": 1, "matches": ["equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": ["Metric 'accuracy' mismatch: Expected=0.757800, Recovered=0.760300, Diff=0.002500"]}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 3, "mismatched_count": 1, "matches": ["equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": ["Metric 'accuracy' mismatch: Expected=0.757800, Recovered=0.760300, Diff=0.002500"]}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 1, "mismatched_count": 3, "matches": ["accuracy"], "mismatches": ["Metric 'equalized_odds_difference' mismatch: Expected=0.166700, Recovered=0.000000, Diff=0.166700", "Metric 'brier_score' mismatch: Expected=0.215600, Recovered=0.375000, Diff=0.159400", "Metric 'expected_calibration_error' mismatch: Expected=0.216600, Recovered=0.375000, Diff=0.158400"]}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 1, "mismatched_count": 3, "matches": ["accuracy"], "mismatches": ["Metric 'equalized_odds_difference' mismatch: Expected=0.166700, Recovered=0.000000, Diff=0.166700", "Metric 'brier_score' mismatch: Expected=0.215600, Recovered=0.375000, Diff=0.159400", "Metric 'expected_calibration_error' mismatch: Expected=0.216600, Recovered=0.375000, Diff=0.158400"]}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 1, "mismatched_count": 3, "matches": ["accuracy"], "mismatches": ["Metric 'equalized_odds_difference' mismatch: Expected=0.166700, Recovered=0.000000, Diff=0.166700", "Metric 'brier_score' mismatch: Expected=0.215600, Recovered=0.375000, Diff=0.159400", "Metric 'expected_calibration_error' mismatch: Expected=0.216600, Recovered=0.375000, Diff=0.158400"]}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 1, "mismatched_count": 3, "matches": ["accuracy"], "mismatches": ["Metric 'equalized_odds_difference' mismatch: Expected=0.166700, Recovered=0.040000, Diff=0.126700", "Metric 'brier_score' mismatch: Expected=0.215600, Recovered=0.330900, Diff=0.115300", "Metric 'expected_calibration_error' mismatch: Expected=0.216600, Recovered=0.308200, Diff=0.091600"]}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 1, "mismatched_count": 3, "matches": ["accuracy"], "mismatches": ["Metric 'equalized_odds_difference' mismatch: Expected=0.166700, Recovered=0.040000, Diff=0.126700", "Metric 'brier_score' mismatch: Expected=0.215600, Recovered=0.330900, Diff=0.115300", "Metric 'expected_calibration_error' mismatch: Expected=0.216600, Recovered=0.308200, Diff=0.091600"]}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 1, "mismatched_count": 3, "matches": ["accuracy"], "mismatches": ["Metric 'equalized_odds_difference' mismatch: Expected=0.166700, Recovered=0.040000, Diff=0.126700", "Metric 'brier_score' mismatch: Expected=0.215600, Recovered=0.330900, Diff=0.115300", "Metric 'expected_calibration_error' mismatch: Expected=0.216600, Recovered=0.308200, Diff=0.091600"]}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "MISMATCH", "total_compared": 4, "matched_count": 1, "mismatched_count": 3, "matches": ["accuracy"], "mismatches": ["Metric 'equalized_odds_difference' mismatch: Expected=0.166700, Recovered=0.040000, Diff=0.126700", "Metric 'brier_score' mismatch: Expected=0.215600, Recovered=0.330900, Diff=0.115300", "Metric 'expected_calibration_error' mismatch: Expected=0.216600, Recovered=0.308200, Diff=0.091600"]}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["discovered_groups_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 4, "matched_count": 4, "mismatched_count": 0, "matches": ["accuracy", "equalized_odds_difference", "brier_score", "expected_calibration_error"], "mismatches": []}
+{"status": "PASS", "total_compared": 2, "matched_count": 2, "mismatched_count": 0, "matches": ["policy", "silent_priority_detected"], "mismatches": []}
+{"status": "PASS", "total_compared": 1, "matched_count": 1, "mismatched_count": 0, "matches": ["prohibited_field_count"], "mismatches": []}
+{"status": "PASS", "total_compared": 3, "matched_count": 3, "mismatched_count": 0, "matches": ["has_income", "has_sex", "has_race"], "mismatches": []}

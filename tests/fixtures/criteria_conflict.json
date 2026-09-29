@@ -1,0 +1,21 @@
+{
+  "test_fixture_id": "NT-3-CONFLICT-FIXTURE",
+  "description": "Controlled fixture simulating fairness criteria threshold conflict without silent prioritization.",
+  "selected_criteria": [
+    "demographic_parity",
+    "equalized_odds"
+  ],
+  "observed_metrics": {
+    "demographic_parity_difference": 0.317073,
+    "equalized_odds_difference": 0.482456
+  },
+  "configured_thresholds": {
+    "demographic_parity_difference_max": 0.10,
+    "equalized_odds_difference_max": 0.10
+  },
+  "expected_compatibility_status": "CONFLICT_DETECTED",
+  "expected_failing_count": 2,
+  "expected_silent_priority_detected": false,
+  "expected_operator_decision_required": true,
+  "expected_policy": "report_all_do_not_silently_prioritize"
+}

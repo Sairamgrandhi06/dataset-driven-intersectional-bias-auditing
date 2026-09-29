@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "data_drift": {
+    "enabled": true,
+    "numerical_method": "psi",
+    "categorical_method": "distribution_shift",
+    "psi_warning_threshold": 0.10,
+    "psi_critical_threshold": 0.25,
+    "tvd_warning_threshold": 0.10,
+    "tvd_critical_threshold": 0.25,
+    "wasserstein_warning_threshold": 0.15
+  },
+  "data_quality_drift": {
+    "enabled": true,
+    "missing_rate_increase_warning": 0.05,
+    "missing_rate_increase_critical": 0.15,
+    "duplicate_rate_warning": 0.05
+  },
+  "performance_drift": {
+    "enabled": true,
+    "f1_degradation_warning": 0.05,
+    "f1_degradation_critical": 0.10,
+    "accuracy_degradation_warning": 0.05,
+    "accuracy_degradation_critical": 0.10
+  },
+  "fairness_drift": {
+    "enabled": true,
+    "eod_increase_warning": 0.05,
+    "eod_increase_critical": 0.10,
+    "min_group_size": 30
+  },
+  "calibration_drift": {
+    "enabled": true,
+    "brier_increase_warning": 0.05,
+    "ece_increase_warning": 0.05
+  },
+  "retraining_governance": {
+    "auto_retrain_enabled": false,
+    "require_user_approval": true
+  }
+}

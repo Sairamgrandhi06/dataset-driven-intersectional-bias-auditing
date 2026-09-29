@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DatasetConfigurationSchema",
+  "description": "Validation schema for tabular dataset configurations in the Intersectional Bias Auditing framework.",
+  "type": "object",
+  "required": [
+    "dataset_id",
+    "path",
+    "target",
+    "protected_attributes"
+  ],
+  "properties": {
+    "dataset_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique alphanumeric identifier for the dataset."
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Relative or absolute file path to the input CSV dataset."
+    },
+    "target": {
+      "type": "object",
+      "required": ["column", "positive_class"],
+      "properties": {
+        "column": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Target column name in the dataset."
+        },
+        "positive_class": {
+          "type": ["string", "number", "boolean"],
+          "description": "Value representing the positive class outcome."
+        },
+        "negative_class": {
+          "type": ["string", "number", "boolean", "null"],
+          "description": "Optional explicit value for the negative class outcome."
+        }
+      }
+    },
+    "protected_attributes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "description": "List of protected attribute column names."
+    },
+    "ignore_columns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "List of column names to exclude from feature matrix (e.g. ID columns)."
+    },
+    "id_columns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Optional list of identifier columns."
+    },
+    "test_size": {
+      "type": "number",
+      "minimum": 0.05,
+      "maximum": 0.5,
+      "default": 0.2,
+      "description": "Proportion of data allocated to the test set."
+    },
+    "random_state": {
+      "type": "integer",
+      "default": 42,
+      "description": "Random seed for reproducible train/test splitting and model training."
+    },
+    "intersectional": {
+      "type": "object",
+      "properties": {
+        "min_group_size": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 30,
+          "description": "Minimum sample size threshold for evaluating primary group disparity bounds."
+        }
+      },
+      "default": {
+        "min_group_size": 30
+      }
+    },
+    "model_config": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "default": "LogisticRegression"
+        },
+        "max_iter": {
+          "type": "integer",
+          "default": 1000
+        },
+        "solver": {
+          "type": "string",
+          "default": "lbfgs"
+        }
+      },
+      "default": {
+        "algorithm": "LogisticRegression",
+        "max_iter": 1000,
+        "solver": "lbfgs"
+      }
+    },
+    "fairness_thresholds": {
+      "type": "object",
+      "properties": {
+        "demographic_parity_difference_max": { "type": "number", "default": 0.10 },
+        "disparate_impact_min": { "type": "number", "default": 0.80 },
+        "equal_opportunity_difference_max": { "type": "number", "default": 0.10 },
+        "equalized_odds_difference_max": { "type": "number", "default": 0.10 },
+        "fpr_difference_max": { "type": "number", "default": 0.10 }
+      }
+    },
+    "calibration_settings": {
+      "type": "object",
+      "properties": {
+        "n_bins": { "type": "integer", "default": 10 }
+      }
+    }
+  }
+}

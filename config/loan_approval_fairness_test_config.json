@@ -1,0 +1,34 @@
+{
+  "dataset_id": "loan_approval_fairness_test",
+  "path": "data/raw/loan_approval_fairness_test.csv",
+  "target": {
+    "column": "loan_status",
+    "positive_class": "approved"
+  },
+  "protected_attributes": [
+    "gender",
+    "race"
+  ],
+  "id_columns": [],
+  "ignore_columns": [],
+  "test_size": 0.2,
+  "random_state": 42,
+  "intersectional": {
+    "min_group_size": 30
+  },
+  "model_config": {
+    "algorithm": "LogisticRegression",
+    "max_iter": 1000,
+    "solver": "lbfgs"
+  },
+  "fairness_thresholds": {
+    "demographic_parity_difference_max": 0.1,
+    "disparate_impact_min": 0.8,
+    "equal_opportunity_difference_max": 0.1,
+    "equalized_odds_difference_max": 0.1,
+    "fpr_difference_max": 0.1
+  },
+  "calibration_settings": {
+    "n_bins": 10
+  }
+}

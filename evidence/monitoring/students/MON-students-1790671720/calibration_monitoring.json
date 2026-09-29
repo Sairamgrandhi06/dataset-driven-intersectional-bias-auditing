@@ -1,0 +1,63 @@
+{
+  "status": "STABLE",
+  "current_calibration": {
+    "status": "AVAILABLE",
+    "brier_score": 0.0003799000000000001,
+    "ece": 0.004029999999999959,
+    "expected_calibration_error": 0.004029999999999959,
+    "reliability_curve": {
+      "prob_true": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "prob_pred": [
+        0.04051724137931036,
+        0.13428571428571429,
+        0.24,
+        0.775,
+        0.868,
+        0.9984727272727283
+      ]
+    },
+    "n_bins": 10,
+    "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+  },
+  "reference_calibration": {
+    "status": "AVAILABLE",
+    "brier_score": 0.00094665,
+    "ece": 0.008205000000000066,
+    "expected_calibration_error": 0.008205000000000066,
+    "reliability_curve": {
+      "prob_true": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "prob_pred": [
+        0.04700000000000003,
+        0.14933333333333335,
+        0.22874999999999998,
+        0.76,
+        0.881,
+        0.9971789473684225
+      ]
+    },
+    "n_bins": 10,
+    "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+  },
+  "brier_delta": -0.00056675,
+  "brier_pct_change": -59.86901177837638,
+  "ece_delta": -0.0041750000000001074,
+  "ece_pct_change": -50.88360755636897,
+  "interpretation": {
+    "brier_status": "Stable",
+    "ece_status": "Improved"
+  }
+}

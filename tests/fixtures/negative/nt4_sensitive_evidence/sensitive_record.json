@@ -1,0 +1,14 @@
+{
+  "test_fixture_id": "NT-4-SENSITIVE-EVIDENCE-FIXTURE",
+  "record_type": "SYNTHETIC_SENSITIVE_RECORD",
+  "synthetic_user_id": "USER-999-SYNTHETIC",
+  "raw_ssn": "000-00-0000",
+  "raw_name": "Synthetic Test User",
+  "medical_record_number": "MRN-123456",
+  "permitted_public_fields": [
+    "run_id",
+    "dataset_hash",
+    "accuracy",
+    "equalized_odds_difference"
+  ]
+}
