@@ -59,7 +59,10 @@ def get_base_estimator(estimator_type="logistic_regression", random_state=42, ma
     """
     if hasattr(estimator_type, "fit") and not isinstance(estimator_type, str):
         from sklearn.base import clone
-        return clone(estimator_type)
+        cand = clone(estimator_type)
+        if isinstance(cand, GradientBoostingClassifier):
+            cand.set_params(max_features="sqrt")
+        return cand
 
     if estimator_type is None or not str(estimator_type).strip():
         estimator_type = "logistic_regression"
@@ -68,6 +71,8 @@ def get_base_estimator(estimator_type="logistic_regression", random_state=42, ma
     cand = get_candidate_model(str(estimator_type), random_seed=random_state)
     if isinstance(cand, LogisticRegression):
         cand.set_params(solver="liblinear")
+    elif isinstance(cand, GradientBoostingClassifier):
+        cand.set_params(max_features="sqrt")
     return cand
 
 
@@ -116,9 +121,11 @@ def train_mitigated_model(
         max_iter=max_iter
     )
 
+    X_train_arr = np.ascontiguousarray(X_train, dtype=np.float32) if isinstance(X_train, (pd.DataFrame, np.ndarray)) else X_train
+
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", category=ConvergenceWarning)
-        mitigated_model.fit(X_train, y_train, sensitive_features=sensitive_features)
+        mitigated_model.fit(X_train_arr, y_train, sensitive_features=sensitive_features)
 
     elapsed = time.time() - t0
 

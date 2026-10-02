@@ -1,6 +1,6 @@
 {
-  "run_id": "RUN-adult_census_income-1789651457",
-  "timestamp": "2026-09-17T13:24:17.259738+00:00",
+  "run_id": "RUN-adult_census_income-1790918883",
+  "timestamp": "2026-10-02T05:35:05.939987+00:00",
   "dataset_id": "adult_census_income",
   "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
   "config_version": "1.0.0",
@@ -13,6 +13,16 @@
   "feature_count": 91,
   "train_size": 24129,
   "test_size": 6033,
+  "selected_model": "gradient_boosting",
+  "model_type": "gradient_boosting",
+  "selection_status": "NO_MODEL_SATISFIES_CONSTRAINTS_FALLBACK",
+  "selection_reason": "No candidate satisfied fairness constraints. Selected fallback model 'gradient_boosting' (highest CV accuracy: 0.8621) for trade-off audit.",
+  "model_version": "v114",
+  "baseline_model": {
+    "algorithm": "gradient_boosting",
+    "version": "v114",
+    "selection_status": "NO_MODEL_SATISFIES_CONSTRAINTS_FALLBACK"
+  },
   "baseline_metrics": {
     "accuracy": 0.8398806563898558,
     "precision": 0.7267343485617598,
@@ -460,111 +470,112 @@
     "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
   },
   "mitigation_metrics": {
-    "demographic_parity_difference": 0.03647798742138365,
-    "disparate_impact_ratio": 0.0,
-    "equalized_odds_difference": 0.16666666666666666,
-    "equal_opportunity_difference": 0.16666666666666666,
-    "false_positive_rate_difference": 0.02681992337164751
+    "demographic_parity_difference": 0.17073170731707316,
+    "disparate_impact_ratio": 0.22222222222222224,
+    "equalized_odds_difference": 0.2982456140350877,
+    "equal_opportunity_difference": 0.2982456140350877,
+    "false_positive_rate_difference": 0.051018350473885865
   },
   "tradeoff_metrics": {
     "performance": {
       "Accuracy": {
         "baseline": 0.8398806563898558,
-        "mitigated": 0.7603182496270512,
-        "absolute_change": -0.07956240676280457,
-        "percentage_change": -9.473060982830077,
-        "impact_status": "Worsened"
+        "mitigated": 0.8488314271506713,
+        "absolute_change": 0.008950770760815518,
+        "percentage_change": 1.0657193605683841,
+        "impact_status": "Improved"
       },
       "Precision": {
         "baseline": 0.7267343485617598,
-        "mitigated": 0.6428571428571429,
-        "absolute_change": -0.08387720570461688,
-        "percentage_change": -11.541659737235989,
-        "impact_status": "Worsened"
+        "mitigated": 0.8125,
+        "absolute_change": 0.08576565143824022,
+        "percentage_change": 11.801513387660062,
+        "impact_status": "Improved"
       },
       "Recall": {
         "baseline": 0.5719041278295606,
-        "mitigated": 0.08388814913448735,
-        "absolute_change": -0.48801597869507324,
-        "percentage_change": -85.33178114086148,
+        "mitigated": 0.5106524633821571,
+        "absolute_change": -0.06125166444740349,
+        "percentage_change": -10.710128055878934,
         "impact_status": "Worsened"
       },
       "F1-Score": {
         "baseline": 0.6400894187779433,
-        "mitigated": 0.14840989399293286,
-        "absolute_change": -0.4916795247850105,
-        "percentage_change": -76.81419351123215,
+        "mitigated": 0.6271463614063778,
+        "absolute_change": -0.012943057371565536,
+        "percentage_change": -2.0220701970478405,
         "impact_status": "Worsened"
       },
       "ROC-AUC": {
         "baseline": 0.884122868912222,
-        "mitigated": 0.7506260320602471,
-        "absolute_change": -0.1334968368519749,
-        "percentage_change": -15.099353443512022,
+        "mitigated": 0.7687209373744593,
+        "absolute_change": -0.11540193153776268,
+        "percentage_change": -13.05270292122939,
         "impact_status": "Worsened"
       }
     },
     "calibration": {
       "brier_score": {
         "baseline": 0.112778046157555,
-        "mitigated": 0.21556474994990446,
-        "absolute_change": 0.10278670379234946,
-        "percentage_change": 91.14070272928183,
+        "mitigated": 0.1378112515437089,
+        "absolute_change": 0.025033205386153903,
+        "percentage_change": 22.196878061871733,
         "impact_status": "Worsened"
       },
       "expected_calibration_error": {
         "baseline": 0.015069688249369908,
-        "mitigated": 0.21658042944065217,
-        "absolute_change": 0.20151074119128226,
-        "percentage_change": 1337.192500977635,
+        "mitigated": 0.1299598285236085,
+        "absolute_change": 0.11489014027423858,
+        "percentage_change": 762.39228292624,
         "impact_status": "Worsened"
       },
-      "interpretation": "Brier Score changed from 0.1128 to 0.2156 (Abs Change: +0.1028, +91.14%). Status: Worsened."
+      "interpretation": "Brier Score changed from 0.1128 to 0.1378 (Abs Change: +0.0250, +22.20%). Status: Worsened."
     },
     "fairness": {
       "Demographic Parity Difference": {
         "baseline": 0.3170731707317073,
-        "mitigated": 0.03647798742138365,
-        "absolute_change": -0.2805951833103237,
-        "percentage_change": -88.49540396710208,
+        "mitigated": 0.17073170731707316,
+        "absolute_change": -0.14634146341463417,
+        "percentage_change": -46.15384615384616,
         "impact_status": "Improved"
       },
       "Disparate Impact Ratio": {
         "baseline": 0.13333333333333333,
-        "mitigated": 0.0,
-        "absolute_change": -0.13333333333333333,
-        "percentage_change": -100.0,
-        "impact_status": "Worsened"
+        "mitigated": 0.22222222222222224,
+        "absolute_change": 0.0888888888888889,
+        "percentage_change": 66.66666666666669,
+        "impact_status": "Improved"
       },
       "Equalized Odds Difference": {
         "baseline": 0.4824561403508772,
-        "mitigated": 0.16666666666666666,
-        "absolute_change": -0.3157894736842105,
-        "percentage_change": -65.45454545454545,
+        "mitigated": 0.2982456140350877,
+        "absolute_change": -0.1842105263157895,
+        "percentage_change": -38.18181818181819,
         "impact_status": "Improved"
       },
       "Equal Opportunity Difference (TPR)": {
         "baseline": 0.4824561403508772,
-        "mitigated": 0.16666666666666666,
-        "absolute_change": -0.3157894736842105,
-        "percentage_change": -65.45454545454545,
+        "mitigated": 0.2982456140350877,
+        "absolute_change": -0.1842105263157895,
+        "percentage_change": -38.18181818181819,
         "impact_status": "Improved"
       },
       "False Positive Rate Difference": {
         "baseline": 0.14554879423033582,
-        "mitigated": 0.02681992337164751,
-        "absolute_change": -0.1187288708586883,
-        "percentage_change": -81.57324248993496,
+        "mitigated": 0.051018350473885865,
+        "absolute_change": -0.09453044375644995,
+        "percentage_change": -64.94759661619207,
         "impact_status": "Improved"
       }
     },
     "intersectional_threshold_policy": "Minimum group size threshold N >= 30 enforced for primary disparity bounds.",
-    "interpretation": "Intersectional fairness disparity (Equalized Odds Difference) changed from 0.4825 to 0.1667 (absolute change of -0.3158). Simultaneously, model predictive accuracy changed from 0.8399 to 0.7603 (-0.0796, -9.47%), and probability calibration Brier Score changed from 0.1128 to 0.2156 (worsened). Therefore, the bias mitigation algorithm produced quantifiable changes in performance, calibration, and fairness."
+    "interpretation": "Intersectional fairness disparity (Equalized Odds Difference) changed from 0.4825 to 0.2982 (absolute change of -0.1842). Simultaneously, model predictive accuracy changed from 0.8399 to 0.8488 (+0.0090, +1.07%), and probability calibration Brier Score changed from 0.1128 to 0.1378 (worsened). Therefore, the bias mitigation algorithm produced quantifiable changes in performance, calibration, and fairness."
   },
   "warnings": [],
   "errors": [],
   "execution_metadata": {
     "status": "COMPLETED",
     "framework_version": "1.0.0"
-  }
+  },
+  "model_status": "ACTIVE"
 }

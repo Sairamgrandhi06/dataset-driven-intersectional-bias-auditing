@@ -9,14 +9,14 @@
     "adult_census_income": {
       "dataset_id": "adult_census_income",
       "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
-      "latest_version": "v111",
-      "total_runs": 111
+      "latest_version": "v114",
+      "total_runs": 114
     },
     "loan_approval": {
       "dataset_id": "loan_approval",
       "dataset_hash": "08a804ea40b06aad89efc5538d1071211da7210418a53692e16ee6889b833b76",
-      "latest_version": "v96",
-      "total_runs": 96
+      "latest_version": "v103",
+      "total_runs": 103
     },
     "student_performance": {
       "dataset_id": "student_performance",
@@ -32309,8 +32309,8 @@
       "model_type": "gradient_boosting",
       "selected_model": true,
       "is_selected": true,
-      "is_active": true,
-      "status": "ACTIVE",
+      "is_active": false,
+      "status": "SUPERSEDED",
       "timestamp": "2026-09-28T11:38:51.251408+00:00",
       "training_timestamp": "2026-09-28T11:38:51.251408+00:00",
       "training_config": {
@@ -32562,8 +32562,8 @@
       "model_type": "logistic_regression",
       "selected_model": true,
       "is_selected": true,
-      "is_active": true,
-      "status": "ACTIVE",
+      "is_active": false,
+      "status": "SUPERSEDED",
       "timestamp": "2026-09-29T07:17:51.425366+00:00",
       "training_timestamp": "2026-09-29T07:17:51.425366+00:00",
       "training_config": {
@@ -33201,6 +33201,1299 @@
         "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
       },
       "model_artifact_path": "D:\\personal_proj\\models\\students\\run_RUN-students-1790678448\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "loan_approval",
+      "dataset_hash": "08a804ea40b06aad89efc5538d1071211da7210418a53692e16ee6889b833b76",
+      "run_id": "run_20261001_164357_loan_approval",
+      "model_id": "loan_approval_v97",
+      "model_version": "v97",
+      "model_type": "logistic_regression",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": false,
+      "status": "SUPERSEDED",
+      "timestamp": "2026-10-01T16:43:58.530030+00:00",
+      "training_timestamp": "2026-10-01T16:43:58.530030+00:00",
+      "training_config": {
+        "dataset_id": "loan_approval",
+        "path": "data/raw/loan_approval.csv",
+        "target": {
+          "column": "loan_status",
+          "positive_class": "approved",
+          "negative_class": "rejected"
+        },
+        "protected_attributes": [
+          "gender",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [
+          "applicant_id"
+        ],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "gender",
+        "race"
+      ],
+      "target_column": "loan_status",
+      "positive_class": "approved",
+      "train_sample_count": 400,
+      "test_sample_count": 100,
+      "feature_count": 3,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9549999999999998,
+        "cv_accuracy_std": 0.020310096011589906,
+        "cv_precision_mean": 0.9628642055743454,
+        "cv_recall_mean": 0.9758015728977616,
+        "cv_f1_mean": 0.9690808430400761,
+        "cv_roc_auc_mean": 0.9922090390211592,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9305555555555556,
+        "f1_score": 0.9640287769784173,
+        "roc_auc": 0.9920634920634921,
+        "confusion_matrix": {
+          "TN": 28,
+          "FP": 0,
+          "FN": 5,
+          "TP": 67
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": null,
+        "disparate_impact_ratio": null,
+        "equalized_odds_difference": null,
+        "equal_opportunity_difference": null,
+        "false_positive_rate_difference": null
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.03702950665590946,
+        "ece": 0.040138203350886324,
+        "expected_calibration_error": 0.040138203350886324,
+        "reliability_curve": {
+          "prob_true": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.3333333333333333,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "prob_pred": [
+            0.009200762124451443,
+            0.1729270787141598,
+            0.2891891966392246,
+            0.3639535109126698,
+            0.43917728736404643,
+            0.5530075316424703,
+            0.8602890662169437,
+            0.9948795350038593
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\loan_approval\\run_20261001_164357_loan_approval\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "loan_approval",
+      "dataset_hash": "08a804ea40b06aad89efc5538d1071211da7210418a53692e16ee6889b833b76",
+      "run_id": "run_20261001_164537_loan_approval",
+      "model_id": "loan_approval_v98",
+      "model_version": "v98",
+      "model_type": "logistic_regression",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": false,
+      "status": "SUPERSEDED",
+      "timestamp": "2026-10-01T16:45:39.258593+00:00",
+      "training_timestamp": "2026-10-01T16:45:39.258593+00:00",
+      "training_config": {
+        "dataset_id": "loan_approval",
+        "path": "data/raw/loan_approval.csv",
+        "target": {
+          "column": "loan_status",
+          "positive_class": "approved",
+          "negative_class": "rejected"
+        },
+        "protected_attributes": [
+          "gender",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [
+          "applicant_id"
+        ],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "gender",
+        "race"
+      ],
+      "target_column": "loan_status",
+      "positive_class": "approved",
+      "train_sample_count": 400,
+      "test_sample_count": 100,
+      "feature_count": 3,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9549999999999998,
+        "cv_accuracy_std": 0.020310096011589906,
+        "cv_precision_mean": 0.9628642055743454,
+        "cv_recall_mean": 0.9758015728977616,
+        "cv_f1_mean": 0.9690808430400761,
+        "cv_roc_auc_mean": 0.9922090390211592,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9305555555555556,
+        "f1_score": 0.9640287769784173,
+        "roc_auc": 0.9920634920634921,
+        "confusion_matrix": {
+          "TN": 28,
+          "FP": 0,
+          "FN": 5,
+          "TP": 67
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": null,
+        "disparate_impact_ratio": null,
+        "equalized_odds_difference": null,
+        "equal_opportunity_difference": null,
+        "false_positive_rate_difference": null
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.03702950665590946,
+        "ece": 0.040138203350886324,
+        "expected_calibration_error": 0.040138203350886324,
+        "reliability_curve": {
+          "prob_true": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.3333333333333333,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "prob_pred": [
+            0.009200762124451443,
+            0.1729270787141598,
+            0.2891891966392246,
+            0.3639535109126698,
+            0.43917728736404643,
+            0.5530075316424703,
+            0.8602890662169437,
+            0.9948795350038593
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\loan_approval\\run_20261001_164537_loan_approval\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "loan_approval",
+      "dataset_hash": "08a804ea40b06aad89efc5538d1071211da7210418a53692e16ee6889b833b76",
+      "run_id": "run_20261001_164905_loan_approval",
+      "model_id": "loan_approval_v99",
+      "model_version": "v99",
+      "model_type": "logistic_regression",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": false,
+      "status": "SUPERSEDED",
+      "timestamp": "2026-10-01T16:49:06.808882+00:00",
+      "training_timestamp": "2026-10-01T16:49:06.808882+00:00",
+      "training_config": {
+        "dataset_id": "loan_approval",
+        "path": "data/raw/loan_approval.csv",
+        "target": {
+          "column": "loan_status",
+          "positive_class": "approved",
+          "negative_class": "rejected"
+        },
+        "protected_attributes": [
+          "gender",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [
+          "applicant_id"
+        ],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "gender",
+        "race"
+      ],
+      "target_column": "loan_status",
+      "positive_class": "approved",
+      "train_sample_count": 400,
+      "test_sample_count": 100,
+      "feature_count": 3,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9549999999999998,
+        "cv_accuracy_std": 0.020310096011589906,
+        "cv_precision_mean": 0.9628642055743454,
+        "cv_recall_mean": 0.9758015728977616,
+        "cv_f1_mean": 0.9690808430400761,
+        "cv_roc_auc_mean": 0.9922090390211592,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9305555555555556,
+        "f1_score": 0.9640287769784173,
+        "roc_auc": 0.9920634920634921,
+        "confusion_matrix": {
+          "TN": 28,
+          "FP": 0,
+          "FN": 5,
+          "TP": 67
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": null,
+        "disparate_impact_ratio": null,
+        "equalized_odds_difference": null,
+        "equal_opportunity_difference": null,
+        "false_positive_rate_difference": null
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.03702950665590946,
+        "ece": 0.040138203350886324,
+        "expected_calibration_error": 0.040138203350886324,
+        "reliability_curve": {
+          "prob_true": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.3333333333333333,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "prob_pred": [
+            0.009200762124451443,
+            0.1729270787141598,
+            0.2891891966392246,
+            0.3639535109126698,
+            0.43917728736404643,
+            0.5530075316424703,
+            0.8602890662169437,
+            0.9948795350038593
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\loan_approval\\run_20261001_164905_loan_approval\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "loan_approval",
+      "dataset_hash": "08a804ea40b06aad89efc5538d1071211da7210418a53692e16ee6889b833b76",
+      "run_id": "run_20261001_184804_loan_approval",
+      "model_id": "loan_approval_v100",
+      "model_version": "v100",
+      "model_type": "logistic_regression",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": false,
+      "status": "SUPERSEDED",
+      "timestamp": "2026-10-01T18:48:06.059379+00:00",
+      "training_timestamp": "2026-10-01T18:48:06.059379+00:00",
+      "training_config": {
+        "dataset_id": "loan_approval",
+        "path": "data/raw/loan_approval.csv",
+        "target": {
+          "column": "loan_status",
+          "positive_class": "approved",
+          "negative_class": "rejected"
+        },
+        "protected_attributes": [
+          "gender",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [
+          "applicant_id"
+        ],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "gender",
+        "race"
+      ],
+      "target_column": "loan_status",
+      "positive_class": "approved",
+      "train_sample_count": 400,
+      "test_sample_count": 100,
+      "feature_count": 3,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9549999999999998,
+        "cv_accuracy_std": 0.020310096011589906,
+        "cv_precision_mean": 0.9628642055743454,
+        "cv_recall_mean": 0.9758015728977616,
+        "cv_f1_mean": 0.9690808430400761,
+        "cv_roc_auc_mean": 0.9922090390211592,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9305555555555556,
+        "f1_score": 0.9640287769784173,
+        "roc_auc": 0.9920634920634921,
+        "confusion_matrix": {
+          "TN": 28,
+          "FP": 0,
+          "FN": 5,
+          "TP": 67
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": null,
+        "disparate_impact_ratio": null,
+        "equalized_odds_difference": null,
+        "equal_opportunity_difference": null,
+        "false_positive_rate_difference": null
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.03702950665590946,
+        "ece": 0.040138203350886324,
+        "expected_calibration_error": 0.040138203350886324,
+        "reliability_curve": {
+          "prob_true": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.3333333333333333,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "prob_pred": [
+            0.009200762124451443,
+            0.1729270787141598,
+            0.2891891966392246,
+            0.3639535109126698,
+            0.43917728736404643,
+            0.5530075316424703,
+            0.8602890662169437,
+            0.9948795350038593
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\loan_approval\\run_20261001_184804_loan_approval\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "loan_approval",
+      "dataset_hash": "08a804ea40b06aad89efc5538d1071211da7210418a53692e16ee6889b833b76",
+      "run_id": "run_20261001_185642_loan_approval",
+      "model_id": "loan_approval_v101",
+      "model_version": "v101",
+      "model_type": "logistic_regression",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": false,
+      "status": "SUPERSEDED",
+      "timestamp": "2026-10-01T18:56:43.940191+00:00",
+      "training_timestamp": "2026-10-01T18:56:43.940191+00:00",
+      "training_config": {
+        "dataset_id": "loan_approval",
+        "path": "data/raw/loan_approval.csv",
+        "target": {
+          "column": "loan_status",
+          "positive_class": "approved",
+          "negative_class": "rejected"
+        },
+        "protected_attributes": [
+          "gender",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [
+          "applicant_id"
+        ],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "gender",
+        "race"
+      ],
+      "target_column": "loan_status",
+      "positive_class": "approved",
+      "train_sample_count": 400,
+      "test_sample_count": 100,
+      "feature_count": 3,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9549999999999998,
+        "cv_accuracy_std": 0.020310096011589906,
+        "cv_precision_mean": 0.9628642055743454,
+        "cv_recall_mean": 0.9758015728977616,
+        "cv_f1_mean": 0.9690808430400761,
+        "cv_roc_auc_mean": 0.9922090390211592,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9305555555555556,
+        "f1_score": 0.9640287769784173,
+        "roc_auc": 0.9920634920634921,
+        "confusion_matrix": {
+          "TN": 28,
+          "FP": 0,
+          "FN": 5,
+          "TP": 67
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": null,
+        "disparate_impact_ratio": null,
+        "equalized_odds_difference": null,
+        "equal_opportunity_difference": null,
+        "false_positive_rate_difference": null
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.03702950665590946,
+        "ece": 0.040138203350886324,
+        "expected_calibration_error": 0.040138203350886324,
+        "reliability_curve": {
+          "prob_true": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.3333333333333333,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "prob_pred": [
+            0.009200762124451443,
+            0.1729270787141598,
+            0.2891891966392246,
+            0.3639535109126698,
+            0.43917728736404643,
+            0.5530075316424703,
+            0.8602890662169437,
+            0.9948795350038593
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\loan_approval\\run_20261001_185642_loan_approval\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "adult_census_income",
+      "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+      "run_id": "RUN-adult_census_income-1790881180",
+      "model_id": "adult_census_income_v112",
+      "model_version": "v112",
+      "model_type": "gradient_boosting",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": false,
+      "status": "SUPERSEDED",
+      "timestamp": "2026-10-01T19:07:59.756515+00:00",
+      "training_timestamp": "2026-10-01T19:07:59.756515+00:00",
+      "training_config": {
+        "dataset_id": "adult_census_income",
+        "path": "data/benchmarks/adult_census_income.csv",
+        "target": {
+          "column": "income",
+          "positive_class": ">50K"
+        },
+        "protected_attributes": [
+          "sex",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "sex",
+        "race"
+      ],
+      "target_column": "income",
+      "positive_class": ">50K",
+      "train_sample_count": 24129,
+      "test_sample_count": 6033,
+      "feature_count": 91,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.8620746431784655,
+        "cv_accuracy_std": 0.004222669593576743,
+        "cv_precision_mean": 0.7894200958246458,
+        "cv_recall_mean": 0.6080587308690346,
+        "cv_f1_mean": 0.6869256037542039,
+        "cv_roc_auc_mean": 0.9192447956812568,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.8398806563898558,
+        "precision": 0.7267343485617598,
+        "recall": 0.5719041278295606,
+        "f1_score": 0.6400894187779433,
+        "roc_auc": 0.884122868912222,
+        "confusion_matrix": {
+          "TN": 4208,
+          "FP": 323,
+          "FN": 643,
+          "TP": 859,
+          "matrix": [
+            [
+              4208,
+              323
+            ],
+            [
+              643,
+              859
+            ]
+          ]
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": 0.3170731707317073,
+        "disparate_impact_ratio": 0.13333333333333333,
+        "equalized_odds_difference": 0.4824561403508772,
+        "equal_opportunity_difference": 0.4824561403508772,
+        "false_positive_rate_difference": 0.14554879423033582
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.112778046157555,
+        "ece": 0.015069688249369908,
+        "expected_calibration_error": 0.015069688249369908,
+        "reliability_curve": {
+          "prob_true": [
+            0.030147058823529412,
+            0.18192627824019025,
+            0.2759170653907496,
+            0.30848329048843187,
+            0.4197080291970803,
+            0.48659003831417624,
+            0.6425531914893617,
+            0.7622377622377622,
+            0.8417721518987342,
+            0.9504132231404959
+          ],
+          "prob_pred": [
+            0.030718875236277487,
+            0.1538260129889402,
+            0.24900602949405648,
+            0.3441325685527245,
+            0.44743940537639154,
+            0.552345739799193,
+            0.6557650047240297,
+            0.7545958552286945,
+            0.8436788584938955,
+            0.9695649607344612
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\adult_census_income\\run_RUN-adult_census_income-1790881180\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "loan_approval",
+      "dataset_hash": "08a804ea40b06aad89efc5538d1071211da7210418a53692e16ee6889b833b76",
+      "run_id": "run_20261002_042626_loan_approval",
+      "model_id": "loan_approval_v102",
+      "model_version": "v102",
+      "model_type": "logistic_regression",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": false,
+      "status": "SUPERSEDED",
+      "timestamp": "2026-10-02T04:26:30.505855+00:00",
+      "training_timestamp": "2026-10-02T04:26:30.505855+00:00",
+      "training_config": {
+        "dataset_id": "loan_approval",
+        "path": "data/raw/loan_approval.csv",
+        "target": {
+          "column": "loan_status",
+          "positive_class": "approved",
+          "negative_class": "rejected"
+        },
+        "protected_attributes": [
+          "gender",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [
+          "applicant_id"
+        ],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "gender",
+        "race"
+      ],
+      "target_column": "loan_status",
+      "positive_class": "approved",
+      "train_sample_count": 400,
+      "test_sample_count": 100,
+      "feature_count": 3,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9549999999999998,
+        "cv_accuracy_std": 0.020310096011589906,
+        "cv_precision_mean": 0.9628642055743454,
+        "cv_recall_mean": 0.9758015728977616,
+        "cv_f1_mean": 0.9690808430400761,
+        "cv_roc_auc_mean": 0.9922090390211592,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9305555555555556,
+        "f1_score": 0.9640287769784173,
+        "roc_auc": 0.9920634920634921,
+        "confusion_matrix": {
+          "TN": 28,
+          "FP": 0,
+          "FN": 5,
+          "TP": 67
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": null,
+        "disparate_impact_ratio": null,
+        "equalized_odds_difference": null,
+        "equal_opportunity_difference": null,
+        "false_positive_rate_difference": null
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.03702950665590946,
+        "ece": 0.040138203350886324,
+        "expected_calibration_error": 0.040138203350886324,
+        "reliability_curve": {
+          "prob_true": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.3333333333333333,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "prob_pred": [
+            0.009200762124451443,
+            0.1729270787141598,
+            0.2891891966392246,
+            0.3639535109126698,
+            0.43917728736404643,
+            0.5530075316424703,
+            0.8602890662169437,
+            0.9948795350038593
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\loan_approval\\run_20261002_042626_loan_approval\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "loan_approval",
+      "dataset_hash": "08a804ea40b06aad89efc5538d1071211da7210418a53692e16ee6889b833b76",
+      "run_id": "run_20261002_042704_loan_approval",
+      "model_id": "loan_approval_v103",
+      "model_version": "v103",
+      "model_type": "logistic_regression",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": true,
+      "status": "ACTIVE",
+      "timestamp": "2026-10-02T04:27:07.735317+00:00",
+      "training_timestamp": "2026-10-02T04:27:07.735317+00:00",
+      "training_config": {
+        "dataset_id": "loan_approval",
+        "path": "data/raw/loan_approval.csv",
+        "target": {
+          "column": "loan_status",
+          "positive_class": "approved",
+          "negative_class": "rejected"
+        },
+        "protected_attributes": [
+          "gender",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [
+          "applicant_id"
+        ],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "gender",
+        "race"
+      ],
+      "target_column": "loan_status",
+      "positive_class": "approved",
+      "train_sample_count": 400,
+      "test_sample_count": 100,
+      "feature_count": 3,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9549999999999998,
+        "cv_accuracy_std": 0.020310096011589906,
+        "cv_precision_mean": 0.9628642055743454,
+        "cv_recall_mean": 0.9758015728977616,
+        "cv_f1_mean": 0.9690808430400761,
+        "cv_roc_auc_mean": 0.9922090390211592,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9305555555555556,
+        "f1_score": 0.9640287769784173,
+        "roc_auc": 0.9920634920634921,
+        "confusion_matrix": {
+          "TN": 28,
+          "FP": 0,
+          "FN": 5,
+          "TP": 67
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": null,
+        "disparate_impact_ratio": null,
+        "equalized_odds_difference": null,
+        "equal_opportunity_difference": null,
+        "false_positive_rate_difference": null
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.03702950665590946,
+        "ece": 0.040138203350886324,
+        "expected_calibration_error": 0.040138203350886324,
+        "reliability_curve": {
+          "prob_true": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.3333333333333333,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "prob_pred": [
+            0.009200762124451443,
+            0.1729270787141598,
+            0.2891891966392246,
+            0.3639535109126698,
+            0.43917728736404643,
+            0.5530075316424703,
+            0.8602890662169437,
+            0.9948795350038593
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\loan_approval\\run_20261002_042704_loan_approval\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "adult_census_income",
+      "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+      "run_id": "RUN-adult_census_income-1790915485",
+      "model_id": "adult_census_income_v113",
+      "model_version": "v113",
+      "model_type": "gradient_boosting",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": false,
+      "status": "SUPERSEDED",
+      "timestamp": "2026-10-02T04:49:51.544441+00:00",
+      "training_timestamp": "2026-10-02T04:49:51.544441+00:00",
+      "training_config": {
+        "dataset_id": "adult_census_income",
+        "path": "data/benchmarks/adult_census_income.csv",
+        "target": {
+          "column": "income",
+          "positive_class": ">50K"
+        },
+        "protected_attributes": [
+          "sex",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "sex",
+        "race"
+      ],
+      "target_column": "income",
+      "positive_class": ">50K",
+      "train_sample_count": 24129,
+      "test_sample_count": 6033,
+      "feature_count": 91,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.8620746431784655,
+        "cv_accuracy_std": 0.004222669593576743,
+        "cv_precision_mean": 0.7894200958246458,
+        "cv_recall_mean": 0.6080587308690346,
+        "cv_f1_mean": 0.6869256037542039,
+        "cv_roc_auc_mean": 0.9192447956812568,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.8398806563898558,
+        "precision": 0.7267343485617598,
+        "recall": 0.5719041278295606,
+        "f1_score": 0.6400894187779433,
+        "roc_auc": 0.884122868912222,
+        "confusion_matrix": {
+          "TN": 4208,
+          "FP": 323,
+          "FN": 643,
+          "TP": 859,
+          "matrix": [
+            [
+              4208,
+              323
+            ],
+            [
+              643,
+              859
+            ]
+          ]
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": 0.3170731707317073,
+        "disparate_impact_ratio": 0.13333333333333333,
+        "equalized_odds_difference": 0.4824561403508772,
+        "equal_opportunity_difference": 0.4824561403508772,
+        "false_positive_rate_difference": 0.14554879423033582
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.112778046157555,
+        "ece": 0.015069688249369908,
+        "expected_calibration_error": 0.015069688249369908,
+        "reliability_curve": {
+          "prob_true": [
+            0.030147058823529412,
+            0.18192627824019025,
+            0.2759170653907496,
+            0.30848329048843187,
+            0.4197080291970803,
+            0.48659003831417624,
+            0.6425531914893617,
+            0.7622377622377622,
+            0.8417721518987342,
+            0.9504132231404959
+          ],
+          "prob_pred": [
+            0.030718875236277487,
+            0.1538260129889402,
+            0.24900602949405648,
+            0.3441325685527245,
+            0.44743940537639154,
+            0.552345739799193,
+            0.6557650047240297,
+            0.7545958552286945,
+            0.8436788584938955,
+            0.9695649607344612
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\adult_census_income\\run_RUN-adult_census_income-1790915485\\selected_model.joblib",
+      "preprocessing_artifact_path": null
+    },
+    {
+      "dataset_id": "adult_census_income",
+      "dataset_hash": "9007ff524acf0776b9598a0ed883058df91f59c003e78cb2cddd88f87535fc86",
+      "run_id": "RUN-adult_census_income-1790918883",
+      "model_id": "adult_census_income_v114",
+      "model_version": "v114",
+      "model_type": "gradient_boosting",
+      "selected_model": true,
+      "is_selected": true,
+      "is_active": true,
+      "status": "ACTIVE",
+      "timestamp": "2026-10-02T05:35:05.771334+00:00",
+      "training_timestamp": "2026-10-02T05:35:05.771334+00:00",
+      "training_config": {
+        "dataset_id": "adult_census_income",
+        "path": "data/benchmarks/adult_census_income.csv",
+        "target": {
+          "column": "income",
+          "positive_class": ">50K"
+        },
+        "protected_attributes": [
+          "sex",
+          "race"
+        ],
+        "ignore_columns": [],
+        "id_columns": [],
+        "test_size": 0.2,
+        "random_state": 42,
+        "intersectional": {
+          "min_group_size": 30
+        },
+        "model_config": {
+          "algorithm": "LogisticRegression",
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        },
+        "fairness_thresholds": {
+          "demographic_parity_difference_max": 0.1,
+          "disparate_impact_min": 0.8,
+          "equal_opportunity_difference_max": 0.1,
+          "equalized_odds_difference_max": 0.1,
+          "fpr_difference_max": 0.1
+        },
+        "calibration_settings": {
+          "n_bins": 10
+        },
+        "drop_protected_from_features": true
+      },
+      "selection_policy": "performance_with_fairness_constraints",
+      "model_selection_policy": "performance_with_fairness_constraints",
+      "protected_attributes": [
+        "sex",
+        "race"
+      ],
+      "target_column": "income",
+      "positive_class": ">50K",
+      "train_sample_count": 24129,
+      "test_sample_count": 6033,
+      "feature_count": 91,
+      "random_seed": 42,
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.8620746431784655,
+        "cv_accuracy_std": 0.004222669593576743,
+        "cv_precision_mean": 0.7894200958246458,
+        "cv_recall_mean": 0.6080587308690346,
+        "cv_f1_mean": 0.6869256037542039,
+        "cv_roc_auc_mean": 0.9192447956812568,
+        "folds_completed": 5
+      },
+      "test_metrics": {
+        "accuracy": 0.8398806563898558,
+        "precision": 0.7267343485617598,
+        "recall": 0.5719041278295606,
+        "f1_score": 0.6400894187779433,
+        "roc_auc": 0.884122868912222,
+        "confusion_matrix": {
+          "TN": 4208,
+          "FP": 323,
+          "FN": 643,
+          "TP": 859,
+          "matrix": [
+            [
+              4208,
+              323
+            ],
+            [
+              643,
+              859
+            ]
+          ]
+        }
+      },
+      "fairness_metrics": {
+        "demographic_parity_difference": 0.3170731707317073,
+        "disparate_impact_ratio": 0.13333333333333333,
+        "equalized_odds_difference": 0.4824561403508772,
+        "equal_opportunity_difference": 0.4824561403508772,
+        "false_positive_rate_difference": 0.14554879423033582
+      },
+      "calibration_metrics": {
+        "status": "AVAILABLE",
+        "brier_score": 0.112778046157555,
+        "ece": 0.015069688249369908,
+        "expected_calibration_error": 0.015069688249369908,
+        "reliability_curve": {
+          "prob_true": [
+            0.030147058823529412,
+            0.18192627824019025,
+            0.2759170653907496,
+            0.30848329048843187,
+            0.4197080291970803,
+            0.48659003831417624,
+            0.6425531914893617,
+            0.7622377622377622,
+            0.8417721518987342,
+            0.9504132231404959
+          ],
+          "prob_pred": [
+            0.030718875236277487,
+            0.1538260129889402,
+            0.24900602949405648,
+            0.3441325685527245,
+            0.44743940537639154,
+            0.552345739799193,
+            0.6557650047240297,
+            0.7545958552286945,
+            0.8436788584938955,
+            0.9695649607344612
+          ]
+        },
+        "n_bins": 10,
+        "explanation": "Brier Score measures mean squared error of predicted probabilities. Lower values indicate superior probability calibration."
+      },
+      "model_artifact_path": "D:\\personal_proj\\models\\adult_census_income\\run_RUN-adult_census_income-1790918883\\selected_model.joblib",
       "preprocessing_artifact_path": null
     }
   ]

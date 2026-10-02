@@ -9,6 +9,10 @@ data/raw/*
 data/processed/*
 !data/processed/.gitkeep
 
+# Deployment-safe benchmark datasets
+!data/benchmarks/
+!data/benchmarks/**
+
 # Environments & virtualenvs
 .venv/
 venv/

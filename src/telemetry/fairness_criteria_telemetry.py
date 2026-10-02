@@ -24,7 +24,7 @@ def record_criteria_telemetry(
     model_id: str,
     configuration_version: str,
     selected_criteria: List[str],
-    measured_metrics: Dict[str, float],
+    measured_metrics: Dict[str, Any],
     thresholds: Dict[str, float],
     compatibility_status: str,
     conflict_status: str,

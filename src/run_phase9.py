@@ -16,6 +16,7 @@ This is the official one-command Phase 9 reproducibility runner:
 import os
 import sys
 import json
+from typing import Any
 import pandas as pd
 
 # Add project root to sys.path
@@ -28,6 +29,17 @@ from src.data.loader import load_raw_data, load_config
 from src.data.preprocessor import prepare_pipeline_data, split_pipeline_data
 from src.models.classifier import train_baseline_model, predict_model
 from src.fairness.intersectional import audit_intersectional_attributes
+
+
+def _is_metric_close(v1: Any, v2: Any, tol: float = 1e-4) -> bool:
+    if v1 is None and v2 is None:
+        return True
+    if v1 is None or v2 is None:
+        return False
+    try:
+        return abs(float(v1) - float(v2)) <= tol
+    except (TypeError, ValueError):
+        return False
 
 
 def run_phase9_reproducibility_pipeline(tolerance=1e-4):
@@ -89,7 +101,7 @@ def run_phase9_reproducibility_pipeline(tolerance=1e-4):
     else:
         oracle = load_expected_results()
         exp_disp = oracle["expected_disparities"]
-        oracle_pass = all(abs(exp_disp[k] - ref_disp[k]) <= tolerance for k in exp_disp)
+        oracle_pass = all(_is_metric_close(exp_disp.get(k), ref_disp.get(k), tolerance) for k in exp_disp)
 
     results_check.append(("[7] Expected-result oracle", oracle_pass))
     if not oracle_pass:
@@ -98,7 +110,7 @@ def run_phase9_reproducibility_pipeline(tolerance=1e-4):
     # [8] Production vs Reference Comparison Check
     prod_audit = audit_intersectional_attributes(y_test, y_pred, A_test, attributes=["sex", "race"], min_group_size=30)
     prod_disp = prod_audit["disparities"]
-    prod_ref_pass = all(abs(prod_disp[k] - ref_disp[k]) <= tolerance for k in prod_disp)
+    prod_ref_pass = all(_is_metric_close(prod_disp.get(k), ref_disp.get(k), tolerance) for k in prod_disp)
     results_check.append(("[8] Production/reference", prod_ref_pass))
     if not prod_ref_pass:
         failures.append("Production implementation differed from reference implementation beyond tolerance")

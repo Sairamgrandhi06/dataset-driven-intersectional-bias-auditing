@@ -15,6 +15,7 @@ This module partitions subgroups into:
    statistically unstable and excluded from primary disparity calculations.
 """
 
+from typing import Any, Dict, Optional
 import numpy as np
 import pandas as pd
 from src.fairness.single_attribute import calculate_group_metrics
@@ -150,7 +151,7 @@ def audit_intersectional_attributes(
         fpr_diff = float(max_fpr - min_fpr)
         equalized_odds_diff = max(equal_opp_diff, fpr_diff)
 
-        disparities = {
+        disparities: Dict[str, Optional[float]] = {
             "demographic_parity_difference": dpd,
             "disparate_impact_ratio": dir_ratio,
             "equalized_odds_difference": equalized_odds_diff,
@@ -170,7 +171,7 @@ def audit_intersectional_attributes(
             "highest_performing_group": {"group": max_sr_group, "value": max_sr, "criterion": "highest_selection_rate"}
         }
     else:
-        disparities = {
+        disparities: Dict[str, Optional[float]] = {
             "demographic_parity_difference": None,
             "disparate_impact_ratio": None,
             "equalized_odds_difference": None,

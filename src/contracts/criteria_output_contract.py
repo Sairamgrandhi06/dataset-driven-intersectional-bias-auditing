@@ -6,7 +6,7 @@ compatibility statuses, per-criterion results, and no-silent-priority flags.
 """
 
 import datetime
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 def build_criteria_output_contract(
@@ -16,7 +16,7 @@ def build_criteria_output_contract(
     model_id: str,
     configuration_version: str,
     selected_criteria: List[str],
-    metric_values: Dict[str, float],
+    metric_values: Dict[str, Any],
     configured_thresholds: Dict[str, float],
     per_criterion_status: List[Dict[str, Any]],
     compatibility_status: str,

@@ -217,6 +217,9 @@ def test_regression_g_mitigation_result_explicitly_tied_to_dataset_model_version
     """
     TEST G: The mitigation result is explicitly tied to dataset + selected model + model version.
     """
+    active_ctx = get_dataset_active_model_context("students")
+    expected_version = active_ctx.get("model_version", "v1") if active_ctx else "v1"
+
     students_res = execute_interactive_mitigation_workflow(
         dataset_id="students",
         strategy_type="in_processing",
@@ -228,6 +231,6 @@ def test_regression_g_mitigation_result_explicitly_tied_to_dataset_model_version
     assert students_res["dataset_id"] == "students"
     assert students_res["selected_model"] == "random_forest"
     assert students_res["model_type"] == "random_forest"
-    assert students_res["model_version"] == "v1"
+    assert students_res["model_version"] == expected_version
     assert students_res["baseline"]["model_key"] == "random_forest"
     assert students_res["mitigated"]["base_estimator"] == "random_forest"

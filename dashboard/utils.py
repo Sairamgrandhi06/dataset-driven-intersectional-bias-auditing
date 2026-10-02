@@ -32,6 +32,14 @@ from src.models.model_registry_store import (
 from src.models.retraining import retrain_dataset
 from src.data.preprocessor import prepare_pipeline_data, split_pipeline_data
 from src.data.dataset_config import DatasetConfig, validate_dataset_configuration_contract
+from src.data.benchmark_catalog import (
+    load_registered_benchmarks,
+    get_available_benchmarks,
+    get_benchmark_display_names,
+    get_benchmark_by_id_or_name,
+    is_registered_benchmark,
+    resolve_benchmark_dataframe
+)
 
 
 def get_project_root():
@@ -1995,9 +2003,15 @@ def approve_and_execute_retraining(dataset_id: str, config_path: Optional[str] =
 
 
 def get_raw_dataset_dataframe(dataset_id: str) -> Optional[pd.DataFrame]:
-    """Retrieve raw DataFrame for a dataset ID from data/raw/ or registered sources."""
+    """Retrieve raw DataFrame for a dataset ID from data/raw/ or registered benchmark catalog."""
     root = get_project_root()
     clean_id = dataset_id.lower().replace(" (default)", "").replace(" ", "_")
+
+    # Priority 0: If dataset_id is a registered benchmark, resolve via benchmark catalog
+    if is_registered_benchmark(clean_id, base_dir=root):
+        df, _, _ = resolve_benchmark_dataframe(clean_id, base_dir=root)
+        if df is not None:
+            return df
 
     # Priority 1: Check if dataset config exists with exact path
     cfg_file = os.path.join(root, "config", f"{clean_id}_config.json")
@@ -2020,6 +2034,7 @@ def get_raw_dataset_dataframe(dataset_id: str) -> Optional[pd.DataFrame]:
         os.path.join(root, "data", "raw", f"{base_stem}.csv"),
         os.path.join(root, "data", "raw", f"{clean_id.split('_')[0]}.csv"),
         os.path.join(root, "data", "raw", "adult.csv") if "adult" in clean_id else None,
+        os.path.join(root, "data", "raw", "students.csv") if "student" in clean_id else None,
         os.path.join(root, "data", "raw", "loan_approval.csv") if "loan" in clean_id else None,
         os.path.join(root, "data", "raw", "student_performance.csv") if "student" in clean_id else None
     ]

@@ -67,8 +67,32 @@ def compare_production_vs_reference(tolerance=1e-4):
 
     for k in sorted(p_disp.keys()):
         pv = p_disp[k]
-        rv = r_disp[k]
-        diff = abs(pv - rv)
+        rv = r_disp.get(k) if isinstance(r_disp, dict) else None
+        if pv is None or rv is None:
+            if pv is None and rv is None:
+                status = "MATCH"
+                diff = 0.0
+                diff_str = "0.000000"
+            else:
+                status = "MISMATCH"
+                diff = None
+                diff_str = "N/A"
+                mismatches.append(f"Metric '{k}': Prod={pv}, Ref={rv}")
+
+            comparisons.append({
+                "metric": k,
+                "production": pv,
+                "reference": rv,
+                "diff": diff,
+                "status": status
+            })
+
+            pv_str = f"{pv:.6f}" if pv is not None else "None"
+            rv_str = f"{rv:.6f}" if rv is not None else "None"
+            print(f"{k:<32} | {pv_str:<12} | {rv_str:<12} | {diff_str:<10} | {status:<8}")
+            continue
+
+        diff = abs(float(pv) - float(rv))
         status = "MATCH" if diff <= tolerance else "MISMATCH"
 
         comparisons.append({
@@ -80,9 +104,9 @@ def compare_production_vs_reference(tolerance=1e-4):
         })
 
         if status == "MISMATCH":
-            mismatches.append(f"Metric '{k}': Prod={pv:.6f}, Ref={rv:.6f}")
+            mismatches.append(f"Metric '{k}': Prod={float(pv):.6f}, Ref={float(rv):.6f}")
 
-        print(f"{k:<32} | {pv:<12.6f} | {rv:<12.6f} | {diff:<10.6f} | {status:<8}")
+        print(f"{k:<32} | {float(pv):<12.6f} | {float(rv):<12.6f} | {diff:<10.6f} | {status:<8}")
 
     print("-" * 80)
     # Compare Group Metrics across all primary subgroups
@@ -95,16 +119,20 @@ def compare_production_vs_reference(tolerance=1e-4):
         r_gm = ref_metrics[g]
 
         metric_pairs = [
-            ("selection_rate", p_gm.get("selection_rate", 0.0), r_gm["selection_rate"]),
-            ("tpr", p_gm.get("true_positive_rate", p_gm.get("tpr", 0.0)), r_gm["tpr"]),
-            ("fpr", p_gm.get("false_positive_rate", p_gm.get("fpr", 0.0)), r_gm["fpr"]),
-            ("fnr", p_gm.get("false_negative_rate", p_gm.get("fnr", 0.0)), r_gm["fnr"])
+            ("selection_rate", p_gm.get("selection_rate", 0.0), r_gm.get("selection_rate", 0.0)),
+            ("tpr", p_gm.get("true_positive_rate", p_gm.get("tpr", 0.0)), r_gm.get("tpr", 0.0)),
+            ("fpr", p_gm.get("false_positive_rate", p_gm.get("fpr", 0.0)), r_gm.get("fpr", 0.0)),
+            ("fnr", p_gm.get("false_negative_rate", p_gm.get("fnr", 0.0)), r_gm.get("fnr", 0.0))
         ]
 
         for sub_k, pv, rv in metric_pairs:
-            diff = abs(pv - rv)
-            if diff > tolerance:
-                mismatches.append(f"Group '{g}' {sub_k}: Prod={pv:.6f}, Ref={rv:.6f}")
+            if pv is None or rv is None:
+                if pv != rv:
+                    mismatches.append(f"Group '{g}' {sub_k}: Prod={pv}, Ref={rv}")
+            else:
+                diff = abs(float(pv) - float(rv))
+                if diff > tolerance:
+                    mismatches.append(f"Group '{g}' {sub_k}: Prod={float(pv):.6f}, Ref={float(rv):.6f}")
 
     overall_status = "MATCH" if len(mismatches) == 0 else "MISMATCH"
     print(f"Overall Production vs. Reference Status: {overall_status}")

@@ -1,0 +1,53 @@
+{
+  "registered_benchmarks": {
+    "adult_census_income": {
+      "dataset_id": "adult_census_income",
+      "display_name": "Adult Census Income",
+      "type": "benchmark",
+      "enabled": true,
+      "source_type": "bundled",
+      "source": "data/benchmarks/adult_census_income.csv",
+      "fallback_sources": [
+        "data/benchmarks/adult_census_income.csv",
+        "data/raw/adult.csv",
+        "data/raw/adult_census_income.csv"
+      ],
+      "config_path": "config/adult_census_income_config.json",
+      "download_url": "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data",
+      "columns": [
+        "age",
+        "workclass",
+        "fnlwgt",
+        "education",
+        "education_num",
+        "marital_status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "capital_gain",
+        "capital_loss",
+        "hours_per_week",
+        "native_country",
+        "income"
+      ],
+      "description": "US Census Bureau income classification benchmark with gender and race protected attributes."
+    },
+    "students": {
+      "dataset_id": "students",
+      "display_name": "Student Academic Performance",
+      "type": "benchmark",
+      "enabled": true,
+      "source_type": "bundled",
+      "source": "data/benchmarks/students.csv",
+      "fallback_sources": [
+        "data/benchmarks/students.csv",
+        "data/raw/students.csv",
+        "data/raw/student_performance.csv"
+      ],
+      "config_path": "config/students_config.json",
+      "download_url": null,
+      "description": "Student academic performance benchmark with gender and ethnicity protected attributes."
+    }
+  }
+}

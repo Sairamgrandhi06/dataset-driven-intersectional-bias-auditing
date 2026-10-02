@@ -1,17 +1,15 @@
 {
-  "dataset_id": "students",
-  "path": "data/benchmarks/students.csv",
+  "dataset_id": "adult_census_income",
+  "path": "data/benchmarks/adult_census_income.csv",
   "target": {
-    "column": "passed",
-    "positive_class": "1"
+    "column": "income",
+    "positive_class": ">50K"
   },
   "protected_attributes": [
-    "gender",
-    "ethnicity"
+    "sex",
+    "race"
   ],
-  "id_columns": [
-    "student_id"
-  ],
+  "id_columns": [],
   "ignore_columns": [],
   "test_size": 0.2,
   "random_state": 42,
