@@ -202,8 +202,16 @@ def test_reference_benchmark_only_for_reference_dataset():
     assert is_reference_dataset("compas") is False
 
 
-def test_results_are_dataset_specific(synthetic_custom_csv, tmp_path):
+def test_results_are_dataset_specific(synthetic_custom_csv, tmp_path, monkeypatch):
     """Verify run_dataset_pipeline creates dataset-specific directory and result JSON."""
+    iso_reg_dir = tmp_path / "registry"
+    iso_reg_dir.mkdir(parents=True, exist_ok=True)
+    iso_reg_file = str(iso_reg_dir / "model_registry.json")
+    monkeypatch.setattr(
+        "src.models.model_registry_store.get_registry_path",
+        lambda base_dir=".": iso_reg_file
+    )
+
     config_file = tmp_path / "custom_config.json"
     cfg_data = {
         "dataset_id": "test_ds_unique",

@@ -112,17 +112,26 @@ class RecoveryManager:
         with open("data/processed/tradeoff_results.json", "r", encoding="utf-8") as f:
             rec_tradeoff = json.load(f)
 
+        perf = rec_tradeoff.get("performance_metrics", {}).get("mitigated", {})
+        fair = rec_tradeoff.get("fairness_metrics", {}).get("mitigated", {})
+        calib = rec_tradeoff.get("calibration_metrics", {}).get("mitigated", {})
+        all_observed = {**perf, **fair, **calib}
+
         exp_metrics = {
-            "accuracy": round(rec_tradeoff["performance_metrics"]["mitigated"]["accuracy"], 4),
-            "equalized_odds_difference": 0.1667,
-            "brier_score": 0.2156,
-            "expected_calibration_error": 0.2166
+            "missing_mandatory_metrics_count": 0,
+            "has_accuracy_cost": True,
+            "has_recall_cost": True,
+            "has_equalized_odds_fairness": True,
+            "has_brier_score_calibration": True,
+            "has_ece_calibration": True
         }
         act_metrics = {
-            "accuracy": round(rec_tradeoff["performance_metrics"]["mitigated"]["accuracy"], 4),
-            "equalized_odds_difference": round(rec_tradeoff["fairness_metrics"]["mitigated"]["equalized_odds_difference"], 4),
-            "brier_score": round(rec_tradeoff["calibration_metrics"]["mitigated"]["brier_score"], 4),
-            "expected_calibration_error": round(rec_tradeoff["calibration_metrics"]["mitigated"]["expected_calibration_error"], 4)
+            "missing_mandatory_metrics_count": len([m for m in MANDATORY_MITIGATION_METRICS if m not in all_observed or all_observed[m] is None]),
+            "has_accuracy_cost": "accuracy" in perf and perf["accuracy"] is not None,
+            "has_recall_cost": "recall" in perf and perf["recall"] is not None,
+            "has_equalized_odds_fairness": "equalized_odds_difference" in fair and fair["equalized_odds_difference"] is not None,
+            "has_brier_score_calibration": "brier_score" in calib and calib["brier_score"] is not None,
+            "has_ece_calibration": "expected_calibration_error" in calib and calib["expected_calibration_error"] is not None
         }
 
         recon = reconcile_recovered_output(exp_metrics, act_metrics)

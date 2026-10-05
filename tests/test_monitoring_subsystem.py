@@ -178,8 +178,8 @@ def test_12_performance_improvement_detection(sample_reference_df):
 
 
 # 21. Retraining approval gate
-def test_21_retraining_approval_gate():
-    res = retrain_dataset("adult_census_income", "config/default_config.json", base_dir=".")
+def test_21_retraining_approval_gate(tmp_path):
+    res = retrain_dataset("adult_census_income", "config/default_config.json", base_dir=str(tmp_path))
     assert "model_version" in res
     assert res.get("model_status") == "ACTIVE" or res.get("status") == "DATASET_TOO_SMALL_FOR_TRAINING"
 
@@ -201,9 +201,9 @@ def test_24_loan_monitoring_pipeline(tmp_path):
         target=DatasetTargetConfig(column="loan_status", positive_class="Approved"),
         protected_attributes=["gender"]
     )
-    retrain_dataset("loan_approval", cfg, base_dir=".")
+    retrain_dataset("loan_approval", cfg, base_dir=str(tmp_path))
 
-    mon_res = run_monitoring_pipeline("loan_approval", csv_p, base_dir=".")
+    mon_res = run_monitoring_pipeline("loan_approval", csv_p, base_dir=str(tmp_path))
     assert mon_res["dataset_id"] == "loan_approval"
     assert "health_report" in mon_res
 
@@ -224,9 +224,9 @@ def test_25_student_monitoring_pipeline(tmp_path):
         target=DatasetTargetConfig(column="passed", positive_class="yes"),
         protected_attributes=["gender"]
     )
-    retrain_dataset("student_performance", cfg, base_dir=".")
+    retrain_dataset("student_performance", cfg, base_dir=str(tmp_path))
 
-    mon_res = run_monitoring_pipeline("student_performance", csv_p, base_dir=".")
+    mon_res = run_monitoring_pipeline("student_performance", csv_p, base_dir=str(tmp_path))
     assert mon_res["dataset_id"] == "student_performance"
     assert "retraining_recommendation" in mon_res
 
@@ -250,8 +250,8 @@ def test_28_model_registry_compatibility():
     assert "runs" in reg
 
 
-def test_29_retraining_engine_compatibility():
-    res = retrain_dataset("adult_census_income", "config/default_config.json")
+def test_29_retraining_engine_compatibility(tmp_path):
+    res = retrain_dataset("adult_census_income", "config/default_config.json", base_dir=str(tmp_path))
     assert "model_version" in res or "status" in res
 
 

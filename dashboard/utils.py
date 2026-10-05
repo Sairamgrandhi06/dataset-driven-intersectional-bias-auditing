@@ -16,6 +16,7 @@ import zipfile
 from typing import Any, Optional, Dict, List, Union, Tuple
 import numpy as np
 import pandas as pd
+import streamlit as st
 
 
 from src.data.dataset_profiler import profile_dataset
@@ -361,6 +362,18 @@ def activate_model_version(dataset_id: str, version_str: str) -> bool:
     return set_active_model_version(dataset_id, version_str)
 
 
+@st.cache_data(show_spinner=False)
+def _load_json_file_cached(full_path: str, mtime: float, size: int) -> Optional[dict]:
+    """Cached loader for JSON result and config files."""
+    if not os.path.exists(full_path):
+        return None
+    try:
+        with open(full_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
 def load_json_file(filename, base_dir="data/processed"):
     """
     Safely load a JSON result file from the project directory.
@@ -379,8 +392,9 @@ def load_json_file(filename, base_dir="data/processed"):
         return None
 
     try:
-        with open(full_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+        mtime = os.path.getmtime(full_path)
+        size = os.path.getsize(full_path)
+        return _load_json_file_cached(full_path, mtime, size)
     except Exception:
         return None
 
@@ -408,8 +422,11 @@ def load_dataset_run_result(dataset_id="Adult Census Income (Default)"):
     run_file = os.path.join(root, "results", clean_id, "run_results.json")
     if os.path.exists(run_file):
         try:
-            with open(run_file, "r", encoding="utf-8") as f:
-                return json.load(f)
+            mtime = os.path.getmtime(run_file)
+            size = os.path.getsize(run_file)
+            res = _load_json_file_cached(run_file, mtime, size)
+            if res is not None:
+                return res
         except Exception:
             pass
 
@@ -420,8 +437,9 @@ def load_dataset_run_result(dataset_id="Adult Census Income (Default)"):
     # Priority 3: Direct filepath if dataset_id is a file path
     if os.path.exists(dataset_id):
         try:
-            with open(dataset_id, "r", encoding="utf-8") as f:
-                return json.load(f)
+            mtime = os.path.getmtime(dataset_id)
+            size = os.path.getsize(dataset_id)
+            return _load_json_file_cached(dataset_id, mtime, size)
         except Exception:
             return None
 
@@ -760,6 +778,17 @@ def normalize_run_results(run_data: Optional[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
+@st.cache_data(show_spinner=False)
+def _load_csv_file_cached(full_path: str, mtime: float, size: int) -> Optional[pd.DataFrame]:
+    """Cached loader for CSV files."""
+    if not os.path.exists(full_path):
+        return None
+    try:
+        return pd.read_csv(full_path)
+    except Exception:
+        return None
+
+
 def load_csv_file(filename, base_dir="data/processed"):
     """
     Safely load a CSV result file into a pandas DataFrame.
@@ -778,7 +807,10 @@ def load_csv_file(filename, base_dir="data/processed"):
         return None
 
     try:
-        return pd.read_csv(full_path)
+        mtime = os.path.getmtime(full_path)
+        size = os.path.getsize(full_path)
+        df = _load_csv_file_cached(full_path, mtime, size)
+        return df.copy() if df is not None else None
     except Exception:
         return None
 
@@ -2011,19 +2043,25 @@ def get_raw_dataset_dataframe(dataset_id: str) -> Optional[pd.DataFrame]:
     if is_registered_benchmark(clean_id, base_dir=root):
         df, _, _ = resolve_benchmark_dataframe(clean_id, base_dir=root)
         if df is not None:
-            return df
+            return df.copy()
 
     # Priority 1: Check if dataset config exists with exact path
     cfg_file = os.path.join(root, "config", f"{clean_id}_config.json")
     if os.path.exists(cfg_file):
         try:
-            with open(cfg_file, "r", encoding="utf-8") as f:
-                cfg_data = json.load(f)
-            raw_p = cfg_data.get("path")
-            if raw_p:
-                abs_raw = raw_p if os.path.isabs(raw_p) else os.path.join(root, raw_p)
-                if os.path.exists(abs_raw):
-                    return pd.read_csv(abs_raw)
+            mtime = os.path.getmtime(cfg_file)
+            size = os.path.getsize(cfg_file)
+            cfg_data = _load_json_file_cached(cfg_file, mtime, size)
+            if cfg_data:
+                raw_p = cfg_data.get("path")
+                if raw_p:
+                    abs_raw = raw_p if os.path.isabs(raw_p) else os.path.join(root, raw_p)
+                    if os.path.exists(abs_raw):
+                        raw_mtime = os.path.getmtime(abs_raw)
+                        raw_size = os.path.getsize(abs_raw)
+                        df = _load_csv_file_cached(abs_raw, raw_mtime, raw_size)
+                        if df is not None:
+                            return df.copy()
         except Exception:
             pass
 
@@ -2042,7 +2080,11 @@ def get_raw_dataset_dataframe(dataset_id: str) -> Optional[pd.DataFrame]:
     for c in candidates:
         if c and os.path.exists(c):
             try:
-                return pd.read_csv(c)
+                c_mtime = os.path.getmtime(c)
+                c_size = os.path.getsize(c)
+                df = _load_csv_file_cached(c, c_mtime, c_size)
+                if df is not None:
+                    return df.copy()
             except Exception:
                 pass
 
@@ -2054,22 +2096,79 @@ def get_raw_dataset_dataframe(dataset_id: str) -> Optional[pd.DataFrame]:
                 f_stem = os.path.splitext(f_name)[0].lower()
                 if f_stem == clean_id or f_stem == base_stem or clean_id.startswith(f_stem):
                     try:
-                        return pd.read_csv(os.path.join(raw_dir, f_name))
+                        c_path = os.path.join(raw_dir, f_name)
+                        c_mtime = os.path.getmtime(c_path)
+                        c_size = os.path.getsize(c_path)
+                        df = _load_csv_file_cached(c_path, c_mtime, c_size)
+                        if df is not None:
+                            return df.copy()
                     except Exception:
                         pass
 
     return None
 
 
-def get_candidate_model_audit_metrics(
+def _get_dataset_training_signature(dataset_id: str, df: Optional[pd.DataFrame] = None) -> Tuple[str, str]:
+    """
+    Compute a deterministic dataset hash and configuration signature for caching candidate evaluations.
+    """
+    clean_id = dataset_id.lower().replace(" (default)", "").replace(" ", "_")
+    root = get_project_root()
+
+    # 1. Compute Dataset Identity Signature
+    if df is not None:
+        try:
+            col_tuple = tuple(sorted(df.columns.astype(str)))
+            h = f"df_{len(df)}_{len(df.columns)}_{hash(col_tuple)}"
+        except Exception:
+            h = f"df_id_{clean_id}"
+    else:
+        raw_candidates = [
+            os.path.join(root, "data", "benchmarks", f"{clean_id}.csv"),
+            os.path.join(root, "data", "raw", f"{clean_id}.csv"),
+            os.path.join(root, "data", "raw", f"{clean_id.split('__')[0]}.csv"),
+            os.path.join(root, "data", "benchmarks", "adult_census_income.csv") if "adult" in clean_id else None,
+            os.path.join(root, "data", "benchmarks", "students.csv") if "student" in clean_id else None
+        ]
+        found_file = None
+        for c in raw_candidates:
+            if c and os.path.exists(c):
+                found_file = c
+                break
+
+        if found_file:
+            try:
+                mtime = os.path.getmtime(found_file)
+                fsize = os.path.getsize(found_file)
+                h = f"file_{os.path.basename(found_file)}_{fsize}_{mtime}"
+            except Exception:
+                h = f"file_{clean_id}"
+        else:
+            h = f"id_{clean_id}"
+
+    # 2. Compute Configuration Signature
+    try:
+        from src.data.dataset_config import load_dataset_config_by_id
+        cfg = load_dataset_config_by_id(clean_id, base_dir=root)
+        pa_str = ",".join(sorted(cfg.protected_attributes)) if cfg.protected_attributes else ""
+        sig = f"t_{cfg.target.column}_p_{cfg.target.positive_class}_pa_{pa_str}_ts_{cfg.test_size}_rs_{cfg.random_state}"
+    except Exception:
+        sig = f"default_sig_{clean_id}"
+
+    return h, sig
+
+
+@st.cache_data(show_spinner=False)
+def _evaluate_candidate_model_cached(
     dataset_id: str,
-    model_key: str = "logistic_regression",
-    random_seed: int = 42
+    dataset_hash: str,
+    model_key: str,
+    random_seed: int,
+    config_sig: str
 ) -> dict:
     """
-    Dynamically retrieve or train & evaluate a specific candidate baseline model
-    (logistic_regression, random_forest, gradient_boosting) using the authoritative
-    candidate-model subsystem with 5-fold Stratified Cross-Validation.
+    Cached worker function that executes candidate cross-validation and evaluation.
+    Deterministically cached by (dataset_id, dataset_hash, model_key, random_seed, config_sig).
     """
     from src.data.dataset_config import load_dataset_config_by_id, DatasetConfig
     from src.data.preprocessor import prepare_pipeline_data, split_pipeline_data
@@ -2156,6 +2255,30 @@ def get_candidate_model_audit_metrics(
         "raw_eval": eval_res,
         "status": eval_res.get("status", "EVALUATED")
     }
+
+
+def get_candidate_model_audit_metrics(
+    dataset_id: str,
+    model_key: str = "logistic_regression",
+    random_seed: int = 42
+) -> dict:
+    """
+    Dynamically retrieve or train & evaluate a specific candidate baseline model
+    (logistic_regression, random_forest, gradient_boosting) using the authoritative
+    candidate-model subsystem with 5-fold Stratified Cross-Validation.
+    Deterministically cached by dataset identity and configuration signature.
+    """
+    clean_id = dataset_id.lower().replace(" (default)", "").replace(" ", "_")
+    df = get_raw_dataset_dataframe(clean_id)
+    ds_hash, cfg_sig = _get_dataset_training_signature(clean_id, df=df)
+
+    return _evaluate_candidate_model_cached(
+        dataset_id=clean_id,
+        dataset_hash=ds_hash,
+        model_key=model_key,
+        random_seed=random_seed,
+        config_sig=cfg_sig
+    )
 
 
 def get_fairness_criteria_compatibility(

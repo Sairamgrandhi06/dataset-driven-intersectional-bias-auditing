@@ -123,7 +123,7 @@ st.markdown("""
 
     .sub-header {
         font-size: 0.88rem;
-        color: #64748B;
+        color: #475569;
         margin-bottom: 1.25rem;
         line-height: 1.5;
         font-weight: 400;
@@ -153,10 +153,10 @@ st.markdown("""
 
     .context-label {
         font-weight: 600;
-        color: #64748B;
+        color: #475569;
         margin-right: 6px;
         text-transform: uppercase;
-        font-size: 0.70rem;
+        font-size: 0.72rem;
         letter-spacing: 0.04em;
     }
 
@@ -199,7 +199,7 @@ st.markdown("""
         padding: 12px 16px;
         border-radius: 6px;
         margin: 12px 0;
-        color: #1E3A52;
+        color: #172033;
         font-size: 0.85rem;
         line-height: 1.5;
     }
@@ -211,7 +211,7 @@ st.markdown("""
         padding: 12px 16px;
         border-radius: 6px;
         margin: 12px 0;
-        color: #6D4C1B;
+        color: #4A3311;
         font-size: 0.85rem;
         line-height: 1.5;
     }
@@ -223,7 +223,7 @@ st.markdown("""
         padding: 12px 16px;
         border-radius: 6px;
         margin: 12px 0;
-        color: #733131;
+        color: #591D1D;
         font-size: 0.85rem;
         line-height: 1.5;
     }
@@ -235,7 +235,7 @@ st.markdown("""
         padding: 12px 16px;
         border-radius: 6px;
         margin: 12px 0;
-        color: #214C37;
+        color: #143825;
         font-size: 0.85rem;
         line-height: 1.5;
     }
@@ -261,8 +261,8 @@ st.markdown("""
     }
 
     .brand-subtitle {
-        font-size: 0.72rem;
-        color: #64748B;
+        font-size: 0.74rem;
+        color: #475569;
         margin-top: 2px;
         font-weight: 500;
     }
@@ -276,9 +276,9 @@ st.markdown("""
     }
 
     .sidebar-context-label {
-        font-size: 0.68rem;
+        font-size: 0.72rem;
         font-weight: 700;
-        color: #64748B;
+        color: #475569;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
@@ -292,9 +292,9 @@ st.markdown("""
     }
 
     .sidebar-nav-header {
-        font-size: 0.70rem;
+        font-size: 0.72rem;
         font-weight: 700;
-        color: #64748B;
+        color: #475569;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         margin: 14px 0 6px 4px;
@@ -355,6 +355,34 @@ st.markdown("""
         color: inherit !important;
     }
 
+    /* Form & Selectbox & Widget Labels */
+    [data-testid="stWidgetLabel"] label,
+    [data-testid="stWidgetLabel"] p,
+    .stSelectbox label,
+    .stTextInput label,
+    .stNumberInput label,
+    .stSlider label,
+    .stFileUploader label,
+    .stMultiSelect label {
+        color: #172033 !important;
+        font-weight: 600 !important;
+        font-size: 0.84rem !important;
+    }
+
+    /* File Uploader Instructions & Text */
+    [data-testid="stFileUploader"] section small,
+    [data-testid="stFileUploaderDropzoneInstructions"] {
+        color: #475569 !important;
+    }
+
+    /* Helper & Caption Text */
+    [data-testid="stCaptionContainer"] p,
+    .stCaption,
+    small.helper-text {
+        color: #475569 !important;
+        font-size: 0.78rem !important;
+    }
+
     /* Compact Muted Numbered Workflow Step Bar */
     .workflow-flow {
         display: flex;
@@ -379,10 +407,10 @@ st.markdown("""
     }
 
     .step-badge {
-        font-size: 0.68rem;
+        font-size: 0.72rem;
         font-weight: 700;
-        color: #64748B;
-        background: #F1F5F9;
+        color: #475569;
+        background: #E2E8F0;
         padding: 2px 6px;
         border-radius: 3px;
         font-family: 'JetBrains Mono', monospace;
@@ -396,7 +424,7 @@ st.markdown("""
     .step-title {
         font-size: 0.76rem;
         font-weight: 600;
-        color: #475569;
+        color: #334155;
         text-transform: uppercase;
         letter-spacing: 0.03em;
     }
@@ -437,25 +465,25 @@ st.markdown("""
 
     .badge-healthy, .badge-pass, .badge-selected {
         background: #EBF5F0;
-        color: #2D664D;
+        color: #1E4E38;
         border: 1px solid #C1E3D2;
     }
 
     .badge-warning, .badge-eligible {
         background: #FAF4EB;
-        color: #7C5820;
+        color: #634311;
         border: 1px solid #EBD7B8;
     }
 
     .badge-degraded, .badge-fail {
         background: #F9ECEC;
-        color: #7E3B3B;
+        color: #6B2828;
         border: 1px solid #E8C8C8;
     }
 
     .badge-neutral, .badge-info {
         background: #EFF4F8;
-        color: #2B4C69;
+        color: #1E3A52;
         border: 1px solid #CADDEB;
     }
 
@@ -469,11 +497,11 @@ st.markdown("""
     }
 
     [data-testid="stMetricLabel"] {
-        font-size: 0.72rem !important;
+        font-size: 0.74rem !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.04em !important;
-        color: #64748B !important;
+        color: #475569 !important;
     }
 
     [data-testid="stMetricValue"] {
@@ -528,8 +556,8 @@ st.markdown("""
 
     button[data-baseweb="tab"] {
         font-size: 0.84rem !important;
-        font-weight: 500 !important;
-        color: #64748B !important;
+        font-weight: 600 !important;
+        color: #475569 !important;
         padding: 8px 14px !important;
         border-radius: 5px 5px 0 0 !important;
         background-color: transparent !important;
@@ -537,16 +565,34 @@ st.markdown("""
 
     button[data-baseweb="tab"][aria-selected="true"] {
         color: #315A7D !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         border-bottom: 2px solid #315A7D !important;
         background-color: #FFFFFF !important;
     }
 
-    /* Dataframe Container */
+    /* Dataframe & Table Styling */
     [data-testid="stDataFrame"] {
         border: 1px solid #E2E8F0;
         border-radius: 6px;
         background-color: #FFFFFF;
+    }
+
+    table.gov-table th {
+        background-color: #F8FAFC;
+        color: #172033;
+        font-weight: 600;
+        font-size: 0.80rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        border-bottom: 2px solid #E2E8F0;
+        padding: 8px 12px;
+    }
+
+    table.gov-table td {
+        color: #172033;
+        font-size: 0.82rem;
+        border-bottom: 1px solid #F1F5F9;
+        padding: 8px 12px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -2099,12 +2145,34 @@ def render_page_model_monitoring(active_ds: str | None = None):
     # Upload Monitoring Batch
     st.markdown("---")
     st.subheader("2. Upload Monitoring Batch CSV")
+
+    # Quick action for Adult Census benchmark sample
+    sample_file_path = None
+    if clean_ds in ["adult_census_income", "adult_income", "adult"]:
+        sample_rel_path = os.path.join("data", "benchmarks", "adult_census_income_monitoring_sample.csv")
+        sample_abs_path = os.path.join(get_project_root(), sample_rel_path)
+        if os.path.exists(sample_abs_path):
+            c_btn, c_note = st.columns([1, 2])
+            with c_btn:
+                if st.button("Load Sample Benchmark Monitoring Batch", key="btn_load_adult_mon_sample"):
+                    st.session_state[f"loaded_sample_path_{clean_ds}"] = sample_abs_path
+            with c_note:
+                st.caption("Uses a deterministic representative sample of the registered Adult Census benchmark for monitoring workflow validation.")
+
+    active_sample = st.session_state.get(f"loaded_sample_path_{clean_ds}")
     mon_file = st.file_uploader("Upload New Monitoring Batch (CSV):", type=["csv"], key="mon_batch_uploader")
 
+    if mon_file is not None and f"loaded_sample_path_{clean_ds}" in st.session_state:
+        # Clear sample if user explicitly uploads a custom CSV
+        st.session_state.pop(f"loaded_sample_path_{clean_ds}", None)
+        active_sample = None
+
+    batch_source = mon_file if mon_file is not None else active_sample
+
     can_run = False
-    if mon_file is not None:
+    if batch_source is not None:
         try:
-            preflight = get_monitoring_preflight_schema(clean_ds, mon_file, reference_version=ref_ver)
+            preflight = get_monitoring_preflight_schema(clean_ds, batch_source, reference_version=ref_ver)
             
             c1, c2, c3, c4 = st.columns(4)
             c1.metric("Ref Columns", str(preflight["reference_columns_count"]))
@@ -2124,11 +2192,11 @@ def render_page_model_monitoring(active_ds: str | None = None):
         except Exception as e:
             st.error(f"Failed to inspect monitoring batch schema: {e}")
 
-    if mon_file is not None and can_run:
+    if batch_source is not None and can_run:
         if st.button("Run Batch Monitoring Pipeline", type="primary"):
             with st.spinner("Executing monitoring drift checks, performance evaluation, and health synthesis..."):
                 try:
-                    mon_res = execute_monitoring_run(clean_ds, mon_file, reference_version=ref_ver)
+                    mon_res = execute_monitoring_run(clean_ds, batch_source, reference_version=ref_ver)
                     st.session_state[f"mon_results_{clean_ds}"] = mon_res
                     st.success("Monitoring pipeline executed successfully.")
                 except Exception as e:

@@ -10,11 +10,25 @@ import os
 import json
 from typing import Dict, Any, List, Optional, Tuple
 import pandas as pd
+import streamlit as st
 
 
 def get_catalog_config_path(base_dir: str = ".") -> str:
     """Return absolute path to config/registered_benchmarks.json."""
     return os.path.abspath(os.path.join(base_dir, "config", "registered_benchmarks.json"))
+
+
+@st.cache_data(show_spinner=False)
+def _load_registered_benchmarks_cached(cat_path: str, mtime: float, size: int) -> Dict[str, Dict[str, Any]]:
+    """Cached loader for registered benchmark catalog JSON."""
+    try:
+        with open(cat_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if "registered_benchmarks" in data and isinstance(data["registered_benchmarks"], dict):
+            return data["registered_benchmarks"]
+    except Exception:
+        pass
+    return {}
 
 
 def load_registered_benchmarks(base_dir: str = ".") -> Dict[str, Dict[str, Any]]:
@@ -25,10 +39,11 @@ def load_registered_benchmarks(base_dir: str = ".") -> Dict[str, Dict[str, Any]]
     cat_path = get_catalog_config_path(base_dir)
     if os.path.exists(cat_path):
         try:
-            with open(cat_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            if "registered_benchmarks" in data and isinstance(data["registered_benchmarks"], dict):
-                return data["registered_benchmarks"]
+            mtime = os.path.getmtime(cat_path)
+            size = os.path.getsize(cat_path)
+            loaded = _load_registered_benchmarks_cached(cat_path, mtime, size)
+            if loaded:
+                return loaded
         except Exception:
             pass
 
@@ -149,6 +164,34 @@ def is_registered_benchmark(dataset_id: str, base_dir: str = ".") -> bool:
     return get_benchmark_by_id_or_name(dataset_id, base_dir) is not None
 
 
+@st.cache_data(show_spinner=False)
+def _read_benchmark_artifacts_cached(
+    csv_path: Optional[str],
+    csv_mtime: float,
+    csv_size: int,
+    cfg_path: Optional[str],
+    cfg_mtime: float,
+    cfg_size: int
+) -> Tuple[Optional[pd.DataFrame], Optional[dict]]:
+    """Cached loader for benchmark CSV DataFrame and config JSON."""
+    df = None
+    if csv_path and os.path.exists(csv_path):
+        try:
+            df = pd.read_csv(csv_path)
+        except Exception:
+            df = None
+
+    cfg_dict = None
+    if cfg_path and os.path.exists(cfg_path):
+        try:
+            with open(cfg_path, "r", encoding="utf-8") as f:
+                cfg_dict = json.load(f)
+        except Exception:
+            cfg_dict = None
+
+    return df, cfg_dict
+
+
 def resolve_benchmark_dataframe(
     key: str,
     base_dir: str = "."
@@ -189,23 +232,22 @@ def resolve_benchmark_dataframe(
         except Exception:
             pass
 
-    df = None
-    if resolved_csv_path and os.path.exists(resolved_csv_path):
-        try:
-            df = pd.read_csv(resolved_csv_path)
-        except Exception:
-            df = None
-
-    # Load configuration
-    cfg_dict = None
+    resolved_cfg_path = None
     cfg_path = bm.get("config_path")
     if cfg_path:
         abs_cfg = cfg_path if os.path.isabs(cfg_path) else os.path.join(base_dir, cfg_path)
         if os.path.exists(abs_cfg):
-            try:
-                with open(abs_cfg, "r", encoding="utf-8") as f:
-                    cfg_dict = json.load(f)
-            except Exception:
-                pass
+            resolved_cfg_path = abs_cfg
 
-    return df, cfg_dict, dataset_id
+    csv_mtime = os.path.getmtime(resolved_csv_path) if resolved_csv_path and os.path.exists(resolved_csv_path) else 0.0
+    csv_size = os.path.getsize(resolved_csv_path) if resolved_csv_path and os.path.exists(resolved_csv_path) else 0
+
+    cfg_mtime = os.path.getmtime(resolved_cfg_path) if resolved_cfg_path and os.path.exists(resolved_cfg_path) else 0.0
+    cfg_size = os.path.getsize(resolved_cfg_path) if resolved_cfg_path and os.path.exists(resolved_cfg_path) else 0
+
+    df, cfg_dict = _read_benchmark_artifacts_cached(
+        resolved_csv_path, csv_mtime, csv_size,
+        resolved_cfg_path, cfg_mtime, cfg_size
+    )
+
+    return (df.copy() if df is not None else None), cfg_dict, dataset_id

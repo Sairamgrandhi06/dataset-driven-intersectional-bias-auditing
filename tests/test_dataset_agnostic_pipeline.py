@@ -59,6 +59,18 @@ from dashboard.utils import (
 )
 
 
+@pytest.fixture(autouse=True)
+def isolate_test_registry(tmp_path, monkeypatch):
+    """Isolate model registry writes to tmp_path during agnostic pipeline tests."""
+    iso_reg_dir = tmp_path / "registry"
+    iso_reg_dir.mkdir(parents=True, exist_ok=True)
+    iso_reg_file = str(iso_reg_dir / "model_registry.json")
+    monkeypatch.setattr(
+        "src.models.model_registry_store.get_registry_path",
+        lambda base_dir=".": iso_reg_file
+    )
+
+
 # ==============================================================================
 # DETERMINISTIC DATASET FIXTURE GENERATORS
 # ==============================================================================
