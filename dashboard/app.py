@@ -85,7 +85,7 @@ st.set_page_config(
 )
 
 # ==============================================================================
-# ENTERPRISE LIGHT THEME DESIGN SYSTEM (No Emojis, No Radio Circles)
+# ENTERPRISE THEME-AWARE DESIGN SYSTEM (Light / Dark / System Adaptive)
 # ==============================================================================
 st.markdown("""
 <style>
@@ -93,8 +93,8 @@ st.markdown("""
     
     /* Base App Canvas */
     .stApp {
-        background-color: #F5F7FA;
-        color: #172033;
+        background-color: var(--background-color);
+        color: var(--text-color);
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
@@ -106,7 +106,7 @@ st.markdown("""
 
     /* Typography Hierarchy */
     h1, h2, h3, h4, h5, h6 {
-        color: #172033;
+        color: var(--text-color);
         font-family: 'Inter', sans-serif;
         letter-spacing: -0.015em;
         font-weight: 600;
@@ -115,7 +115,7 @@ st.markdown("""
     .main-header {
         font-size: 1.65rem;
         font-weight: 700;
-        color: #172033;
+        color: var(--text-color);
         margin-bottom: 0.25rem;
         letter-spacing: -0.02em;
         line-height: 1.25;
@@ -123,7 +123,8 @@ st.markdown("""
 
     .sub-header {
         font-size: 0.88rem;
-        color: #475569;
+        color: var(--text-color);
+        opacity: 0.8;
         margin-bottom: 1.25rem;
         line-height: 1.5;
         font-weight: 400;
@@ -131,8 +132,8 @@ st.markdown("""
 
     /* Global Context Bar */
     .context-bar {
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
+        background: var(--secondary-background-color);
+        border: 1px solid rgba(128, 140, 160, 0.2);
         border-left: 4px solid #315A7D;
         border-radius: 6px;
         padding: 9px 16px;
@@ -141,8 +142,8 @@ st.markdown("""
         align-items: center;
         justify-content: space-between;
         font-size: 0.82rem;
-        color: #172033;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        color: var(--text-color);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
 
     .context-item {
@@ -153,7 +154,8 @@ st.markdown("""
 
     .context-label {
         font-weight: 600;
-        color: #475569;
+        color: var(--text-color);
+        opacity: 0.75;
         margin-right: 6px;
         text-transform: uppercase;
         font-size: 0.72rem;
@@ -162,114 +164,117 @@ st.markdown("""
 
     .context-value {
         font-weight: 600;
-        color: #172033;
-        background: #F8FAFC;
+        color: var(--text-color);
+        background: rgba(128, 140, 160, 0.12);
         padding: 2px 7px;
         border-radius: 4px;
-        border: 1px solid #E2E8F0;
+        border: 1px solid rgba(128, 140, 160, 0.2);
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.78rem;
     }
 
     /* Cards & Containers */
     .gov-card {
-        background-color: #FFFFFF;
-        border: 1px solid #E2E8F0;
+        background-color: var(--secondary-background-color);
+        border: 1px solid rgba(128, 140, 160, 0.2);
         border-radius: 6px;
         padding: 16px;
         margin-bottom: 14px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        color: var(--text-color);
     }
 
     .metric-card {
-        background-color: #FFFFFF;
-        border: 1px solid #E2E8F0;
+        background-color: var(--secondary-background-color);
+        border: 1px solid rgba(128, 140, 160, 0.2);
         border-radius: 6px;
         padding: 12px 14px;
         text-align: left;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
         margin-bottom: 10px;
+        color: var(--text-color);
     }
 
     /* Restrained Semantic Callouts */
     .info-box {
-        background-color: #EFF4F8;
-        border: 1px solid #CADDEB;
+        background-color: rgba(49, 90, 125, 0.12);
+        border: 1px solid rgba(49, 90, 125, 0.28);
         border-left: 4px solid #315A7D;
         padding: 12px 16px;
         border-radius: 6px;
         margin: 12px 0;
-        color: #172033;
+        color: var(--text-color);
         font-size: 0.85rem;
         line-height: 1.5;
     }
 
     .caution-box {
-        background-color: #FAF4EB;
-        border: 1px solid #EBD7B8;
+        background-color: rgba(164, 119, 50, 0.12);
+        border: 1px solid rgba(164, 119, 50, 0.28);
         border-left: 4px solid #A47732;
         padding: 12px 16px;
         border-radius: 6px;
         margin: 12px 0;
-        color: #4A3311;
+        color: var(--text-color);
         font-size: 0.85rem;
         line-height: 1.5;
     }
 
     .danger-box {
-        background-color: #F9ECEC;
-        border: 1px solid #E8C8C8;
+        background-color: rgba(168, 86, 86, 0.12);
+        border: 1px solid rgba(168, 86, 86, 0.28);
         border-left: 4px solid #A85656;
         padding: 12px 16px;
         border-radius: 6px;
         margin: 12px 0;
-        color: #591D1D;
+        color: var(--text-color);
         font-size: 0.85rem;
         line-height: 1.5;
     }
 
     .success-box {
-        background-color: #EBF5F0;
-        border: 1px solid #C1E3D2;
+        background-color: rgba(79, 128, 104, 0.12);
+        border: 1px solid rgba(79, 128, 104, 0.28);
         border-left: 4px solid #4F8068;
         padding: 12px 16px;
         border-radius: 6px;
         margin: 12px 0;
-        color: #143825;
+        color: var(--text-color);
         font-size: 0.85rem;
         line-height: 1.5;
     }
 
     /* Sidebar Styling */
     section[data-testid="stSidebar"] {
-        background-color: #FFFFFF;
-        border-right: 1px solid #E2E8F0;
+        background-color: var(--secondary-background-color);
+        border-right: 1px solid rgba(128, 140, 160, 0.2);
     }
 
     .sidebar-brand {
         padding: 6px 0 12px 0;
-        border-bottom: 1px solid #E2E8F0;
+        border-bottom: 1px solid rgba(128, 140, 160, 0.2);
         margin-bottom: 14px;
     }
 
     .brand-title {
         font-size: 0.95rem;
         font-weight: 700;
-        color: #172033;
+        color: var(--text-color);
         letter-spacing: 0.06em;
         text-transform: uppercase;
     }
 
     .brand-subtitle {
         font-size: 0.74rem;
-        color: #475569;
+        color: var(--text-color);
+        opacity: 0.7;
         margin-top: 2px;
         font-weight: 500;
     }
 
     .sidebar-context-card {
-        background-color: #F8FAFC;
-        border: 1px solid #E2E8F0;
+        background-color: rgba(128, 140, 160, 0.08);
+        border: 1px solid rgba(128, 140, 160, 0.2);
         border-radius: 6px;
         padding: 10px 12px;
         margin-bottom: 14px;
@@ -278,7 +283,8 @@ st.markdown("""
     .sidebar-context-label {
         font-size: 0.72rem;
         font-weight: 700;
-        color: #475569;
+        color: var(--text-color);
+        opacity: 0.7;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
@@ -286,7 +292,7 @@ st.markdown("""
     .sidebar-context-value {
         font-size: 0.85rem;
         font-weight: 600;
-        color: #172033;
+        color: var(--text-color);
         font-family: 'JetBrains Mono', monospace;
         margin: 2px 0 4px 0;
     }
@@ -294,7 +300,8 @@ st.markdown("""
     .sidebar-nav-header {
         font-size: 0.72rem;
         font-weight: 700;
-        color: #475569;
+        color: var(--text-color);
+        opacity: 0.7;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         margin: 14px 0 6px 4px;
@@ -306,6 +313,8 @@ st.markdown("""
     div[data-testid="stRadio"] [data-baseweb="radio"] div[class*="StyledRadioMark"],
     div[data-testid="stRadio"] span[data-baseweb="radio"],
     div[data-testid="stRadio"] input[type="radio"],
+    div[data-testid="stRadio"] div[role="radio"],
+    div[data-testid="stRadio"] svg,
     div[role="radiogroup"] input[type="radio"] + div {
         display: none !important;
         visibility: hidden !important;
@@ -328,28 +337,37 @@ st.markdown("""
         border-radius: 4px !important;
         font-size: 0.82rem !important;
         font-weight: 500 !important;
-        color: #475569 !important;
+        color: var(--text-color) !important;
+        opacity: 0.85;
         background-color: transparent !important;
         border-left: 3px solid transparent !important;
-        transition: background-color 0.12s ease, border-left-color 0.12s ease, color 0.12s ease !important;
+        transition: background-color 0.12s ease, border-left-color 0.12s ease, color 0.12s ease, opacity 0.12s ease !important;
         cursor: pointer !important;
         width: 100% !important;
     }
 
     div[data-testid="stRadio"] div[role="radiogroup"] > label:hover {
-        background-color: #F1F5F9 !important;
-        color: #172033 !important;
+        background-color: rgba(128, 140, 160, 0.12) !important;
+        color: var(--text-color) !important;
+        opacity: 1;
     }
 
     div[data-testid="stRadio"] div[role="radiogroup"] > label[data-checked="true"],
     div[data-testid="stRadio"] div[role="radiogroup"] > label:has(input:checked) {
-        background-color: #EFF4F8 !important;
-        color: #172033 !important;
+        background-color: rgba(49, 90, 125, 0.15) !important;
+        color: var(--text-color) !important;
         font-weight: 600 !important;
+        opacity: 1;
         border-left: 3px solid #315A7D !important;
     }
 
-    div[data-testid="stRadio"] div[role="radiogroup"] > label p {
+    div[data-testid="stRadio"] div[role="radiogroup"] label > div:last-child {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    div[data-testid="stRadio"] div[role="radiogroup"] label p,
+    div[data-testid="stRadio"] div[role="radiogroup"] label div {
         font-size: 0.82rem !important;
         margin: 0 !important;
         color: inherit !important;
@@ -364,7 +382,7 @@ st.markdown("""
     .stSlider label,
     .stFileUploader label,
     .stMultiSelect label {
-        color: #172033 !important;
+        color: var(--text-color) !important;
         font-weight: 600 !important;
         font-size: 0.84rem !important;
     }
@@ -372,14 +390,16 @@ st.markdown("""
     /* File Uploader Instructions & Text */
     [data-testid="stFileUploader"] section small,
     [data-testid="stFileUploaderDropzoneInstructions"] {
-        color: #475569 !important;
+        color: var(--text-color) !important;
+        opacity: 0.75 !important;
     }
 
     /* Helper & Caption Text */
     [data-testid="stCaptionContainer"] p,
     .stCaption,
     small.helper-text {
-        color: #475569 !important;
+        color: var(--text-color) !important;
+        opacity: 0.75 !important;
         font-size: 0.78rem !important;
     }
 
@@ -388,13 +408,13 @@ st.markdown("""
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
+        background: var(--secondary-background-color);
+        border: 1px solid rgba(128, 140, 160, 0.2);
         border-radius: 6px;
         padding: 10px 14px;
         margin: 12px 0 20px 0;
         overflow-x: auto;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
 
     .workflow-step {
@@ -409,8 +429,9 @@ st.markdown("""
     .step-badge {
         font-size: 0.72rem;
         font-weight: 700;
-        color: #475569;
-        background: #E2E8F0;
+        color: var(--text-color);
+        opacity: 0.8;
+        background: rgba(128, 140, 160, 0.16);
         padding: 2px 6px;
         border-radius: 3px;
         font-family: 'JetBrains Mono', monospace;
@@ -418,19 +439,22 @@ st.markdown("""
 
     .step-badge.active {
         background: #315A7D;
-        color: #FFFFFF;
+        color: #FFFFFF !important;
+        opacity: 1;
     }
 
     .step-title {
         font-size: 0.76rem;
         font-weight: 600;
-        color: #334155;
+        color: var(--text-color);
+        opacity: 0.85;
         text-transform: uppercase;
         letter-spacing: 0.03em;
     }
 
     .step-divider {
-        color: #CBD5E1;
+        color: var(--text-color);
+        opacity: 0.3;
         font-size: 0.8rem;
         font-weight: bold;
         margin: 0 2px;
@@ -438,7 +462,7 @@ st.markdown("""
 
     /* Terminal Log Box */
     .log-terminal {
-        background-color: #172033;
+        background-color: #111827;
         color: #94A3B8;
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.80rem;
@@ -446,7 +470,7 @@ st.markdown("""
         border-radius: 6px;
         max-height: 280px;
         overflow-y: auto;
-        border: 1px solid #2D3748;
+        border: 1px solid rgba(128, 140, 160, 0.25);
         line-height: 1.45;
     }
 
@@ -464,36 +488,36 @@ st.markdown("""
     }
 
     .badge-healthy, .badge-pass, .badge-selected {
-        background: #EBF5F0;
-        color: #1E4E38;
-        border: 1px solid #C1E3D2;
+        background: rgba(46, 125, 50, 0.15);
+        color: #2e7d32;
+        border: 1px solid rgba(46, 125, 50, 0.3);
     }
 
     .badge-warning, .badge-eligible {
-        background: #FAF4EB;
-        color: #634311;
-        border: 1px solid #EBD7B8;
+        background: rgba(230, 138, 0, 0.15);
+        color: #e68a00;
+        border: 1px solid rgba(230, 138, 0, 0.3);
     }
 
     .badge-degraded, .badge-fail {
-        background: #F9ECEC;
-        color: #6B2828;
-        border: 1px solid #E8C8C8;
+        background: rgba(211, 47, 47, 0.15);
+        color: #d32f2f;
+        border: 1px solid rgba(211, 47, 47, 0.3);
     }
 
     .badge-neutral, .badge-info {
-        background: #EFF4F8;
-        color: #1E3A52;
-        border: 1px solid #CADDEB;
+        background: rgba(49, 90, 125, 0.15);
+        color: #4a88b7;
+        border: 1px solid rgba(49, 90, 125, 0.3);
     }
 
     /* Streamlit Native Metric Overrides */
     [data-testid="stMetric"] {
-        background-color: #FFFFFF !important;
-        border: 1px solid #E2E8F0 !important;
+        background-color: var(--secondary-background-color) !important;
+        border: 1px solid rgba(128, 140, 160, 0.2) !important;
         border-radius: 6px !important;
         padding: 10px 14px !important;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
     }
 
     [data-testid="stMetricLabel"] {
@@ -501,13 +525,14 @@ st.markdown("""
         font-weight: 600 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.04em !important;
-        color: #475569 !important;
+        color: var(--text-color) !important;
+        opacity: 0.75 !important;
     }
 
     [data-testid="stMetricValue"] {
         font-size: 1.35rem !important;
         font-weight: 700 !important;
-        color: #172033 !important;
+        color: var(--text-color) !important;
         font-family: 'JetBrains Mono', 'Inter', monospace !important;
     }
 
@@ -533,9 +558,9 @@ st.markdown("""
     .stButton > button[kind="secondary"],
     .stDownloadButton > button[kind="secondary"],
     .stButton > button:not([kind="primary"]) {
-        background-color: #FFFFFF !important;
-        color: #172033 !important;
-        border: 1px solid #CBD5E1 !important;
+        background-color: var(--secondary-background-color) !important;
+        color: var(--text-color) !important;
+        border: 1px solid rgba(128, 140, 160, 0.25) !important;
         border-radius: 6px !important;
         font-weight: 500 !important;
         font-size: 0.84rem !important;
@@ -544,20 +569,22 @@ st.markdown("""
 
     .stButton > button:not([kind="primary"]):hover,
     .stDownloadButton > button:not([kind="primary"]):hover {
-        background-color: #F8FAFC !important;
-        border-color: #94A3B8 !important;
+        background-color: rgba(128, 140, 160, 0.12) !important;
+        border-color: rgba(128, 140, 160, 0.4) !important;
+        color: var(--text-color) !important;
     }
 
     /* Streamlit Tabs Restyling */
     div[data-baseweb="tab-list"] {
-        border-bottom: 1px solid #E2E8F0 !important;
+        border-bottom: 1px solid rgba(128, 140, 160, 0.2) !important;
         gap: 4px !important;
     }
 
     button[data-baseweb="tab"] {
         font-size: 0.84rem !important;
         font-weight: 600 !important;
-        color: #475569 !important;
+        color: var(--text-color) !important;
+        opacity: 0.7 !important;
         padding: 8px 14px !important;
         border-radius: 5px 5px 0 0 !important;
         background-color: transparent !important;
@@ -565,33 +592,34 @@ st.markdown("""
 
     button[data-baseweb="tab"][aria-selected="true"] {
         color: #315A7D !important;
+        opacity: 1 !important;
         font-weight: 700 !important;
         border-bottom: 2px solid #315A7D !important;
-        background-color: #FFFFFF !important;
+        background-color: var(--secondary-background-color) !important;
     }
 
     /* Dataframe & Table Styling */
     [data-testid="stDataFrame"] {
-        border: 1px solid #E2E8F0;
+        border: 1px solid rgba(128, 140, 160, 0.2);
         border-radius: 6px;
-        background-color: #FFFFFF;
+        background-color: var(--secondary-background-color);
     }
 
     table.gov-table th {
-        background-color: #F8FAFC;
-        color: #172033;
+        background-color: rgba(128, 140, 160, 0.1);
+        color: var(--text-color);
         font-weight: 600;
         font-size: 0.80rem;
         text-transform: uppercase;
         letter-spacing: 0.03em;
-        border-bottom: 2px solid #E2E8F0;
+        border-bottom: 2px solid rgba(128, 140, 160, 0.2);
         padding: 8px 12px;
     }
 
     table.gov-table td {
-        color: #172033;
+        color: var(--text-color);
         font-size: 0.82rem;
-        border-bottom: 1px solid #F1F5F9;
+        border-bottom: 1px solid rgba(128, 140, 160, 0.1);
         padding: 8px 12px;
     }
 </style>
@@ -612,7 +640,7 @@ def render_global_context_header(active_ds: str | None = None):
                 <div>
                     <span class="context-item">
                         <span class="context-label">Workflow Dataset</span>
-                        <span class="context-value" style="color: #64748B;">NO DATASET SELECTED</span>
+                        <span class="context-value" style="opacity: 0.7;">NO DATASET SELECTED</span>
                     </span>
                     <span class="context-item">
                         <span class="context-label">Status</span>
@@ -691,7 +719,7 @@ def render_sidebar():
             <div class="sidebar-context-card">
                 <div class="sidebar-context-label">WORKFLOW DATASET</div>
                 <div class="sidebar-context-value">{current_wf_id}</div>
-                <div style="font-size: 0.72rem; color: #64748B;">Source: <span class="badge-status {'badge-info' if current_wf_source == 'New Upload' else 'badge-neutral'}" style="font-size: 0.68rem; padding: 1px 5px;">{current_wf_source}</span></div>
+                <div style="font-size: 0.72rem; opacity: 0.75;">Source: <span class="badge-status {'badge-info' if current_wf_source == 'New Upload' else 'badge-neutral'}" style="font-size: 0.68rem; padding: 1px 5px;">{current_wf_source}</span></div>
             </div>
             """,
             unsafe_allow_html=True
@@ -701,8 +729,8 @@ def render_sidebar():
             """
             <div class="sidebar-context-card">
                 <div class="sidebar-context-label">WORKFLOW DATASET</div>
-                <div class="sidebar-context-value" style="color: #64748B; font-weight: 500;">No dataset selected</div>
-                <div style="font-size: 0.72rem; color: #64748B;">Source: <span class="badge-status badge-neutral" style="font-size: 0.68rem; padding: 1px 5px;">Awaiting dataset selection</span></div>
+                <div class="sidebar-context-value" style="opacity: 0.75; font-weight: 500;">No dataset selected</div>
+                <div style="font-size: 0.72rem; opacity: 0.75;">Source: <span class="badge-status badge-neutral" style="font-size: 0.68rem; padding: 1px 5px;">Awaiting dataset selection</span></div>
             </div>
             """,
             unsafe_allow_html=True
@@ -829,10 +857,10 @@ def render_page_home(active_ds: str | None = None):
         st.markdown(
             """
             <div class="gov-card" style="text-align: center; padding: 36px 20px;">
-                <div style="font-size: 1.15rem; font-weight: 600; color: #172033; margin-bottom: 6px;">
+                <div style="font-size: 1.15rem; font-weight: 600; margin-bottom: 6px;">
                     No Dataset Selected
                 </div>
-                <div style="font-size: 0.88rem; color: #64748B; margin-bottom: 22px; max-width: 580px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+                <div style="font-size: 0.88rem; opacity: 0.75; margin-bottom: 22px; max-width: 580px; margin-left: auto; margin-right: auto; line-height: 1.5;">
                     Start a governance workflow by uploading a CSV dataset in Step 1 (Upload & Configure) or selecting a registered benchmark from the sidebar.
                 </div>
             </div>
@@ -1064,8 +1092,8 @@ def render_page_upload_configure(active_ds: str | None = None):
             f"""
             <div class="metric-card">
                 <div class="context-label">Target Feature Recommendation</div>
-                <div style="font-size: 0.95rem; font-weight: 600; color: #172033; margin: 4px 0;">{top_target}</div>
-                <div style="font-size: 0.75rem; color: #64748B;">Confidence: {target_conf_text} | Pos Class: <b>{pos_class_text}</b></div>
+                <div style="font-size: 0.95rem; font-weight: 600; margin: 4px 0;">{top_target}</div>
+                <div style="font-size: 0.75rem; opacity: 0.75;">Confidence: {target_conf_text} | Pos Class: <b>{pos_class_text}</b></div>
             </div>
             """,
             unsafe_allow_html=True
@@ -1076,8 +1104,8 @@ def render_page_upload_configure(active_ds: str | None = None):
             f"""
             <div class="metric-card">
                 <div class="context-label">Protected Demographic Slices</div>
-                <div style="font-size: 0.88rem; color: #172033; margin: 4px 0;">{prot_summary}</div>
-                <div style="font-size: 0.75rem; color: #64748B;">Detected from demographic heuristics</div>
+                <div style="font-size: 0.88rem; margin: 4px 0;">{prot_summary}</div>
+                <div style="font-size: 0.75rem; opacity: 0.75;">Detected from demographic heuristics</div>
             </div>
             """,
             unsafe_allow_html=True
@@ -1088,8 +1116,8 @@ def render_page_upload_configure(active_ds: str | None = None):
             f"""
             <div class="metric-card">
                 <div class="context-label">ID / High Cardinality Features</div>
-                <div style="font-size: 0.88rem; color: #172033; margin: 4px 0;">{id_summary}</div>
-                <div style="font-size: 0.75rem; color: #64748B;">Excluded from training representation</div>
+                <div style="font-size: 0.88rem; margin: 4px 0;">{id_summary}</div>
+                <div style="font-size: 0.75rem; opacity: 0.75;">Excluded from training representation</div>
             </div>
             """,
             unsafe_allow_html=True
@@ -1373,7 +1401,7 @@ def render_page_train_select_model(active_ds: str | None = None):
     st.markdown(
         f"""
         <div class="info-box">
-            <div style="font-weight: 700; color: #172033; margin-bottom: 4px;">AUTHORITATIVE MODEL: {sel_display_name}</div>
+            <div style="font-weight: 700; margin-bottom: 4px;">AUTHORITATIVE MODEL: {sel_display_name}</div>
             <div><b>Governance Selection Rationale:</b> {selection_reason}</div>
         </div>
         """,
@@ -1734,7 +1762,7 @@ def render_page_bias_mitigation(active_ds: str | None = None):
             log_box.markdown(
                 f"""
                 <div class="log-terminal">
-                    <div style="color: #64748B; font-weight: 600; margin-bottom: 4px;">[LIVE SOLVER TELEMETRY]</div>
+                    <div style="opacity: 0.75; font-weight: 600; margin-bottom: 4px;">[LIVE SOLVER TELEMETRY]</div>
                     {"<br>".join(streamed_logs[-10:])}
                 </div>
                 """,
@@ -2392,7 +2420,7 @@ def render_page_results_downloads(active_ds: str | None = None):
     st.markdown(
         f"""
         <div class="info-box">
-            <div style="font-weight: 700; color: #172033; margin-bottom: 4px;">PROJECT MISSION & GOVERNANCE OBJECTIVE</div>
+            <div style="font-weight: 700; margin-bottom: 4px;">PROJECT MISSION & GOVERNANCE OBJECTIVE</div>
             <div>{qv['q1_problem']}</div>
         </div>
         """,
@@ -2423,11 +2451,11 @@ def render_page_results_downloads(active_ds: str | None = None):
         f"""
         <div class="gov-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <span style="font-weight: 700; font-size: 1.05rem; color: #172033;">{dec['headline']}</span>
+                <span style="font-weight: 700; font-size: 1.05rem;">{dec['headline']}</span>
                 <span class="badge-status {'badge-healthy' if dec['is_healthy'] else 'badge-warning'}">{dec['badge']}</span>
             </div>
-            <div style="font-size: 0.88rem; color: #475569; margin-bottom: 10px;">{dec['subtext']}</div>
-            <div style="font-size: 0.82rem; color: #64748B;">
+            <div style="font-size: 0.88rem; opacity: 0.85; margin-bottom: 10px;">{dec['subtext']}</div>
+            <div style="font-size: 0.82rem; opacity: 0.75;">
                 <b>Overall Monitoring Health:</b> <code>{dec['overall_health']}</code> | 
                 <b>Retraining Recommendation:</b> <code>{dec['retraining_recommendation']}</code> | 
                 <b>Active Model:</b> <code>{dec['model_summary']}</code>
@@ -2450,10 +2478,10 @@ def render_page_results_downloads(active_ds: str | None = None):
                 f"""
                 <div class="metric-card" style="height: 115px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                        <span style="font-weight: 700; font-size: 0.90rem; color: #172033;">{s['stage']}. {s['name']}</span>
+                        <span style="font-weight: 700; font-size: 0.90rem;">{s['stage']}. {s['name']}</span>
                         <span class="badge-status {s['badge_cls']}">{s['status']}</span>
                     </div>
-                    <div style="font-size: 0.78rem; color: #64748B; line-height: 1.4;">{s['purpose']}</div>
+                    <div style="font-size: 0.78rem; opacity: 0.75; line-height: 1.4;">{s['purpose']}</div>
                 </div>
                 """,
                 unsafe_allow_html=True
