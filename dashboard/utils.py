@@ -1165,6 +1165,103 @@ def load_latest_monitoring_evidence(dataset_id: str, base_dir: Optional[str] = N
     }
 
 
+def is_valid_monitoring_evidence(payload: Any) -> bool:
+    """
+    Determine whether a monitoring evidence payload represents a completed,
+    valid monitoring run with authoritative health and retraining telemetry.
+    Strictly preserves MONITORING_PENDING when no successful monitoring evidence exists.
+    Does not rely solely on the presence of a run ID to establish success.
+    """
+    if not isinstance(payload, dict) or not payload:
+        return False
+
+    # If explicitly marked False, respect it
+    if payload.get("has_monitoring") is False:
+        return False
+
+    run_id = payload.get("monitoring_run_id")
+    if not run_id or run_id == "N/A" or not isinstance(run_id, str):
+        return False
+
+    health_rep = payload.get("health_report")
+    if not isinstance(health_rep, dict):
+        return False
+
+    overall_health = health_rep.get("overall_health")
+    if not overall_health or overall_health in ["MONITORING_PENDING", "NOT_MONITORED", "N/A"]:
+        return False
+
+    retrain_rec = payload.get("retraining_recommendation")
+    if isinstance(retrain_rec, dict):
+        rec_status = retrain_rec.get("status")
+        if rec_status == "DECISION_PENDING_MONITORING":
+            return False
+
+    # Verify at least one concrete analysis report exists or has_monitoring is explicitly True
+    has_concrete_report = any(
+        isinstance(payload.get(k), dict) and bool(payload.get(k))
+        for k in ["schema_report", "feature_drift_report", "performance_report", "fairness_report", "data_quality_report"]
+    )
+    if not has_concrete_report and payload.get("has_monitoring") is not True:
+        return False
+
+    return True
+
+
+def normalize_monitoring_payload(
+    mon_data: Optional[Dict[str, Any]],
+    dataset_id: str = ""
+) -> Tuple[Dict[str, Any], bool]:
+    """
+    Normalize monitoring payload so that in-memory monitoring results (e.g. from session state)
+    and persisted monitoring evidence (from disk/registry) adhere to the exact same contract.
+    Returns (normalized_dict, has_monitoring_bool).
+    """
+    clean_id = dataset_id.lower().replace(" (default)", "").replace(" ", "_") if dataset_id else ""
+    if not isinstance(mon_data, dict) or not mon_data:
+        mon_data = load_latest_monitoring_evidence(clean_id) if clean_id else {}
+
+    norm_mon = dict(mon_data)
+    has_mon = is_valid_monitoring_evidence(norm_mon)
+    norm_mon["has_monitoring"] = has_mon
+
+    if not has_mon:
+        h_rep = norm_mon.get("health_report")
+        if not isinstance(h_rep, dict) or h_rep.get("overall_health") in ["HEALTHY", "DEGRADED", "WARNING", "BLOCKED", None]:
+            norm_mon["health_report"] = {
+                "overall_health": "MONITORING_PENDING",
+                "is_healthy": False,
+                "requires_attention": False,
+                "component_statuses": {}
+            }
+        r_rec = norm_mon.get("retraining_recommendation")
+        if not isinstance(r_rec, dict) or r_rec.get("status") in ["NO_RETRAINING_NEEDED", "RETRAINING_REQUIRED", "RETRAINING_RECOMMENDED", None]:
+            norm_mon["retraining_recommendation"] = {
+                "status": "DECISION_PENDING_MONITORING",
+                "action_required": False,
+                "requires_user_approval": True,
+                "reasons": ["Production monitoring has not yet been executed for this dataset run."]
+            }
+    else:
+        if "health_report" not in norm_mon or not isinstance(norm_mon["health_report"], dict):
+            norm_mon["health_report"] = {"overall_health": "HEALTHY", "is_healthy": True}
+        if "retraining_recommendation" not in norm_mon or not isinstance(norm_mon["retraining_recommendation"], dict):
+            norm_mon["retraining_recommendation"] = {"status": "NO_RETRAINING_NEEDED", "action_required": False}
+
+    if "summary_report" not in norm_mon or not norm_mon["summary_report"]:
+        norm_mon["summary_report"] = {
+            "monitoring_run_id": norm_mon.get("monitoring_run_id", "N/A"),
+            "dataset_id": clean_id,
+            "overall_health": norm_mon["health_report"].get("overall_health", "MONITORING_PENDING"),
+            "retraining_recommendation": norm_mon["retraining_recommendation"].get("status", "DECISION_PENDING_MONITORING"),
+            "schema_status": norm_mon.get("schema_report", {}).get("status", "NOT_MONITORED" if not has_mon else "SCHEMA_OK"),
+            "feature_drift_status": norm_mon.get("feature_drift_report", {}).get("status", "NOT_MONITORED" if not has_mon else "NO_DRIFT"),
+            "has_monitoring": has_mon
+        }
+
+    return norm_mon, has_mon
+
+
 def safe_fmt_float(val: Any, decimals: int = 4, default: str = "N/A") -> str:
     """Safely format a numeric float value, handling strings like 'N/A', None, and invalid numbers."""
     if val is None or val == "N/A" or val == "":
@@ -1311,7 +1408,8 @@ def build_complete_governance_package_zip(
     ctx = get_dataset_active_model_context(clean_id)
     val_data = get_step6_validation_data(clean_id, session_mit_res=session_mit_res)
     trade_data = get_step5_tradeoff_analysis_data(clean_id, session_mit_res=session_mit_res)
-    mon_data = session_mon_res or load_latest_monitoring_evidence(clean_id)
+    raw_mon = session_mon_res or load_latest_monitoring_evidence(clean_id)
+    mon_data, has_mon_pkg = normalize_monitoring_payload(raw_mon, dataset_id=clean_id)
     model_sel = get_model_selection_comparison_data(clean_id)
 
     buf = io.BytesIO()
@@ -1375,18 +1473,19 @@ def build_complete_governance_package_zip(
         zf.writestr(f"{clean_id}_fairness_audit.json", json.dumps(fair_payload, indent=2).encode("utf-8"))
 
         # 9. Governance Manifest
-        has_mon_pkg = bool(mon_data.get("has_monitoring", False))
         h_rep_pkg = mon_data.get("health_report", {})
         default_mon_health = "HEALTHY" if has_mon_pkg else "MONITORING_PENDING"
         default_ret_rec = "NO_RETRAINING_NEEDED" if has_mon_pkg else "DECISION_PENDING_MONITORING"
+        manifest_mon_health = h_rep_pkg.get("overall_health", default_mon_health) if has_mon_pkg else "MONITORING_PENDING"
+        manifest_ret_rec = mon_data.get("retraining_recommendation", {}).get("status", default_ret_rec) if has_mon_pkg else "DECISION_PENDING_MONITORING"
         manifest = {
             "package_title": "AI Model Governance & Intersectional Audit Evidence Package",
             "dataset_id": clean_id,
             "pipeline_run_id": ctx.get("run_id", run_data.get("run_id", "N/A")),
             "active_model_version": ctx.get("model_version", run_data.get("model_version", "v1")),
             "selected_model": ctx.get("selected_model", run_data.get("selected_model", "N/A")),
-            "monitoring_health": h_rep_pkg.get("overall_health", default_mon_health),
-            "retraining_recommendation": mon_data.get("retraining_recommendation", {}).get("status", default_ret_rec),
+            "monitoring_health": manifest_mon_health,
+            "retraining_recommendation": manifest_ret_rec,
             "audit_timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "governance_standard": "Dataset-Driven Intersectional Bias Auditing & Trade-Off Pipeline v1.0.0",
             "files_included": [
@@ -1405,7 +1504,11 @@ def build_complete_governance_package_zip(
     return buf.getvalue()
 
 
-def prepare_download_artifacts(dataset_id: str) -> dict:
+def prepare_download_artifacts(
+    dataset_id: str,
+    session_mit_res: Optional[Dict[str, Any]] = None,
+    session_mon_res: Optional[Dict[str, Any]] = None
+) -> dict:
     """Prepare all JSON, CSV, and ZIP payload bytes for download buttons."""
     clean_id = dataset_id.lower().replace(" (default)", "").replace(" ", "_")
     root = get_project_root()
@@ -1450,10 +1553,11 @@ def prepare_download_artifacts(dataset_id: str) -> dict:
     }
     results["model_metadata_str"] = json.dumps(meta_payload, indent=2)
 
-    mon_data = load_latest_monitoring_evidence(clean_id)
+    raw_mon = session_mon_res or load_latest_monitoring_evidence(clean_id)
+    mon_data, _ = normalize_monitoring_payload(raw_mon, dataset_id=clean_id)
     results["monitoring_report_str"] = json.dumps(mon_data.get("summary_report") or mon_data, indent=2)
 
-    val_data = get_step6_validation_data(clean_id)
+    val_data = get_step6_validation_data(clean_id, session_mit_res=session_mit_res)
     val_payload = {
         "dataset_id": clean_id,
         "performance": val_data.get("performance", {}),
@@ -1472,7 +1576,11 @@ def prepare_download_artifacts(dataset_id: str) -> dict:
     results["fairness_audit_str"] = json.dumps(fair_payload, indent=2)
 
     try:
-        results["zip_bytes"] = build_complete_governance_package_zip(clean_id)
+        results["zip_bytes"] = build_complete_governance_package_zip(
+            clean_id,
+            session_mit_res=session_mit_res,
+            session_mon_res=session_mon_res
+        )
     except Exception:
         results["zip_bytes"] = b""
 
@@ -1527,12 +1635,12 @@ def get_step9_governance_dashboard_data(
     feature_count = run_data.get("feature_count") or meta.get("feature_count", "N/A")
 
     # 2. Executive Decision
-    mon_data = session_mon_res or load_latest_monitoring_evidence(clean_id)
-    has_mon = bool(mon_data.get("has_monitoring", False))
+    raw_mon = session_mon_res or load_latest_monitoring_evidence(clean_id)
+    mon_data, has_mon = normalize_monitoring_payload(raw_mon, dataset_id=clean_id)
     h_rep = mon_data.get("health_report", {})
-    mon_health = h_rep.get("overall_health", "HEALTHY" if has_mon else "MONITORING_PENDING")
+    mon_health = h_rep.get("overall_health", "HEALTHY") if has_mon else "MONITORING_PENDING"
     r_rec = mon_data.get("retraining_recommendation", {})
-    ret_rec = r_rec.get("status", "NO_RETRAINING_NEEDED" if has_mon else "DECISION_PENDING_MONITORING")
+    ret_rec = r_rec.get("status", "NO_RETRAINING_NEEDED") if has_mon else "DECISION_PENDING_MONITORING"
 
     is_healthy = has_mon and (mon_health == "HEALTHY")
     no_retrain = has_mon and (ret_rec in ["NO_RETRAINING_NEEDED", None])
@@ -1868,12 +1976,17 @@ def execute_monitoring_run(dataset_id: str, file_buffer_or_path: Any, reference_
     else:
         data_input = file_buffer_or_path
 
-    return run_monitoring_pipeline(
+    res = run_monitoring_pipeline(
         dataset_id=dataset_id,
         current_data=data_input,
         reference_version=reference_version,
         base_dir=root
     )
+    if isinstance(res, dict) and is_valid_monitoring_evidence(res):
+        res["has_monitoring"] = True
+    elif isinstance(res, dict):
+        res["has_monitoring"] = False
+    return res
 
 
 def get_monitoring_preflight_schema(dataset_id: str, file_buffer_or_path: Any, reference_version: Optional[str] = None) -> dict:

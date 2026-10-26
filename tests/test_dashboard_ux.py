@@ -409,6 +409,7 @@ def test_ux_persist_and_restore_user_confirmed_configuration(tmp_path):
 
     # Simulate revisit
     session_restored = load_saved_dataset_configuration(ds_id)
+    assert session_restored is not None
     assert session_restored["protected_attributes"] == ["gender", "race"]
     assert session_restored["id_columns"] == ["applicant_id"]
 
@@ -494,6 +495,7 @@ def test_ux_numeric_feature_selected_as_id_warns_and_executes_without_unhandled_
     mit_model = train_mitigated_model(splits["X_train"], splits["y_train"], sens_train, random_state=42)
     y_pred, y_prob = predict_mitigated_model(mit_model, splits["X_test"], random_state=0)
 
+    assert y_prob is not None
     assert np.all(y_prob >= 0.0)
     assert np.all(y_prob <= 1.0)
     
@@ -1227,6 +1229,219 @@ def test_ux_step9_section1_no_raw_html_tags():
         assert "</code>" not in cap
 
     assert c3_caption == "Features: 29 | Test: 2000"
+
+
+def test_ux_step9_successful_monitoring_session_state_consistency():
+    """
+    Regression test: verify that when successful monitoring evidence is stored
+    in session state (even if run_monitoring_pipeline omitted has_monitoring):
+    - Payload is normalized so has_monitoring is True.
+    - Executive Decision, Flow Stage 7, Evaluator Quick View (Q8/Q9), Monitoring Summary,
+      and Final Statement all consistently report HEALTHY and NO_RETRAINING_NEEDED.
+    - No split-brain state occurs (e.g. pending badge with healthy subtext).
+    """
+    from dashboard.utils import get_step9_governance_dashboard_data
+
+    # Raw monitoring pipeline return payload stored in session state without has_monitoring key
+    session_mon = {
+        "monitoring_run_id": "MON-students-1792739420",
+        "dataset_id": "students",
+        "health_report": {"overall_health": "HEALTHY", "is_healthy": True},
+        "retraining_recommendation": {"status": "NO_RETRAINING_NEEDED", "action_required": False},
+        "schema_report": {"status": "SCHEMA_OK", "has_critical_drift": False},
+        "data_quality_report": {"status": "QUALITY_STABLE"},
+        "feature_drift_report": {"drifted_features_count": 0, "total_features_analyzed": 29},
+        "performance_report": {"status": "PERFORMANCE_STABLE"},
+        "fairness_report": {"status": "FAIRNESS_STABLE"}
+    }
+
+    dash = get_step9_governance_dashboard_data("students", session_mon_res=session_mon)
+
+    # 1. Executive decision
+    dec = dash["executive_decision"]
+    assert dec["has_monitoring"] is True
+    assert dec["overall_health"] == "HEALTHY"
+    assert dec["retraining_recommendation"] == "NO_RETRAINING_NEEDED"
+    assert dec["badge"] == "HEALTHY — NO ACTION REQUIRED"
+    assert dec["badge_cls"] == "badge-healthy"
+    assert dec["is_healthy"] is True
+    assert dec["no_retrain"] is True
+    assert "pending" not in dec["headline"].lower()
+    assert "pending" not in dec["subtext"].lower()
+
+    # 2. Flow Stage 7
+    stage7 = [s for s in dash["flow_stages"] if s["stage"] == 7][0]
+    assert stage7["status"] == "HEALTHY"
+    assert stage7["badge_cls"] == "badge-healthy"
+
+    # 3. Quick View Q8 & Q9
+    qv = dash["evaluator_quick_view"]
+    assert qv["q8_monitoring"].startswith("HEALTHY —")
+    assert "Production monitoring pending" not in qv["q8_monitoring"]
+    assert qv["q9_retraining"].startswith("NO_RETRAINING_NEEDED —")
+    assert "Pending Monitoring" not in qv["q9_retraining"]
+
+    # 4. Final governance statement
+    stmt = dash["final_statement"]
+    assert "HEALTHY" in stmt
+    assert "NO_RETRAINING_NEEDED" in stmt
+    assert "Production monitoring has not yet been executed" not in stmt
+
+    # 5. Monitoring summary
+    mon_summary = dash["monitoring_summary"]
+    assert mon_summary["has_monitoring"] is True
+    assert mon_summary["health_report"]["overall_health"] == "HEALTHY"
+    assert mon_summary["retraining_recommendation"]["status"] == "NO_RETRAINING_NEEDED"
+
+
+def test_ux_step9_monitoring_evidence_loaded_from_disk():
+    """
+    Regression test: verify that monitoring evidence loaded from disk/registry
+    produces consistent status across all Step 9 sections.
+    """
+    from dashboard.utils import get_step9_governance_dashboard_data, load_latest_monitoring_evidence
+
+    mon_evidence = load_latest_monitoring_evidence("students")
+    assert mon_evidence["has_monitoring"] is True
+    expected_health = mon_evidence["health_report"]["overall_health"]
+    expected_ret = mon_evidence["retraining_recommendation"]["status"]
+
+    dash = get_step9_governance_dashboard_data("students", session_mon_res=None)
+
+    dec = dash["executive_decision"]
+    assert dec["has_monitoring"] is True
+    assert dec["overall_health"] == expected_health
+    assert dec["retraining_recommendation"] == expected_ret
+    assert dec["is_healthy"] == (expected_health == "HEALTHY")
+
+    stage7 = [s for s in dash["flow_stages"] if s["stage"] == 7][0]
+    assert stage7["status"] == expected_health
+
+    qv = dash["evaluator_quick_view"]
+    assert expected_health in qv["q8_monitoring"]
+    assert expected_ret in qv["q9_retraining"]
+
+    stmt = dash["final_statement"]
+    assert expected_health in stmt
+    assert expected_ret in stmt
+
+
+def test_ux_step9_no_monitoring_executed_preserves_pending():
+    """
+    Regression test: verify that when no monitoring evidence exists:
+    - Step 9 preserves MONITORING_PENDING across all sections.
+    - Passing a dummy payload with only a run ID does not establish success.
+    """
+    from dashboard.utils import get_step9_governance_dashboard_data
+
+    # Scenario A: truly unmonitored dataset
+    dash_unmon = get_step9_governance_dashboard_data("unmonitored_dataset_xyz", session_mon_res=None)
+    dec_unmon = dash_unmon["executive_decision"]
+    assert dec_unmon["has_monitoring"] is False
+    assert dec_unmon["overall_health"] == "MONITORING_PENDING"
+    assert dec_unmon["retraining_recommendation"] == "DECISION_PENDING_MONITORING"
+    assert dec_unmon["badge"] == "MONITORING PENDING"
+    assert "pending" in dec_unmon["headline"].lower()
+    assert dec_unmon["is_healthy"] is False
+
+    # Scenario B: dummy payload containing ONLY a run ID without evidence
+    dummy_payload = {"monitoring_run_id": "MON-fake-run-id-12345"}
+    dash_dummy = get_step9_governance_dashboard_data("unmonitored_dataset_xyz", session_mon_res=dummy_payload)
+    dec_dummy = dash_dummy["executive_decision"]
+    assert dec_dummy["has_monitoring"] is False
+    assert dec_dummy["overall_health"] == "MONITORING_PENDING"
+    assert dec_dummy["retraining_recommendation"] == "DECISION_PENDING_MONITORING"
+    assert dec_dummy["badge"] == "MONITORING PENDING"
+    assert dash_dummy["flow_stages"][6]["status"] == "PENDING"
+    assert "Production monitoring pending" in dash_dummy["evaluator_quick_view"]["q8_monitoring"]
+
+
+def test_ux_step9_dashboard_and_zip_status_consistency():
+    """
+    Regression test: verify that Step 9 dashboard data, the individual monitoring report artifact,
+    and GOVERNANCE_MANIFEST.json inside the complete governance ZIP always produce identical status.
+    """
+    import io
+    import json
+    import zipfile
+    from dashboard.utils import (
+        get_step9_governance_dashboard_data,
+        build_complete_governance_package_zip,
+        prepare_download_artifacts
+    )
+
+    # 1. Test consistency with successful in-memory session state
+    session_mon = {
+        "monitoring_run_id": "MON-students-1792739420",
+        "dataset_id": "students",
+        "health_report": {"overall_health": "HEALTHY", "is_healthy": True},
+        "retraining_recommendation": {"status": "NO_RETRAINING_NEEDED", "action_required": False},
+        "schema_report": {"status": "SCHEMA_OK"},
+        "feature_drift_report": {"drifted_features_count": 0, "total_features_analyzed": 29}
+    }
+
+    dash = get_step9_governance_dashboard_data("students", session_mon_res=session_mon)
+    zip_bytes = build_complete_governance_package_zip("students", session_mon_res=session_mon)
+
+    with zipfile.ZipFile(io.BytesIO(zip_bytes), "r") as zf:
+        manifest_raw = zf.read("GOVERNANCE_MANIFEST.json").decode("utf-8")
+        manifest = json.loads(manifest_raw)
+
+    assert manifest["monitoring_health"] == dash["executive_decision"]["overall_health"] == "HEALTHY"
+    assert manifest["retraining_recommendation"] == dash["executive_decision"]["retraining_recommendation"] == "NO_RETRAINING_NEEDED"
+
+    artifacts = prepare_download_artifacts("students", session_mon_res=session_mon)
+    mon_rep_down = json.loads(artifacts["monitoring_report_str"])
+    assert mon_rep_down["overall_health"] == "HEALTHY"
+    assert mon_rep_down["retraining_recommendation"] == "NO_RETRAINING_NEEDED"
+
+    # 2. Test consistency when monitoring is absent
+    dash_unmon = get_step9_governance_dashboard_data("unmonitored_dataset_xyz", session_mon_res={})
+    zip_bytes_unmon = build_complete_governance_package_zip("unmonitored_dataset_xyz", session_mon_res={})
+
+    with zipfile.ZipFile(io.BytesIO(zip_bytes_unmon), "r") as zf:
+        manifest_unmon_raw = zf.read("GOVERNANCE_MANIFEST.json").decode("utf-8")
+        manifest_unmon = json.loads(manifest_unmon_raw)
+
+    assert manifest_unmon["monitoring_health"] == dash_unmon["executive_decision"]["overall_health"] == "MONITORING_PENDING"
+    assert manifest_unmon["retraining_recommendation"] == dash_unmon["executive_decision"]["retraining_recommendation"] == "DECISION_PENDING_MONITORING"
+
+
+def test_ux_step9_execute_monitoring_run_marks_has_monitoring():
+    """
+    Regression test: verify execute_monitoring_run marks has_monitoring=True only
+    after a monitoring run succeeds and returns valid evidence.
+    """
+    from dashboard.utils import is_valid_monitoring_evidence
+
+    # Valid evidence payload
+    valid = {
+        "monitoring_run_id": "MON-test-12345",
+        "health_report": {"overall_health": "HEALTHY"},
+        "retraining_recommendation": {"status": "NO_RETRAINING_NEEDED"},
+        "schema_report": {"status": "SCHEMA_OK"}
+    }
+    assert is_valid_monitoring_evidence(valid) is True
+
+    # Invalid evidence: only run ID
+    assert is_valid_monitoring_evidence({"monitoring_run_id": "MON-test-12345"}) is False
+
+    # Invalid evidence: health is MONITORING_PENDING
+    pending = {
+        "monitoring_run_id": "MON-test-12345",
+        "health_report": {"overall_health": "MONITORING_PENDING"}
+    }
+    assert is_valid_monitoring_evidence(pending) is False
+
+    # Invalid evidence: has_monitoring explicitly False
+    explicit_false = {
+        "has_monitoring": False,
+        "monitoring_run_id": "MON-test-12345",
+        "health_report": {"overall_health": "HEALTHY"}
+    }
+    assert is_valid_monitoring_evidence(explicit_false) is False
+
+
 
 
 

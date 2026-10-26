@@ -2533,7 +2533,11 @@ def render_page_results_downloads(active_ds: str | None = None):
 
     # 7. ARTIFACT DOWNLOADS
     st.markdown("### Governance Artifact Downloads")
-    artifacts = prepare_download_artifacts(selected_clean_ds)
+    artifacts = prepare_download_artifacts(
+        selected_clean_ds,
+        session_mit_res=session_mit_res,
+        session_mon_res=session_mon_res
+    )
 
     if "zip_bytes" in artifacts and artifacts["zip_bytes"]:
         st.download_button(
