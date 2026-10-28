@@ -301,6 +301,8 @@ def validate_dataset_configuration_contract(
 
     protected_attrs = list(config_dict.get("protected_attributes") or [])
     id_cols = list(config_dict.get("id_columns") or [])
+    ign_cols = list(config_dict.get("ignore_columns") or [])
+    id_ignore_cols = list(dict.fromkeys(id_cols + ign_cols))
     all_cols = list(df.columns)
 
     # 1. Target Column Validations
@@ -309,7 +311,7 @@ def validate_dataset_configuration_contract(
     elif target_col not in all_cols:
         errors.append(f"CONFIGURATION_INVALID: Target column '{target_col}' was not found in dataset columns.")
     else:
-        if target_col in id_cols:
+        if target_col in id_ignore_cols:
             errors.append(f"CONFIGURATION_INVALID: Target column '{target_col}' cannot simultaneously be configured as an ID/Ignore column.")
         if target_col in protected_attrs:
             errors.append(f"CONFIGURATION_INVALID: Target column '{target_col}' cannot simultaneously be configured as a protected demographic attribute.")
@@ -331,11 +333,11 @@ def validate_dataset_configuration_contract(
         for p in protected_attrs:
             if p not in all_cols:
                 errors.append(f"CONFIGURATION_INVALID: Protected attribute '{p}' was not found in dataset columns.")
-            elif p in id_cols:
+            elif p in id_ignore_cols:
                 errors.append(f"CONFIGURATION_INVALID: Protected attribute '{p}' cannot simultaneously be configured as an ID/Ignore column.")
 
     # 3. ID / Ignore Column Validations & Suspicious Predictive Feature Warnings
-    for c in id_cols:
+    for c in id_ignore_cols:
         if c not in all_cols:
             errors.append(f"CONFIGURATION_INVALID: ID/Ignore column '{c}' was not found in dataset columns.")
         else:
@@ -355,7 +357,7 @@ def validate_dataset_configuration_contract(
 
     # 4. Feature Matrix Check (Remaining features)
     if not errors:
-        excluded_cols = set([target_col] + id_cols + protected_attrs)
+        excluded_cols = set([target_col] + id_ignore_cols + protected_attrs)
         remaining_features = [c for c in all_cols if c not in excluded_cols]
         if len(remaining_features) == 0:
             errors.append("CONFIGURATION_INVALID: No predictive features remain after excluding target, protected attributes, and ID/Ignore columns. At least one feature is required.")

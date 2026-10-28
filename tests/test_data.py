@@ -116,3 +116,46 @@ def test_split_pipeline_data(sample_raw_dataframe):
     # Check index equality between features and protected attributes in test split
     pd.testing.assert_index_equal(splits["X_test"].index, splits["A_test"].index)
     pd.testing.assert_index_equal(splits["y_test"].index, splits["A_test"].index)
+
+
+def test_students_dataset_target_leakage_and_id_exclusion():
+    """
+    Regression test for students dataset:
+    Verify overall_gpa and student_id are excluded from model features,
+    and passed is the target (never in the feature matrix).
+    """
+    import os
+    students_csv = os.path.join("data", "raw", "students.csv")
+    if not os.path.exists(students_csv):
+        pytest.skip("students.csv not found")
+
+    cfg = load_config("config/students_config.json")
+    df = pd.read_csv(students_csv)
+
+    X, y, A = prepare_pipeline_data(df, config=cfg)
+
+    # 1. Confirm overall_gpa is excluded from model feature matrix
+    assert "overall_gpa" not in X.columns
+    assert not any("overall_gpa" in c for c in X.columns)
+
+    # 2. Confirm student_id remains excluded
+    assert "student_id" not in X.columns
+    assert not any("student_id" in c for c in X.columns)
+
+    # 3. Confirm target passed is never included in the feature matrix
+    assert "passed" not in X.columns
+    assert not any("passed" in c for c in X.columns)
+
+    # 4. Confirm target y is passed and properly encoded
+    assert y.name == "passed"
+    assert set(y.unique()).issubset({0, 1})
+
+    # 5. Confirm protected attributes are preserved in A
+    assert list(A.columns) == ["gender", "ethnicity"]
+
+    # 6. Confirm split settings and row counts
+    splits = split_pipeline_data(X, y, A, config=cfg)
+    assert len(splits["X_train"]) == 8000
+    assert len(splits["X_test"]) == 2000
+    assert "overall_gpa" not in splits["X_train"].columns
+    assert "overall_gpa" not in splits["X_test"].columns

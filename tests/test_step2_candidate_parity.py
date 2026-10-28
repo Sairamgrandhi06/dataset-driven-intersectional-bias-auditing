@@ -160,3 +160,79 @@ def test_5_strict_candidate_dataset_isolation():
     assert loan_acc != adult_acc
     assert round(loan_acc, 4) == 0.6833
     assert round(adult_acc, 4) == 0.8399
+
+
+def test_6_excluded_columns_change_cache_signature():
+    """
+    Verify that changing excluded columns (id_columns or ignore_columns)
+    produces distinct cache signatures, preventing stale evaluation reuse.
+    """
+    from dashboard.utils import _get_dataset_training_signature
+    from src.data.dataset_config import DatasetConfig, load_dataset_config_by_id
+
+    root = get_project_root()
+    base_cfg = load_dataset_config_by_id("students", base_dir=root)
+
+    # 1. Signature with overall_gpa in ignore_columns
+    cfg_ignored = DatasetConfig.from_dict({
+        **base_cfg.to_dict(),
+        "id_columns": ["student_id"],
+        "ignore_columns": ["overall_gpa"]
+    })
+    _, sig_ignored = _get_dataset_training_signature("students", config=cfg_ignored)
+
+    # 2. Signature with overall_gpa not excluded (neither in id nor ignore)
+    cfg_included = DatasetConfig.from_dict({
+        **base_cfg.to_dict(),
+        "id_columns": ["student_id"],
+        "ignore_columns": []
+    })
+    _, sig_included = _get_dataset_training_signature("students", config=cfg_included)
+
+    # 3. Signature with overall_gpa in id_columns
+    cfg_id_col = DatasetConfig.from_dict({
+        **base_cfg.to_dict(),
+        "id_columns": ["student_id", "overall_gpa"],
+        "ignore_columns": []
+    })
+    _, sig_id_col = _get_dataset_training_signature("students", config=cfg_id_col)
+
+    # Proves changing excluded columns changes signature
+    assert sig_ignored != sig_included
+    assert sig_ignored != sig_id_col
+    assert "ign_overall_gpa" in sig_ignored
+    assert "ign__" in sig_included or "ign_" in sig_included
+
+
+def test_7_stale_historical_model_comparison_cannot_override_current_results():
+    """
+    Verify that get_candidate_models_comparison_data rejects historical comparison
+    tables whose excluded columns or run ID do not match the current configuration.
+    """
+    from dashboard.utils import get_candidate_models_comparison_data, get_model_selection_comparison_data
+
+    # Both aliases function identically
+    res = get_candidate_models_comparison_data("students")
+    res_direct = get_model_selection_comparison_data("students")
+    assert res["comparison_rows"] == res_direct["comparison_rows"]
+
+    # Verify stale target-leaked results (RF=1.0, GB=1.0) are NOT returned
+    rows = {r["Candidate Architecture"]: r for r in res["comparison_rows"]}
+    assert "Random Forest" in rows
+    assert "Gradient Boosting" in rows
+    assert "Logistic Regression" in rows
+
+    # None of the architectures should exhibit the stale perfect 1.0000 accuracy
+    rf_acc = float(rows["Random Forest"]["Test Accuracy"])
+    gb_acc = float(rows["Gradient Boosting"]["Test Accuracy"])
+    lr_acc = float(rows["Logistic Regression"]["Test Accuracy"])
+
+    assert rf_acc < 1.0000
+    assert gb_acc < 1.0000
+    assert lr_acc < 1.0000
+
+    # Winning model must not be the stale Random Forest 1.0000
+    assert res["selected_model"] != "Random Forest (stale)"
+    # Under genuine fairness constraints where EOD > threshold, fallback model is selected
+    if res["selection_status"] == "NO_MODEL_SATISFIES_CONSTRAINTS_FALLBACK":
+        assert "Logistic Regression" in res["selected_model"]

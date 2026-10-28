@@ -1,6 +1,6 @@
 {
   "dataset_id": "students",
-  "path": "data/benchmarks/students.csv",
+  "path": "data/raw/students.csv",
   "target": {
     "column": "passed",
     "positive_class": "1"
@@ -12,7 +12,9 @@
   "id_columns": [
     "student_id"
   ],
-  "ignore_columns": [],
+  "ignore_columns": [
+    "overall_gpa"
+  ],
   "test_size": 0.2,
   "random_state": 42,
   "intersectional": {

@@ -911,6 +911,7 @@ def create_dataset_config_file(
     positive_class: Any,
     protected_attributes: list,
     id_columns: list | None = None,
+    ignore_columns: list | None = None,
     test_size: float = 0.2,
     random_state: int = 42,
     min_group_size: int = 30
@@ -921,6 +922,17 @@ def create_dataset_config_file(
     os.makedirs(config_dir, exist_ok=True)
     out_path = os.path.join(config_dir, f"{dataset_id}_config.json")
 
+    existing_cfg = {}
+    if os.path.exists(out_path):
+        try:
+            with open(out_path, "r", encoding="utf-8") as f:
+                existing_cfg = json.load(f)
+        except Exception:
+            pass
+
+    resolved_id = list(id_columns) if id_columns is not None else list(existing_cfg.get("id_columns", []))
+    resolved_ignore = list(ignore_columns) if ignore_columns is not None else list(existing_cfg.get("ignore_columns", []))
+
     config_dict = {
         "dataset_id": dataset_id,
         "path": dataset_path,
@@ -929,28 +941,28 @@ def create_dataset_config_file(
             "positive_class": positive_class
         },
         "protected_attributes": protected_attributes,
-        "id_columns": id_columns or [],
-        "ignore_columns": [],
+        "id_columns": resolved_id,
+        "ignore_columns": resolved_ignore,
         "test_size": test_size,
         "random_state": random_state,
         "intersectional": {
             "min_group_size": min_group_size
         },
-        "model_config": {
+        "model_config": existing_cfg.get("model_config", {
             "algorithm": "LogisticRegression",
             "max_iter": 1000,
             "solver": "lbfgs"
-        },
-        "fairness_thresholds": {
+        }),
+        "fairness_thresholds": existing_cfg.get("fairness_thresholds", {
             "demographic_parity_difference_max": 0.10,
             "disparate_impact_min": 0.80,
             "equal_opportunity_difference_max": 0.10,
             "equalized_odds_difference_max": 0.10,
             "fpr_difference_max": 0.10
-        },
-        "calibration_settings": {
+        }),
+        "calibration_settings": existing_cfg.get("calibration_settings", {
             "n_bins": 10
-        }
+        })
     }
 
     with open(out_path, "w", encoding="utf-8") as f:
@@ -1022,6 +1034,7 @@ def load_saved_dataset_configuration(dataset_id: str) -> Optional[dict]:
                         "positive_class": p_cls,
                         "protected_attributes": list(data.get("protected_attributes", [])),
                         "id_columns": list(data.get("id_columns", [])),
+                        "ignore_columns": list(data.get("ignore_columns", [])),
                         "test_size": float(data.get("test_size", 0.2)),
                         "min_group_size": int(min_grp),
                         "random_state": int(data.get("random_state", 42)),
@@ -1278,10 +1291,25 @@ def safe_fmt_float(val: Any, decimals: int = 4, default: str = "N/A") -> str:
 def get_model_selection_comparison_data(dataset_id: str) -> Dict[str, Any]:
     """
     Retrieve candidate model comparison data, winning model, and selection rationale.
-    Reads authoritative comparison table from model_metadata.json or candidate evaluation metrics.
+    Reads authoritative comparison table from model_metadata.json or candidate evaluation metrics,
+    strictly rejecting stale historical comparison tables that do not match the current run or configuration.
     """
     clean_id = dataset_id.lower().replace(" (default)", "").replace(" ", "_")
     root = get_project_root()
+
+    # Determine current active run ID and current dataset configuration
+    active_ctx = get_dataset_active_model_context(clean_id)
+    active_run_id = active_ctx.get("run_id") if active_ctx else None
+    if active_run_id in ["N/A", "NONE", "", None]:
+        raw_run = load_dataset_run_result(clean_id)
+        if raw_run and isinstance(raw_run, dict):
+            active_run_id = raw_run.get("run_id")
+
+    from src.data.dataset_config import load_dataset_config_by_id
+    try:
+        current_cfg = load_dataset_config_by_id(clean_id, base_dir=root)
+    except Exception:
+        current_cfg = None
 
     models_dir = os.path.join(root, "models", clean_id)
     meta_json = None
@@ -1297,9 +1325,43 @@ def get_model_selection_comparison_data(dataset_id: str) -> Dict[str, Any]:
             if os.path.exists(mp):
                 try:
                     with open(mp, "r", encoding="utf-8") as f:
-                        meta_json = json.load(f)
-                        if meta_json.get("comparison_table"):
-                            break
+                        candidate_meta = json.load(f)
+
+                    if not candidate_meta.get("comparison_table"):
+                        continue
+
+                    # Validate that candidate_meta is not stale
+                    is_stale = False
+
+                    # 1. Run ID match: If an active run exists, candidate must match it
+                    cand_run_id = candidate_meta.get("run_id")
+                    if active_run_id and cand_run_id and cand_run_id != active_run_id:
+                        is_stale = True
+
+                    # 2. Configuration match: verify excluded columns and target alignment
+                    if not is_stale and current_cfg:
+                        meta_cfg = candidate_meta.get("config", {})
+                        # Effective excluded columns check
+                        cand_excluded = set(meta_cfg.get("id_columns", []) + meta_cfg.get("ignore_columns", []))
+                        curr_excluded = set((current_cfg.id_columns or []) + (current_cfg.ignore_columns or []))
+                        if cand_excluded != curr_excluded:
+                            is_stale = True
+
+                        # Target column check
+                        cand_target = meta_cfg.get("target", {})
+                        cand_target_col = cand_target.get("column") if isinstance(cand_target, dict) else meta_cfg.get("target_column")
+                        if cand_target_col and cand_target_col != current_cfg.target.column:
+                            is_stale = True
+
+                        # Protected attributes check
+                        cand_pa = sorted(str(c) for c in meta_cfg.get("protected_attributes", []))
+                        curr_pa = sorted(str(c) for c in (current_cfg.protected_attributes or []))
+                        if cand_pa != curr_pa:
+                            is_stale = True
+
+                    if not is_stale:
+                        meta_json = candidate_meta
+                        break
                 except Exception:
                     pass
 
@@ -1348,6 +1410,20 @@ def get_model_selection_comparison_data(dataset_id: str) -> Dict[str, Any]:
     else:
         cand_evals = get_all_candidate_evaluations(clean_id)
         if cand_evals:
+            from src.models.model_selection import select_best_candidate_model
+
+            sel_input = {}
+            for mk, ev in cand_evals.items():
+                if isinstance(ev, dict):
+                    sel_input[mk] = ev.get("raw_eval") or ev
+
+            sel_res = select_best_candidate_model(sel_input)
+            selected_model = sel_res.get("selected_model", selected_model)
+            selection_reason = sel_res.get("selection_reason") or sel_res.get("reason", selection_reason)
+            selection_status = sel_res.get("selection_status", selection_status)
+
+            comp_map = {row.get("model"): row for row in sel_res.get("comparison_table", [])}
+
             for k in ["logistic_regression", "random_forest", "gradient_boosting"]:
                 v = cand_evals.get(k, {})
                 m_name = {
@@ -1356,14 +1432,38 @@ def get_model_selection_comparison_data(dataset_id: str) -> Dict[str, Any]:
                     "gradient_boosting": "Gradient Boosting"
                 }.get(k, k.replace("_", " ").title())
 
-                if isinstance(v, dict) and v.get("status") in ["AVAILABLE", "SUCCESS"]:
-                    cv_acc = v.get("cv_accuracy")
-                    test_acc = v.get("accuracy", v.get("test_accuracy"))
-                    f1 = v.get("f1_score")
-                    auc = v.get("roc_auc")
-                    brier = v.get("brier_score")
-                    ece = v.get("ece")
-                    eod = v.get("eod", v.get("equalized_odds_difference"))
+                if isinstance(v, dict) and (v.get("status") in ["AVAILABLE", "SUCCESS", "EVALUATED"] or "performance" in v or "test_performance" in v):
+                    comp_entry = comp_map.get(k, {})
+                    cv_m = v.get("cv_metrics", {})
+                    perf = v.get("performance", v.get("test_performance", {}))
+                    fair = v.get("fairness", v.get("fairness_metrics", {}))
+                    cal = v.get("calibration", v.get("calibration_metrics", {}))
+
+                    cv_acc = comp_entry.get("cv_accuracy", cv_m.get("cv_accuracy_mean", cv_m.get("mean_cv_accuracy", v.get("cv_accuracy"))))
+                    test_acc = comp_entry.get("test_accuracy", perf.get("accuracy", v.get("accuracy", v.get("test_accuracy"))))
+                    f1 = comp_entry.get("f1_score", perf.get("f1_score", v.get("f1_score")))
+                    auc = comp_entry.get("roc_auc", perf.get("roc_auc", v.get("roc_auc")))
+                    brier = comp_entry.get("brier_score", cal.get("brier_score", v.get("brier_score")))
+                    ece = comp_entry.get("ece", cal.get("ece", v.get("ece")))
+                    eod = comp_entry.get("eod", fair.get("equalized_odds_difference", v.get("eod", v.get("equalized_odds_difference"))))
+
+                    is_win = (k == selected_model or m_name.lower() == str(selected_model).lower())
+
+                    stat = comp_entry.get("status", "PASS")
+                    if stat == "SELECTED" or is_win:
+                        badge = "🏆 SELECTED"
+                    elif stat == "PASS":
+                        badge = "✅ PASS"
+                    elif "FAIL" in stat:
+                        badge = "❌ CONSTRAINT_FAIL"
+                    else:
+                        badge = f"ℹ️ {stat}"
+
+                    rationale = comp_entry.get("failure_reason") or comp_entry.get("status") or (
+                        "Satisfies configured accuracy and fairness constraints." if is_win
+                        else "Evaluated against authoritative fairness & accuracy gates."
+                    )
+
                     comparison_rows.append({
                         "Candidate Architecture": m_name,
                         "5-Fold CV Accuracy": safe_fmt_float(cv_acc),
@@ -1373,8 +1473,8 @@ def get_model_selection_comparison_data(dataset_id: str) -> Dict[str, Any]:
                         "Brier Score": safe_fmt_float(brier),
                         "ECE": safe_fmt_float(ece),
                         "EOD Disparity": safe_fmt_float(eod),
-                        "Constraint Status": "✅ EVALUATED",
-                        "Selection Rationale": "Evaluated against authoritative fairness & accuracy gates."
+                        "Constraint Status": badge,
+                        "Selection Rationale": rationale
                     })
 
     sel_name = {
@@ -1390,6 +1490,9 @@ def get_model_selection_comparison_data(dataset_id: str) -> Dict[str, Any]:
         "selection_status": selection_status,
         "raw_metadata": meta_json
     }
+
+
+get_candidate_models_comparison_data = get_model_selection_comparison_data
 
 
 def build_complete_governance_package_zip(
@@ -1848,13 +1951,50 @@ def get_step9_governance_dashboard_data(
     }
 
     # 6. Mitigation Result
+    target_scope = "intersectional"
+    strategy_name = "In-Processing (Fairlearn ExponentiatedGradient)"
+    constraint_name = "EqualizedOdds"
+    tolerance_val = "0.01"
+    max_iter_val = 40
+    if session_mit_res and isinstance(session_mit_res, dict):
+        target_scope = session_mit_res.get("target_scope", session_mit_res.get("mitigation_scope", "intersectional"))
+        strat = session_mit_res.get("strategy_type", "in_processing")
+        strategy_name = "Post-Processing (Fairlearn ThresholdOptimizer)" if strat == "post_processing" else "In-Processing (Fairlearn ExponentiatedGradient)"
+        mit_sub_data = session_mit_res.get("mitigated", {})
+        if isinstance(mit_sub_data, dict):
+            constraint_name = mit_sub_data.get("constraint_type", constraint_name)
+            if "eps" in mit_sub_data:
+                tolerance_val = str(mit_sub_data["eps"])
+
+    scope_disp = "Intersectional Compound Scope" if "intersectional" in str(target_scope).lower() else f"Baseline {target_scope.replace('_', ' ').title()} Scope"
+
+    gate_status_desc = "SUCCESS (Verified via Multi-Metric Calibration & Fairness Gate)"
+    if session_mit_res and isinstance(session_mit_res, dict):
+        fgate = session_mit_res.get("fairness_gate", {})
+        if fgate:
+            if fgate.get("target_achieved"):
+                gate_status_desc = f"PASSED — Target Satisfied ({fgate.get('metric_name', 'Fairness Target')} ≤ {fgate.get('threshold', 0.10):.4f})"
+            elif fgate.get("is_unchanged"):
+                mv = fgate.get("mitigated_value")
+                mv_str = f"{mv:.4f}" if isinstance(mv, (int, float)) else "N/A"
+                th = fgate.get("threshold", 0.10)
+                th_str = f"{th:.4f}" if isinstance(th, (int, float)) else "0.1000"
+                gate_status_desc = f"TARGET UNMET (Unchanged Disparity: {mv_str} > {th_str})"
+            else:
+                mv = fgate.get("mitigated_value")
+                mv_str = f"{mv:.4f}" if isinstance(mv, (int, float)) else "N/A"
+                th = fgate.get("threshold", 0.10)
+                th_str = f"{th:.4f}" if isinstance(th, (int, float)) else "0.1000"
+                gate_status_desc = f"TARGET UNMET (Disparity: {mv_str} > {th_str})"
+
     mit_info = {
-        "strategy": "In-Processing (Fairlearn ExponentiatedGradient)",
-        "constraint": "EqualizedOdds",
-        "tolerance": "0.01",
-        "max_iter": 40,
+        "strategy": strategy_name,
+        "scope": scope_disp,
+        "constraint": constraint_name,
+        "tolerance": tolerance_val,
+        "max_iter": max_iter_val,
         "base_estimator": f"{selected_model_display}Classifier",
-        "status": "SUCCESS (Verified via Multi-Metric Calibration & Fairness Gate)"
+        "status": gate_status_desc
     }
 
     # 7. Trade-off Summary
@@ -1901,7 +2041,7 @@ def get_step9_governance_dashboard_data(
         "q2_dataset": f"Dataset `{clean_id}` ({train_size} train, {test_size} test samples, {feature_count} features, Target: `{target}`, Protected Attributes: `{prot_str}`).",
         "q3_model": f"{selected_model_display} {model_version} ({model_sel.get('selection_reason', 'Selected by authoritative multi-candidate evaluation')}).",
         "q4_bias": fairness_finding_note,
-        "q5_mitigation": f"In-Processing ExponentiatedGradient with EqualizedOdds constraint on base estimator {selected_model_display} (eps=0.01, max_iter=40).",
+        "q5_mitigation": f"{strategy_name} with {constraint_name} constraint on {scope_disp} for base estimator {selected_model_display} (eps={tolerance_val}, max_iter={max_iter_val}). Status: {gate_status_desc}.",
         "q6_tradeoff": f"Accuracy and F1 preserved at 1.0000; Equalized Odds maintained optimal (0.0000); Probability Calibration Brier Score improved to 0.0000.",
         "q7_validation": f"Yes. Verified on {test_size} test samples with 0 false positives/negatives, probability calibration validated, 5/5 reliability checks passed, and SHA-256 lineage recorded.",
         "q8_monitoring": q8_monitoring,
@@ -2221,9 +2361,15 @@ def get_raw_dataset_dataframe(dataset_id: str) -> Optional[pd.DataFrame]:
     return None
 
 
-def _get_dataset_training_signature(dataset_id: str, df: Optional[pd.DataFrame] = None) -> Tuple[str, str]:
+def _get_dataset_training_signature(
+    dataset_id: str,
+    df: Optional[pd.DataFrame] = None,
+    config: Optional[Any] = None
+) -> Tuple[str, str]:
     """
     Compute a deterministic dataset hash and configuration signature for caching candidate evaluations.
+    Includes sorted id_columns and ignore_columns so changing the effective feature configuration
+    invalidates cached model evaluations.
     """
     clean_id = dataset_id.lower().replace(" (default)", "").replace(" ", "_")
     root = get_project_root()
@@ -2261,10 +2407,27 @@ def _get_dataset_training_signature(dataset_id: str, df: Optional[pd.DataFrame] 
 
     # 2. Compute Configuration Signature
     try:
-        from src.data.dataset_config import load_dataset_config_by_id
-        cfg = load_dataset_config_by_id(clean_id, base_dir=root)
-        pa_str = ",".join(sorted(cfg.protected_attributes)) if cfg.protected_attributes else ""
-        sig = f"t_{cfg.target.column}_p_{cfg.target.positive_class}_pa_{pa_str}_ts_{cfg.test_size}_rs_{cfg.random_state}"
+        from src.data.dataset_config import load_dataset_config_by_id, DatasetConfig
+        if config is not None:
+            if isinstance(config, DatasetConfig):
+                cfg = config
+            elif isinstance(config, dict):
+                cfg = DatasetConfig.from_dict(config)
+            elif isinstance(config, str) and os.path.exists(config if os.path.isabs(config) else os.path.join(root, config)):
+                cfg = DatasetConfig.from_json(config if os.path.isabs(config) else os.path.join(root, config))
+            else:
+                cfg = load_dataset_config_by_id(clean_id, base_dir=root)
+        else:
+            cfg = load_dataset_config_by_id(clean_id, base_dir=root)
+
+        pa_str = ",".join(sorted(str(c) for c in (cfg.protected_attributes or [])))
+        id_str = ",".join(sorted(str(c) for c in (cfg.id_columns or [])))
+        ign_str = ",".join(sorted(str(c) for c in (cfg.ignore_columns or [])))
+        sig = (
+            f"t_{cfg.target.column}_p_{cfg.target.positive_class}"
+            f"_pa_{pa_str}_id_{id_str}_ign_{ign_str}"
+            f"_ts_{cfg.test_size}_rs_{cfg.random_state}"
+        )
     except Exception:
         sig = f"default_sig_{clean_id}"
 
@@ -2373,7 +2536,8 @@ def _evaluate_candidate_model_cached(
 def get_candidate_model_audit_metrics(
     dataset_id: str,
     model_key: str = "logistic_regression",
-    random_seed: int = 42
+    random_seed: int = 42,
+    config: Optional[Any] = None
 ) -> dict:
     """
     Dynamically retrieve or train & evaluate a specific candidate baseline model
@@ -2383,7 +2547,7 @@ def get_candidate_model_audit_metrics(
     """
     clean_id = dataset_id.lower().replace(" (default)", "").replace(" ", "_")
     df = get_raw_dataset_dataframe(clean_id)
-    ds_hash, cfg_sig = _get_dataset_training_signature(clean_id, df=df)
+    ds_hash, cfg_sig = _get_dataset_training_signature(clean_id, df=df, config=config)
 
     return _evaluate_candidate_model_cached(
         dataset_id=clean_id,
@@ -2591,6 +2755,8 @@ def execute_interactive_mitigation_workflow(
     base_model_key: Optional[str] = None,
     strategy_type: str = "in_processing",
     constraint_type: str = "EqualizedOdds",
+    target_scope: Optional[str] = None,
+    target_attribute: Optional[str] = None,
     eps: float = 0.01,
     max_iter: int = 50,
     test_size: float = 0.2,
@@ -2654,27 +2820,33 @@ def execute_interactive_mitigation_workflow(
     except Exception:
         pass
 
-    if not target_column or not protected_attributes:
-        try:
-            cfg = load_dataset_config_by_id(clean_id, base_dir=root)
-            target_column = target_column or cfg.target.column
-            positive_class = positive_class or cfg.target.positive_class
-            protected_attributes = protected_attributes or cfg.protected_attributes
-            id_columns = id_columns if id_columns is not None else cfg.id_columns
-            if test_size == 0.2 and hasattr(cfg, "test_size") and cfg.test_size is not None:
-                test_size = cfg.test_size
-            if random_seed == 42 and hasattr(cfg, "random_state") and cfg.random_state is not None:
-                random_seed = cfg.random_state
-            if min_group_size == 30 and hasattr(cfg, "intersectional") and hasattr(cfg.intersectional, "min_group_size") and cfg.intersectional.min_group_size is not None:
-                min_group_size = cfg.intersectional.min_group_size
-        except Exception:
-            if not target_column:
-                target_column = df.columns[-1]
-            if not positive_class:
-                unique_vals = df[target_column].dropna().unique().tolist()
-                positive_class = unique_vals[0] if unique_vals else "1"
-            if not protected_attributes:
-                protected_attributes = [df.columns[0]]
+    ignore_columns = []
+    disk_cfg = None
+    try:
+        disk_cfg = load_dataset_config_by_id(clean_id, base_dir=root)
+        if disk_cfg:
+            target_column = target_column or disk_cfg.target.column
+            positive_class = positive_class or disk_cfg.target.positive_class
+            protected_attributes = protected_attributes or disk_cfg.protected_attributes
+            if id_columns is None:
+                id_columns = disk_cfg.id_columns
+            ignore_columns = getattr(disk_cfg, "ignore_columns", [])
+            if test_size == 0.2 and hasattr(disk_cfg, "test_size") and disk_cfg.test_size is not None:
+                test_size = disk_cfg.test_size
+            if random_seed == 42 and hasattr(disk_cfg, "random_state") and disk_cfg.random_state is not None:
+                random_seed = disk_cfg.random_state
+            if min_group_size == 30 and hasattr(disk_cfg, "intersectional") and hasattr(disk_cfg.intersectional, "min_group_size") and disk_cfg.intersectional.min_group_size is not None:
+                min_group_size = disk_cfg.intersectional.min_group_size
+    except Exception:
+        pass
+
+    if not target_column:
+        target_column = df.columns[-1]
+    if not positive_class:
+        unique_vals = df[target_column].dropna().unique().tolist()
+        positive_class = unique_vals[0] if unique_vals else "1"
+    if not protected_attributes:
+        protected_attributes = [df.columns[0]]
 
     cfg_dict = {
         "dataset_id": clean_id,
@@ -2682,6 +2854,7 @@ def execute_interactive_mitigation_workflow(
         "target": {"column": target_column, "positive_class": str(positive_class)},
         "protected_attributes": protected_attributes,
         "id_columns": id_columns or [],
+        "ignore_columns": ignore_columns or [],
         "test_size": test_size,
         "random_state": random_seed,
         "intersectional": {"min_group_size": min_group_size}
@@ -2725,9 +2898,42 @@ def execute_interactive_mitigation_workflow(
     log(f"[BASELINE AUDIT] Base Model: {model_display_name} | Accuracy: {base_perf['accuracy']:.4f} | Intersectional EOD: {base_eod_str} | Brier: {base_calib['brier_score']:.4f}")
 
     # 5. Run Mitigation with Live Logging
-    log(f"Setting up {strategy_type.upper().replace('_', '-')} Fairness Mitigation with Base Model: '{model_display_name}'...")
-    sens_train = create_intersectional_attribute(A_train, attributes=protected_attributes)
-    sens_test = create_intersectional_attribute(A_test, attributes=protected_attributes)
+    active_scope = target_scope or target_attribute
+    is_intersectional = (
+        active_scope is None
+        or active_scope == "intersectional"
+        or active_scope == "intersectional_compound"
+        or "intersectional" in str(active_scope).lower()
+    )
+
+    if is_intersectional:
+        sens_scope_name = "Intersectional Compound Scope"
+        cov = base_intersectional.get("coverage_status", {})
+        if active_scope is not None and cov.get("code") == "INSUFFICIENT_GROUP_COVERAGE":
+            err_msg = (
+                f"Intersectional mitigation constraint cannot be applied reliably: "
+                f"{cov.get('reason', f'Fewer than 2 primary groups meet N >= {min_group_size}')}. "
+                "Disparity metrics cannot be reliably calculated or constrained without statistical volatility."
+            )
+            log(f"[ERROR] {err_msg}")
+            raise ValueError(err_msg)
+
+        sens_train = create_intersectional_attribute(A_train, attributes=protected_attributes)
+        sens_test = create_intersectional_attribute(A_test, attributes=protected_attributes)
+        n_primary = len(base_intersectional.get("primary_groups", {}))
+        n_low = len(base_intersectional.get("low_sample_groups", {}))
+        log(f"[STATISTICAL SAFETY] Intersectional scope evaluated across {n_primary} primary groups (N >= {min_group_size}) and {n_low} low-sample groups (N < {min_group_size}).")
+        log(f"Setting up {strategy_type.upper().replace('_', '-')} Fairness Mitigation with Base Model: '{model_display_name}' on {sens_scope_name}...")
+    elif active_scope in A_train.columns:
+        sens_scope_name = f"Baseline {active_scope.replace('_', ' ').title()} Scope"
+        sens_train = A_train[active_scope].astype(str).str.strip()
+        sens_test = A_test[active_scope].astype(str).str.strip()
+        log(f"Setting up {strategy_type.upper().replace('_', '-')} Fairness Mitigation with Base Model: '{model_display_name}' on {sens_scope_name} ({sens_train.nunique()} groups)...")
+    else:
+        sens_scope_name = "Intersectional Compound Scope"
+        sens_train = create_intersectional_attribute(A_train, attributes=protected_attributes)
+        sens_test = create_intersectional_attribute(A_test, attributes=protected_attributes)
+        log(f"Setting up {strategy_type.upper().replace('_', '-')} Fairness Mitigation with Base Model: '{model_display_name}' on {sens_scope_name}...")
 
     if strategy_type == "post_processing":
         from src.mitigation.mitigator import train_threshold_optimizer, predict_threshold_optimizer, extract_threshold_optimizer_changes
@@ -2780,12 +2986,134 @@ def execute_interactive_mitigation_workflow(
     log("Extracting architectural changes and computing before vs. after trade-offs...")
     tradeoff_report = calculate_mitigation_tradeoff(base_perf, mit_perf, base_intersectional, mit_intersectional)
 
-    log("🎉 Mitigation and Comparative Evaluation completed successfully!")
+    # 8. Evaluate Fairness Target Gate Compliance against configured thresholds
+    thresh_cfg = getattr(cfg, "fairness_thresholds", None)
+    if thresh_cfg is None and hasattr(cfg, "to_dict"):
+        thresh_cfg = cfg.to_dict().get("fairness_thresholds", {})
+    elif thresh_cfg is not None and hasattr(thresh_cfg, "to_dict"):
+        thresh_cfg = thresh_cfg.to_dict()
+    elif not isinstance(thresh_cfg, dict):
+        thresh_cfg = {}
+
+    dpd_max = thresh_cfg.get("demographic_parity_difference_max", 0.10)
+    eod_max = thresh_cfg.get("equalized_odds_difference_max", 0.10)
+    dir_min = thresh_cfg.get("disparate_impact_min", 0.80)
+
+    if is_intersectional:
+        b_target_disp = base_intersectional.get("disparities", {})
+        m_target_disp = mit_intersectional.get("disparities", {})
+    elif active_scope in base_single:
+        b_target_disp = base_single.get(active_scope, {}).get("disparities", {})
+        m_target_disp = mit_single.get(active_scope, {}).get("disparities", {})
+    else:
+        b_target_disp = base_intersectional.get("disparities", {})
+        m_target_disp = mit_intersectional.get("disparities", {})
+
+    b_dpd = b_target_disp.get("demographic_parity_difference")
+    m_dpd = m_target_disp.get("demographic_parity_difference")
+    b_eod = b_target_disp.get("equalized_odds_difference")
+    m_eod = m_target_disp.get("equalized_odds_difference")
+
+    if "demographic" in constraint_type.lower():
+        metric_key = "demographic_parity_difference"
+        metric_name = f"Demographic Parity Difference ({sens_scope_name})"
+        threshold_val = float(dpd_max)
+        base_val = b_dpd
+        mit_val = m_dpd
+        primary_satisfied = (mit_val is not None and mit_val <= threshold_val + 1e-4)
+    elif "odds" in constraint_type.lower():
+        metric_key = "equalized_odds_difference"
+        metric_name = f"Equalized Odds Difference ({sens_scope_name})"
+        threshold_val = float(eod_max)
+        base_val = b_eod
+        mit_val = m_eod
+        primary_satisfied = (mit_val is not None and mit_val <= threshold_val + 1e-4)
+    else:
+        metric_key = "equal_opportunity_difference"
+        metric_name = f"Equal Opportunity Difference ({sens_scope_name})"
+        threshold_val = float(eod_max)
+        base_val = b_target_disp.get("equal_opportunity_difference")
+        mit_val = m_target_disp.get("equal_opportunity_difference")
+        primary_satisfied = (mit_val is not None and mit_val <= threshold_val + 1e-4)
+
+    delta_val = (mit_val - base_val) if (base_val is not None and mit_val is not None) else None
+    is_unchanged = (delta_val is not None and abs(delta_val) < 1e-4)
+
+    # All configured fairness thresholds must be satisfied for overall target achievement
+    dpd_violates = (m_dpd is not None and m_dpd > float(dpd_max) + 1e-4)
+    eod_violates = (m_eod is not None and m_eod > float(eod_max) + 1e-4)
+    all_thresholds_satisfied = not (dpd_violates or eod_violates)
+    target_achieved = bool(primary_satisfied and all_thresholds_satisfied)
+
+    mit_val_str = f"{mit_val:.4f}" if mit_val is not None else "N/A"
+    base_val_str = f"{base_val:.4f}" if base_val is not None else "N/A"
+    threshold_val_str = f"{threshold_val:.4f}" if threshold_val is not None else "N/A"
+    m_dpd_str = f"{m_dpd:.4f}" if m_dpd is not None else "N/A"
+    dpd_max_str = f"{float(dpd_max):.4f}" if dpd_max is not None else "N/A"
+    eod_max_str = f"{float(eod_max):.4f}" if eod_max is not None else "N/A"
+    viol_list = []
+    if dpd_violates:
+        viol_list.append(f"DPD: {m_dpd_str} > {dpd_max_str}")
+    if eod_violates:
+        viol_list.append(f"EOD: {f'{m_eod:.4f}' if m_eod is not None else 'N/A'} > {eod_max_str}")
+    viol_summary = ", ".join(viol_list)
+
+    if target_achieved:
+        gate_status = "PASS"
+        gate_badge = "🟢 PASS (Target Achieved)"
+        reduction_str = f"Disparity reduced by {abs(delta_val):.4f}" if delta_val and delta_val < 0 else "Disparity satisfied configured bound"
+        gate_msg = f"Mitigated {metric_name} ({mit_val_str}) satisfies configured threshold ({threshold_val_str}). {reduction_str}."
+    elif is_unchanged:
+        gate_status = "TARGET_UNMET_UNCHANGED"
+        gate_badge = "⚪ TARGET UNMET (UNCHANGED)"
+        viol_detail = f"Demographic Parity Difference remains {m_dpd_str} (threshold: {dpd_max_str})" if dpd_violates else f"{metric_name} remained unchanged at {mit_val_str}"
+        gate_msg = (
+            f"Mitigation algorithm executed successfully, but post-mitigation {viol_detail}. "
+            f"Base model predictions were preserved on evaluation set."
+        )
+    else:
+        gate_status = "TARGET_UNMET"
+        gate_badge = "🔴 TARGET UNMET"
+        if primary_satisfied and viol_list:
+            gate_msg = (
+                f"Mitigation algorithm executed and primary target satisfied ({metric_name}: {mit_val_str} ≤ {threshold_val_str}), "
+                f"but secondary fairness thresholds were exceeded ({viol_summary})."
+            )
+        else:
+            gate_msg = (
+                f"Mitigation algorithm executed, but post-mitigation metrics violate configured thresholds "
+                f"({metric_name}: {mit_val_str}, threshold: {threshold_val_str})."
+            )
+
+    fairness_gate = {
+        "gate_status": gate_status,
+        "gate_badge": gate_badge,
+        "target_achieved": bool(target_achieved),
+        "is_unchanged": bool(is_unchanged),
+        "metric_key": metric_key,
+        "metric_name": metric_name,
+        "threshold": threshold_val,
+        "baseline_value": base_val,
+        "mitigated_value": mit_val,
+        "delta": delta_val,
+        "explanation": gate_msg,
+        "thresholds_configured": {
+            "demographic_parity_difference_max": dpd_max,
+            "equalized_odds_difference_max": eod_max,
+            "disparate_impact_min": dir_min
+        }
+    }
+    log(f"[FAIRNESS GATE] {gate_badge}: {gate_msg}")
+    log("🎉 Mitigation and Comparative Evaluation workflow completed.")
 
     return {
         "status": "SUCCESS",
         "dataset_id": clean_id,
+        "fairness_gate": fairness_gate,
         "strategy_type": strategy_type,
+        "target_scope": active_scope or "intersectional",
+        "mitigation_scope": active_scope or "intersectional",
+        "scope_name": sens_scope_name,
         "selected_model": base_model_key,
         "model_type": base_model_key,
         "model_name": model_display_name,
@@ -2797,6 +3125,7 @@ def execute_interactive_mitigation_workflow(
             "model_version": model_version,
             "performance": base_perf,
             "fairness": base_intersectional,
+            "intersectional": base_intersectional,
             "single_attribute": base_single,
             "calibration": base_calib
         },
@@ -2804,9 +3133,12 @@ def execute_interactive_mitigation_workflow(
             "algorithm": algo_name,
             "base_estimator": base_model_key,
             "constraint_type": constraint_type,
+            "target_scope": active_scope or "intersectional",
+            "scope_name": sens_scope_name,
             "eps": eps,
             "performance": mit_perf,
             "fairness": mit_intersectional,
+            "intersectional": mit_intersectional,
             "single_attribute": mit_single,
             "calibration": mit_calib,
             "model_changes": model_changes
@@ -2826,6 +3158,7 @@ def execute_pareto_frontier_run(
     protected_attributes: Optional[list] = None,
     base_model_key: Optional[str] = None,
     constraint_type: str = "EqualizedOdds",
+    target_scope: Optional[str] = None,
     eps_grid: Optional[list] = None
 ) -> list:
     """Compute Pareto trade-off points across epsilon constraint bounds."""
@@ -2847,29 +3180,40 @@ def execute_pareto_frontier_run(
     random_state = 42
     min_group_size = 30
 
-    if not target_column or not protected_attributes:
-        try:
-            cfg = load_dataset_config_by_id(clean_id, base_dir=root)
-            target_column = target_column or cfg.target.column
-            positive_class = positive_class or cfg.target.positive_class
-            protected_attributes = protected_attributes or cfg.protected_attributes
-            if hasattr(cfg, "test_size") and cfg.test_size is not None:
-                test_size = cfg.test_size
-            if hasattr(cfg, "random_state") and cfg.random_state is not None:
-                random_state = cfg.random_state
-            if hasattr(cfg, "intersectional") and hasattr(cfg.intersectional, "min_group_size") and cfg.intersectional.min_group_size is not None:
-                min_group_size = cfg.intersectional.min_group_size
-        except Exception:
-            target_column = df.columns[-1]
-            positive_class = df[target_column].dropna().unique()[0]
-            protected_attributes = [df.columns[0]]
+    ignore_columns = []
+    id_columns = []
+    disk_cfg = None
+    try:
+        disk_cfg = load_dataset_config_by_id(clean_id, base_dir=root)
+        if disk_cfg:
+            target_column = target_column or disk_cfg.target.column
+            positive_class = positive_class or disk_cfg.target.positive_class
+            protected_attributes = protected_attributes or disk_cfg.protected_attributes
+            id_columns = disk_cfg.id_columns
+            ignore_columns = getattr(disk_cfg, "ignore_columns", [])
+            if hasattr(disk_cfg, "test_size") and disk_cfg.test_size is not None:
+                test_size = disk_cfg.test_size
+            if hasattr(disk_cfg, "random_state") and disk_cfg.random_state is not None:
+                random_state = disk_cfg.random_state
+            if hasattr(disk_cfg, "intersectional") and hasattr(disk_cfg.intersectional, "min_group_size") and disk_cfg.intersectional.min_group_size is not None:
+                min_group_size = disk_cfg.intersectional.min_group_size
+    except Exception:
+        pass
+
+    if not target_column:
+        target_column = df.columns[-1]
+    if not positive_class:
+        positive_class = df[target_column].dropna().unique()[0]
+    if not protected_attributes:
+        protected_attributes = [df.columns[0]]
 
     cfg_dict = {
         "dataset_id": clean_id,
         "path": "interactive",
         "target": {"column": target_column, "positive_class": str(positive_class)},
         "protected_attributes": protected_attributes,
-        "id_columns": [],
+        "id_columns": id_columns or [],
+        "ignore_columns": ignore_columns or [],
         "test_size": test_size,
         "random_state": random_state,
         "intersectional": {"min_group_size": min_group_size}
@@ -2878,7 +3222,17 @@ def execute_pareto_frontier_run(
     X, y, A = prepare_pipeline_data(df, config=cfg)
     splits = split_pipeline_data(X, y, A, config=cfg)
 
-    sens_train = create_intersectional_attribute(splits["A_train"], attributes=protected_attributes)
+    is_inter = (
+        target_scope is None
+        or target_scope == "intersectional"
+        or target_scope == "intersectional_compound"
+        or "intersectional" in str(target_scope).lower()
+    )
+    if not is_inter and target_scope in splits["A_train"].columns:
+        sens_train = splits["A_train"][target_scope].astype(str).str.strip()
+    else:
+        sens_train = create_intersectional_attribute(splits["A_train"], attributes=protected_attributes)
+
     eps_list = eps_grid or [0.002, 0.005, 0.01, 0.02, 0.05, 0.10]
 
     return generate_pareto_front_grid(
@@ -3068,7 +3422,7 @@ def get_dataset_governance_summary(dataset_id: str) -> dict:
     }
 
 
-def get_all_candidate_evaluations(dataset_id: str) -> dict:
+def get_all_candidate_evaluations(dataset_id: str, config: Optional[Any] = None) -> dict:
     """
     Retrieve evaluation metrics across all 3 candidate model architectures
     (Logistic Regression, Random Forest, Gradient Boosting) for model comparison.
@@ -3078,7 +3432,7 @@ def get_all_candidate_evaluations(dataset_id: str) -> dict:
     evals = {}
 
     for m in models:
-        evals[m] = get_candidate_model_audit_metrics(clean_id, model_key=m)
+        evals[m] = get_candidate_model_audit_metrics(clean_id, model_key=m, config=config)
 
     return evals
 
@@ -3134,16 +3488,52 @@ def get_step4_baseline_fairness_scope(
     inter_data = norm_data.get("intersectional", {})
     available_attributes = list(single_data.keys()) if isinstance(single_data, dict) else []
 
+    # Check intersectional estimability
+    inter_disp = inter_data.get("disparities", {}) if isinstance(inter_data, dict) else {}
+    inter_eod = inter_disp.get("equalized_odds_difference") if isinstance(inter_disp, dict) else None
+    min_thresh = inter_data.get("min_group_size_threshold", 30) if isinstance(inter_data, dict) else 30
+    cov_status = inter_data.get("coverage_status", {}) if isinstance(inter_data, dict) else {}
+
+    intersectional_estimable = (inter_eod is not None) and (cov_status.get("code") != "INSUFFICIENT_GROUP_COVERAGE")
+    if intersectional_estimable:
+        intersectional_status = "ESTIMABLE"
+        intersectional_message = f"Intersectional fairness estimable across compound groups (N >= {min_thresh})."
+    else:
+        intersectional_status = "NOT_ESTIMABLE"
+        reason = cov_status.get("reason") if isinstance(cov_status, dict) and cov_status.get("reason") else f"Fewer than 2 compound intersectional groups satisfy N >= {min_thresh}."
+        intersectional_message = f"N/A — Not Estimable: {reason}"
+
     # Determine active attribute scope
-    if selected_attribute and selected_attribute in available_attributes:
+    is_inter_selected = bool(
+        selected_attribute and (
+            selected_attribute == "intersectional"
+            or selected_attribute == "intersectional_compound"
+            or "intersectional" in str(selected_attribute).lower()
+        )
+    )
+
+    prot_attrs = inter_data.get("attributes_combined") or available_attributes
+    inter_term = " × ".join([a.replace("_", " ").title() for a in prot_attrs]) if prot_attrs else "Compound"
+
+    if is_inter_selected:
+        scope_type = "intersectional"
+        scope_attribute = "intersectional"
+        scope_name = "Intersectional"
+        scope_label = f"Baseline Intersectional Compound Scope ({inter_term})"
+        if intersectional_estimable:
+            disparities = inter_disp if inter_disp else (norm_data.get("baseline", {}).get("fairness", {}) if isinstance(norm_data.get("baseline"), dict) else {})
+        else:
+            disparities = {}
+    elif selected_attribute and selected_attribute in available_attributes:
         active_attribute = selected_attribute
+        scope_type = "single"
+        scope_attribute = active_attribute
+        scope_name = active_attribute.replace("_", " ").title()
+        scope_label = f"Baseline {scope_name} Fairness"
+        attr_audit = single_data.get(active_attribute, {})
+        disparities = attr_audit.get("disparities", {}) if isinstance(attr_audit, dict) else {}
     elif available_attributes:
         active_attribute = available_attributes[0]
-    else:
-        active_attribute = None
-
-    # Resolve single-attribute disparity metrics
-    if active_attribute and active_attribute in single_data:
         scope_type = "single"
         scope_attribute = active_attribute
         scope_name = active_attribute.replace("_", " ").title()
@@ -3157,30 +3547,19 @@ def get_step4_baseline_fairness_scope(
         scope_label = "Baseline Intersectional Fairness"
         disparities = norm_data.get("baseline", {}).get("fairness", {}) if isinstance(norm_data.get("baseline"), dict) else {}
 
-    # Check intersectional estimability
-    inter_disp = inter_data.get("disparities", {}) if isinstance(inter_data, dict) else {}
-    inter_eod = inter_disp.get("equalized_odds_difference") if isinstance(inter_disp, dict) else None
-    min_thresh = inter_data.get("min_group_size_threshold", 30) if isinstance(inter_data, dict) else 30
-    cov_status = inter_data.get("coverage_status", {}) if isinstance(inter_data, dict) else {}
-    
-    intersectional_estimable = (inter_eod is not None) and (cov_status.get("code") != "INSUFFICIENT_GROUP_COVERAGE")
-    if intersectional_estimable:
-        intersectional_status = "ESTIMABLE"
-        intersectional_message = f"Intersectional fairness estimable across compound groups (N >= {min_thresh})."
-    else:
-        intersectional_status = "NOT_ESTIMABLE"
-        reason = cov_status.get("reason") if isinstance(cov_status, dict) and cov_status.get("reason") else f"Fewer than 2 compound intersectional groups satisfy N >= {min_thresh}."
-        intersectional_message = f"N/A — Not Estimable: {reason}"
-
     perf = norm_data.get("baseline", {}).get("performance", {}) if isinstance(norm_data.get("baseline"), dict) else {}
     calib = norm_data.get("baseline", {}).get("calibration", {}) if isinstance(norm_data.get("baseline"), dict) else {}
+
+    all_available_scopes = list(available_attributes)
+    if (bool(inter_data) or len(available_attributes) >= 2) and "intersectional" not in all_available_scopes:
+        all_available_scopes.append("intersectional")
 
     return {
         "scope_type": scope_type,
         "scope_attribute": scope_attribute,
         "scope_name": scope_name,
         "scope_label": scope_label,
-        "available_attributes": available_attributes,
+        "available_attributes": all_available_scopes,
         "performance": perf,
         "calibration": calib,
         "disparities": disparities,
@@ -3228,16 +3607,36 @@ def get_step4_comparative_evaluations(
     base_single_mit = base_sub.get("single_attribute", {}) if isinstance(base_sub.get("single_attribute"), dict) else {}
     mit_single_mit = mit_sub.get("single_attribute", {}) if isinstance(mit_sub.get("single_attribute"), dict) else {}
 
-    scope_name = selected_attribute.replace("_", " ").title() if selected_attribute else "Overall"
+    is_inter = bool(
+        selected_attribute and (
+            selected_attribute == "intersectional"
+            or selected_attribute == "intersectional_compound"
+            or "intersectional" in str(selected_attribute).lower()
+        )
+    )
 
-    if selected_attribute and selected_attribute in base_single_mit and selected_attribute in mit_single_mit:
+    if is_inter:
+        scope_name = "Intersectional"
+        b_f_raw = base_sub.get("intersectional") or base_sub.get("fairness", {})
+        m_f_raw = mit_sub.get("intersectional") or mit_sub.get("fairness", {})
+        b_cov = b_f_raw.get("coverage_status", {}) if isinstance(b_f_raw, dict) else {}
+        if isinstance(b_cov, dict) and b_cov.get("code") == "INSUFFICIENT_GROUP_COVERAGE":
+            b_f = {}
+            m_f = {}
+        else:
+            b_f = b_f_raw.get("disparities", b_f_raw) if isinstance(b_f_raw, dict) else {}
+            m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
+    elif selected_attribute and selected_attribute in base_single_mit and selected_attribute in mit_single_mit:
+        scope_name = selected_attribute.replace("_", " ").title()
         b_f = base_single_mit[selected_attribute].get("disparities", {}) if isinstance(base_single_mit[selected_attribute], dict) else {}
         m_f = mit_single_mit[selected_attribute].get("disparities", {}) if isinstance(mit_single_mit[selected_attribute], dict) else {}
     elif selected_attribute and single_data_fallback and selected_attribute in single_data_fallback:
+        scope_name = selected_attribute.replace("_", " ").title()
         b_f = single_data_fallback[selected_attribute].get("disparities", {}) if isinstance(single_data_fallback[selected_attribute], dict) else {}
         m_f_raw = mit_sub.get("fairness", {})
         m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
     else:
+        scope_name = selected_attribute.replace("_", " ").title() if selected_attribute else "Overall"
         b_f_raw = base_sub.get("fairness", {})
         m_f_raw = mit_sub.get("fairness", {})
         b_f = b_f_raw.get("disparities", b_f_raw) if isinstance(b_f_raw, dict) else {}
@@ -3253,8 +3652,28 @@ def get_step4_comparative_evaluations(
         ("Expected Calibration Error (ECE)", b_c.get("ece"), m_c.get("ece"), False)
     ]
 
+    active_gate = active_mit.get("fairness_gate", {}) if isinstance(active_mit, dict) else {}
+    thresh_conf = active_gate.get("thresholds_configured", {})
+    dpd_max = thresh_conf.get("demographic_parity_difference_max", 0.10)
+    eod_max = thresh_conf.get("equalized_odds_difference_max", 0.10)
+    dir_min = thresh_conf.get("disparate_impact_min", 0.80)
+
+    thresh_specs = {
+        "equalized_odds": (f"≤ {eod_max:.4f}", lambda v: v <= eod_max + 1e-4),
+        "demographic_parity": (f"≤ {dpd_max:.4f}", lambda v: v <= dpd_max + 1e-4),
+        "disparate_impact": (f"≥ {dir_min:.4f}", lambda v: v >= dir_min - 1e-4),
+    }
+
     table_data = []
     for name, bv, mv, higher_is_better in metrics_list:
+        t_spec = None
+        if "Equalized Odds" in name:
+            t_spec = thresh_specs["equalized_odds"]
+        elif "Demographic Parity" in name:
+            t_spec = thresh_specs["demographic_parity"]
+        elif "Disparate Impact" in name:
+            t_spec = thresh_specs["disparate_impact"]
+
         if bv is not None and mv is not None:
             delta = mv - bv
             pct = (delta / abs(bv) * 100) if bv != 0 else 0.0
@@ -3262,22 +3681,40 @@ def get_step4_comparative_evaluations(
                 status = "🟢 Improved" if delta > 1e-6 else ("🔴 Worsened" if delta < -1e-6 else "⚪ Neutral")
             else:
                 status = "🟢 Improved" if delta < -1e-6 else ("🔴 Worsened" if delta > 1e-6 else "⚪ Neutral")
-            
+
+            if t_spec and mv is not None:
+                t_str, check_fn = t_spec
+                compliance = "🟢 PASS" if check_fn(mv) else "🔴 EXCEEDS THRESHOLD"
+            else:
+                t_str = "N/A"
+                compliance = "⚪ N/A"
+
             table_data.append({
                 "Metric": name,
                 "Before": format_val(bv),
                 "After": format_val(mv),
                 "Delta (Δ)": f"{delta:+.4f}",
                 "% Change": f"{pct:+.2f}%",
+                "Threshold": t_str,
+                "Compliance": compliance,
                 "Status": status
             })
         elif bv is not None or mv is not None:
+            if t_spec and mv is not None:
+                t_str, check_fn = t_spec
+                compliance = "🟢 PASS" if check_fn(mv) else "🔴 EXCEEDS THRESHOLD"
+            else:
+                t_str = "N/A"
+                compliance = "⚪ N/A"
+
             table_data.append({
                 "Metric": name,
                 "Before": format_val(bv),
                 "After": format_val(mv),
                 "Delta (Δ)": "N/A",
                 "% Change": "N/A",
+                "Threshold": t_str,
+                "Compliance": compliance,
                 "Status": "⚪ N/A"
             })
 
@@ -3289,6 +3726,55 @@ def get_step4_comparative_evaluations(
     gain_eod = (bv_eod - mv_eod) if (bv_eod is not None and mv_eod is not None) else None
     gain_dpd = (bv_dpd - mv_dpd) if (bv_dpd is not None and mv_dpd is not None) else None
 
+    # Guarantee active_gate is fully populated with badge and explanation
+    if not active_gate or not isinstance(active_gate, dict) or not active_gate.get("explanation"):
+        dpd_violates = (mv_dpd is not None and mv_dpd > float(dpd_max) + 1e-4)
+        eod_violates = (mv_eod is not None and mv_eod > float(eod_max) + 1e-4)
+        target_achieved = not (dpd_violates or eod_violates)
+        delta_val = (mv_dpd - bv_dpd) if (mv_dpd is not None and bv_dpd is not None) else 0.0
+        is_unchanged = abs(delta_val) < 1e-4
+
+        mv_dpd_str = f"{mv_dpd:.4f}" if mv_dpd is not None else "N/A"
+        dpd_max_str = f"{float(dpd_max):.4f}" if dpd_max is not None else "N/A"
+
+        if target_achieved:
+            gate_status = "PASS"
+            gate_badge = "🟢 PASS (Target Achieved)"
+            gate_msg = f"Mitigated disparities satisfy configured thresholds (DPD: {mv_dpd_str} ≤ {dpd_max_str})."
+        elif is_unchanged:
+            gate_status = "TARGET_UNMET_UNCHANGED"
+            gate_badge = "⚪ TARGET UNMET (UNCHANGED)"
+            gate_msg = (
+                f"Mitigation algorithm executed successfully, but post-mitigation Demographic Parity Difference "
+                f"remains unchanged at {mv_dpd_str} (threshold: {dpd_max_str}). Base model predictions were preserved on evaluation set."
+            )
+        else:
+            gate_status = "TARGET_UNMET"
+            gate_badge = "🔴 TARGET UNMET"
+            gate_msg = (
+                f"Mitigation algorithm executed, but post-mitigation metrics violate configured thresholds "
+                f"(DPD: {mv_dpd_str}, threshold: {dpd_max_str})."
+            )
+
+        active_gate = {
+            "gate_status": gate_status,
+            "gate_badge": gate_badge,
+            "target_achieved": bool(target_achieved),
+            "is_unchanged": bool(is_unchanged),
+            "metric_key": "demographic_parity_difference",
+            "metric_name": f"Demographic Parity Difference ({scope_name})",
+            "threshold": float(dpd_max),
+            "baseline_value": bv_dpd,
+            "mitigated_value": mv_dpd,
+            "delta": delta_val,
+            "explanation": gate_msg,
+            "thresholds_configured": {
+                "demographic_parity_difference_max": dpd_max,
+                "equalized_odds_difference_max": eod_max,
+                "disparate_impact_min": dir_min
+            }
+        }
+
     return {
         "has_executed": True,
         "status_message": "Mitigation completed successfully.",
@@ -3298,6 +3784,7 @@ def get_step4_comparative_evaluations(
             "dpd_gain": gain_dpd,
             "scope_name": scope_name
         },
+        "fairness_gate": active_gate,
         "baseline_disparities": b_f,
         "mitigated_disparities": m_f
     }
@@ -3483,31 +3970,84 @@ def get_step5_tradeoff_analysis_data(
     base_single: Dict[str, Any] = b_s_raw if isinstance(b_s_raw, dict) else {}
     mit_single: Dict[str, Any] = m_s_raw if isinstance(m_s_raw, dict) else {}
 
-    # If single_attribute is not in active_mit, check raw_run fallback
+    raw_run_fb = None
     if not base_single:
         raw_run_fb = load_dataset_run_result(clean_id)
         if raw_run_fb and isinstance(raw_run_fb, dict):
             base_single = raw_run_fb.get("single_attribute_metrics", {})
 
     available_attrs = list(base_single.keys()) if base_single else []
-    if selected_attribute and selected_attribute in available_attrs:
+    has_inter = bool(
+        base_sub.get("intersectional")
+        or base_sub.get("fairness")
+        or (active_dict.get("target_scope") == "intersectional")
+        or (raw_run_fb and raw_run_fb.get("fairness_metrics"))
+    )
+    if has_inter and "intersectional" not in available_attrs:
+        available_attrs.append("intersectional")
+
+    is_inter = bool(
+        selected_attribute and (
+            selected_attribute == "intersectional"
+            or selected_attribute == "intersectional_compound"
+            or "intersectional" in str(selected_attribute).lower()
+        )
+    )
+
+    if is_inter:
+        active_attr = "intersectional"
+        scope_name = "Intersectional"
+        b_f_raw = base_sub.get("intersectional") or base_sub.get("fairness") or {}
+        m_f_raw = mit_sub.get("intersectional") or mit_sub.get("fairness") or {}
+        b_f = b_f_raw.get("disparities", b_f_raw) if isinstance(b_f_raw, dict) else {}
+        m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
+    elif selected_attribute and selected_attribute in available_attrs:
         active_attr = selected_attribute
+        if active_attr == "intersectional":
+            scope_name = "Intersectional"
+            b_f_raw = base_sub.get("intersectional") or base_sub.get("fairness") or {}
+            m_f_raw = mit_sub.get("intersectional") or mit_sub.get("fairness") or {}
+            b_f = b_f_raw.get("disparities", b_f_raw) if isinstance(b_f_raw, dict) else {}
+            m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
+        else:
+            scope_name = active_attr.replace("_", " ").title()
+            if active_attr in base_single and active_attr in mit_single:
+                b_f = base_single[active_attr].get("disparities", {}) if isinstance(base_single[active_attr], dict) else {}
+                m_f = mit_single[active_attr].get("disparities", {}) if isinstance(mit_single[active_attr], dict) else {}
+            elif active_attr in base_single:
+                b_f = base_single[active_attr].get("disparities", {}) if isinstance(base_single[active_attr], dict) else {}
+                m_f_raw = mit_sub.get("fairness", {})
+                m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
+            else:
+                b_f_raw = base_sub.get("fairness", {})
+                m_f_raw = mit_sub.get("fairness", {})
+                b_f = b_f_raw.get("disparities", b_f_raw) if isinstance(b_f_raw, dict) else {}
+                m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
     elif available_attrs:
         active_attr = available_attrs[0]
+        if active_attr == "intersectional":
+            scope_name = "Intersectional"
+            b_f_raw = base_sub.get("intersectional") or base_sub.get("fairness") or {}
+            m_f_raw = mit_sub.get("intersectional") or mit_sub.get("fairness") or {}
+            b_f = b_f_raw.get("disparities", b_f_raw) if isinstance(b_f_raw, dict) else {}
+            m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
+        else:
+            scope_name = active_attr.replace("_", " ").title()
+            if active_attr in base_single and active_attr in mit_single:
+                b_f = base_single[active_attr].get("disparities", {}) if isinstance(base_single[active_attr], dict) else {}
+                m_f = mit_single[active_attr].get("disparities", {}) if isinstance(mit_single[active_attr], dict) else {}
+            elif active_attr in base_single:
+                b_f = base_single[active_attr].get("disparities", {}) if isinstance(base_single[active_attr], dict) else {}
+                m_f_raw = mit_sub.get("fairness", {})
+                m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
+            else:
+                b_f_raw = base_sub.get("fairness", {})
+                m_f_raw = mit_sub.get("fairness", {})
+                b_f = b_f_raw.get("disparities", b_f_raw) if isinstance(b_f_raw, dict) else {}
+                m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
     else:
         active_attr = None
-
-    scope_name = active_attr.replace("_", " ").title() if active_attr else "Overall"
-
-    # Resolve fairness disparities for active scope
-    if active_attr and active_attr in base_single and active_attr in mit_single:
-        b_f = base_single[active_attr].get("disparities", {}) if isinstance(base_single[active_attr], dict) else {}
-        m_f = mit_single[active_attr].get("disparities", {}) if isinstance(mit_single[active_attr], dict) else {}
-    elif active_attr and active_attr in base_single:
-        b_f = base_single[active_attr].get("disparities", {}) if isinstance(base_single[active_attr], dict) else {}
-        m_f_raw = mit_sub.get("fairness", {})
-        m_f = m_f_raw.get("disparities", m_f_raw) if isinstance(m_f_raw, dict) else {}
-    else:
+        scope_name = "Overall"
         b_f_raw = base_sub.get("fairness", {})
         m_f_raw = mit_sub.get("fairness", {})
         b_f = b_f_raw.get("disparities", b_f_raw) if isinstance(b_f_raw, dict) else {}
@@ -3685,6 +4225,7 @@ def get_step5_tradeoff_analysis_data(
         },
         "fairness": {
             "title": f"Equalized Odds Diff ({scope_name})",
+            "scope_name": scope_name,
             "before": b_eod,
             "after": m_eod,
             "delta": d_eod,

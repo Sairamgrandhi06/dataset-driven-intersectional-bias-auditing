@@ -1186,8 +1186,9 @@ def render_page_upload_configure(active_ds: str | None = None):
         protected_attrs = st.multiselect("Protected Demographic Attributes:", options=avail_prot, default=default_prot, key=f"select_prot_{init_ds_id}")
 
         avail_id = [c for c in all_cols if c != target_col and c not in protected_attrs]
-        if saved_cfg and "id_columns" in saved_cfg:
-            default_id_cols = [c for c in saved_cfg["id_columns"] if c in avail_id]
+        if saved_cfg and ("id_columns" in saved_cfg or "ignore_columns" in saved_cfg):
+            combined_saved = list(saved_cfg.get("id_columns", [])) + list(saved_cfg.get("ignore_columns", []))
+            default_id_cols = [c for c in combined_saved if c in avail_id]
         else:
             default_id_cols = [c for c in id_cand_names if c in avail_id]
         id_cols_selected = st.multiselect("ID / Ignore Columns:", options=avail_id, default=default_id_cols, key=f"select_id_{init_ds_id}")
@@ -1208,12 +1209,16 @@ def render_page_upload_configure(active_ds: str | None = None):
     st.markdown("---")
     st.subheader("4. Configuration Contract Verification")
 
+    clean_id_list = [c for c in id_cols_selected if c.endswith("_id") or c.startswith("id_") or c in ["id", f"{dataset_id_final}_id", "student_id"]]
+    clean_ign_list = [c for c in id_cols_selected if c not in clean_id_list]
+
     cfg_summary = {
         "dataset_id": dataset_id_final,
         "target_column": target_col,
         "positive_class": pos_class,
         "protected_attributes": protected_attrs,
-        "id_columns": id_cols_selected,
+        "id_columns": clean_id_list,
+        "ignore_columns": clean_ign_list,
         "test_size": test_split,
         "min_group_size": min_group_size,
         "random_state": random_seed
@@ -1263,7 +1268,8 @@ def render_page_upload_configure(active_ds: str | None = None):
                     target_column=target_col,
                     positive_class=pos_class,
                     protected_attributes=protected_attrs,
-                    id_columns=id_cols_selected,
+                    id_columns=clean_id_list,
+                    ignore_columns=clean_ign_list,
                     test_size=test_split,
                     random_state=random_seed,
                     min_group_size=min_group_size
@@ -1278,7 +1284,8 @@ def render_page_upload_configure(active_ds: str | None = None):
                     "target_column": target_col,
                     "positive_class": pos_class,
                     "protected_attributes": list(protected_attrs),
-                    "id_columns": list(id_cols_selected),
+                    "id_columns": clean_id_list,
+                    "ignore_columns": clean_ign_list,
                     "test_size": float(test_split),
                     "min_group_size": min_group_size,
                     "random_state": random_seed,
@@ -1675,18 +1682,32 @@ def render_page_bias_mitigation(active_ds: str | None = None):
         return
 
     single_data = norm_data.get("single_attribute", {})
+    inter_data = norm_data.get("intersectional", {})
     available_attrs = list(single_data.keys()) if isinstance(single_data, dict) else []
-    step3_attr = st.session_state.get(f"fairness_audit_selected_attr_{clean_ds}")
-    default_attr = step3_attr if step3_attr in available_attrs else (available_attrs[0] if available_attrs else None)
+    prot_attrs = inter_data.get("attributes_combined") or available_attrs
+    inter_term = " × ".join([a.replace("_", " ").title() for a in prot_attrs]) if prot_attrs else "Compound"
 
-    if available_attrs:
-        default_idx = available_attrs.index(default_attr) if default_attr in available_attrs else 0
+    scope_options = list(available_attrs)
+    has_intersectional = bool(inter_data) or len(available_attrs) >= 2
+    if has_intersectional and "intersectional" not in scope_options:
+        scope_options.append("intersectional")
+
+    step3_attr = st.session_state.get(f"fairness_audit_selected_attr_{clean_ds}")
+    default_attr = step3_attr if step3_attr in scope_options else (scope_options[0] if scope_options else None)
+
+    def format_scope_label(scope_key: str) -> str:
+        if scope_key == "intersectional":
+            return f"Intersectional Compound Scope ({inter_term})"
+        return f"Baseline {scope_key.replace('_', ' ').title()} Scope"
+
+    if scope_options:
+        default_idx = scope_options.index(default_attr) if default_attr in scope_options else 0
         selected_attr = st.selectbox(
             "Target Demographic Scope:",
-            available_attrs,
+            scope_options,
             index=default_idx,
             key=f"mitigation_selected_attr_{clean_ds}",
-            format_func=lambda a: f"Baseline {a.replace('_', ' ').title()} Scope"
+            format_func=format_scope_label
         )
     else:
         selected_attr = None
@@ -1706,6 +1727,9 @@ def render_page_bias_mitigation(active_ds: str | None = None):
     c3.metric(f"EOD ({scope_name})", format_val(eod_val))
     c4.metric(f"DPD ({scope_name})", format_val(dpd_val))
     c5.metric(f"DIR ({scope_name})", format_val(dir_val))
+
+    if selected_attr == "intersectional" and not scope_info.get("intersectional_estimable", False):
+        st.warning(f"INTERSECTIONAL CONSTRAINT CANNOT BE APPLIED RELIABLY: {scope_info.get('intersectional_message', '')}")
 
     # Mitigation Controls
     st.markdown("---")
@@ -1743,7 +1767,8 @@ def render_page_bias_mitigation(active_ds: str | None = None):
             p_grid = execute_pareto_frontier_run(
                 dataset_id=clean_ds,
                 base_model_key=selected_model_name,
-                constraint_type=constraint_choice
+                constraint_type=constraint_choice,
+                target_scope=selected_attr
             )
             st.session_state[f"pareto_grid_{clean_ds}"] = p_grid
             st.success(f"Generated Pareto frontier with {len(p_grid)} points.")
@@ -1776,12 +1801,50 @@ def render_page_bias_mitigation(active_ds: str | None = None):
                     base_model_key=selected_model_name,
                     strategy_type=strat_choice,
                     constraint_type=constraint_choice,
+                    target_scope=selected_attr,
                     eps=eps_choice,
                     max_iter=max_iter_choice,
                     logger_callback=log_cb
                 )
                 st.session_state[f"interactive_mit_res_{clean_ds}"] = mit_res
-                st.success("Bias mitigation executed successfully.")
+                fgate = mit_res.get("fairness_gate")
+                if not fgate or not isinstance(fgate, dict) or not fgate.get("explanation"):
+                    comp_fallback = get_step4_comparative_evaluations(
+                        mit_res,
+                        selected_attribute=selected_attr,
+                        single_data_fallback=single_data
+                    )
+                    fgate = comp_fallback.get("fairness_gate") or {}
+
+                target_achieved = fgate.get("target_achieved", False)
+                is_unchanged = fgate.get("is_unchanged", False)
+                gate_badge = fgate.get("gate_badge")
+                if not gate_badge:
+                    if target_achieved:
+                        gate_badge = "🟢 PASS (Target Achieved)"
+                    elif is_unchanged:
+                        gate_badge = "⚪ TARGET UNMET (UNCHANGED)"
+                    else:
+                        gate_badge = "🔴 TARGET UNMET"
+
+                explanation = fgate.get("explanation")
+                if not explanation:
+                    thresh_val = fgate.get("threshold", 0.10)
+                    mit_val = fgate.get("mitigated_value")
+                    val_str = f"{mit_val:.4f}" if mit_val is not None else "measured value"
+                    thresh_str = f"{float(thresh_val):.4f}" if thresh_val is not None else "configured threshold"
+                    explanation = (
+                        f"Configured fairness thresholds satisfied ({val_str} ≤ {thresh_str})."
+                        if target_achieved
+                        else f"Mitigation executed, but post-mitigation disparity ({val_str}) exceeds configured threshold (≤ {thresh_str})."
+                    )
+
+                if target_achieved:
+                    st.success(f"Fairness mitigation completed. {gate_badge}: {explanation}")
+                elif is_unchanged:
+                    st.warning(f"Mitigation algorithm executed, but {gate_badge}: {explanation}")
+                else:
+                    st.error(f"Mitigation algorithm executed, but {gate_badge}: {explanation}")
             except Exception as e:
                 st.error(f"Mitigation failed: {e}")
 
@@ -1797,10 +1860,44 @@ def render_page_bias_mitigation(active_ds: str | None = None):
         st.info("Mitigation not executed yet — results will appear after running mitigation above.")
         return
 
-    # STEP 3: Before vs After Table
+    # STEP 3: Before vs After Table with Compliance Banner
     st.markdown("---")
-    st.subheader(f"Before vs. After Comparative Evaluation — {scope_label}")
     active_mit_dict: dict = active_mit if isinstance(active_mit, dict) else {}
+    fgate = active_mit_dict.get("fairness_gate") or comp_eval.get("fairness_gate", {})
+
+    if fgate:
+        if fgate.get("target_achieved"):
+            st.markdown(
+                f"""
+                <div class="success-box" style="margin-bottom: 1rem;">
+                    <b>🎯 FAIRNESS GATE: PASS (TARGET ACHIEVED)</b><br>
+                    {fgate.get('explanation', '')}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        elif fgate.get("is_unchanged"):
+            st.markdown(
+                f"""
+                <div class="warning-box" style="margin-bottom: 1rem;">
+                    <b>⚠️ FAIRNESS GATE: TARGET UNMET (UNCHANGED DISPARITY)</b><br>
+                    {fgate.get('explanation', '')}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        else:
+            st.markdown(
+                f"""
+                <div class="error-box" style="margin-bottom: 1rem;">
+                    <b>🔴 FAIRNESS GATE: TARGET NOT ACHIEVED</b><br>
+                    {fgate.get('explanation', '')}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+    st.subheader(f"Before vs. After Comparative Evaluation — {scope_label}")
     base_sub: dict = active_mit_dict.get("baseline") if isinstance(active_mit_dict.get("baseline"), dict) else {}
     mit_sub: dict = active_mit_dict.get("mitigated") if isinstance(active_mit_dict.get("mitigated"), dict) else {}
     b_p: dict = base_sub.get("performance") if isinstance(base_sub.get("performance"), dict) else {}
@@ -1819,12 +1916,14 @@ def render_page_bias_mitigation(active_ds: str | None = None):
     cg1, cg2 = st.columns(2)
     with cg1:
         if gain_eod is not None:
-            st.metric(f"Equalized Odds Reduction ({scope_name})", f"{gain_eod:+.4f}", delta="Disparity Reduced" if gain_eod > 0 else "Shifted")
+            delta_eod_lbl = "Disparity Reduced" if gain_eod > 1e-4 else ("Unchanged" if abs(gain_eod) < 1e-4 else "Disparity Increased")
+            st.metric(f"Equalized Odds Reduction ({scope_name})", f"{gain_eod:+.4f}", delta=delta_eod_lbl)
         else:
             st.metric(f"Equalized Odds Reduction ({scope_name})", "N/A")
     with cg2:
         if gain_dpd is not None:
-            st.metric(f"Demographic Parity Reduction ({scope_name})", f"{gain_dpd:+.4f}", delta="Parity Gained" if gain_dpd > 0 else "Shifted")
+            delta_dpd_lbl = "Parity Gained" if gain_dpd > 1e-4 else ("Unchanged" if abs(gain_dpd) < 1e-4 else "Parity Lost")
+            st.metric(f"Demographic Parity Reduction ({scope_name})", f"{gain_dpd:+.4f}", delta=delta_dpd_lbl)
         else:
             st.metric(f"Demographic Parity Reduction ({scope_name})", "N/A")
 
@@ -1833,15 +1932,16 @@ def render_page_bias_mitigation(active_ds: str | None = None):
 
     b_groups = {}
     m_groups = {}
-    if selected_attr and selected_attr in base_single_mit and selected_attr in mit_single_mit:
+    is_inter = bool(selected_attr and ("intersectional" in str(selected_attr).lower()))
+    if not is_inter and selected_attr and selected_attr in base_single_mit and selected_attr in mit_single_mit:
         b_groups = base_single_mit[selected_attr].get("groups", {})
         m_groups = mit_single_mit[selected_attr].get("groups", {})
-    elif selected_attr and selected_attr in single_data:
+    elif not is_inter and selected_attr and selected_attr in single_data:
         b_groups = single_data[selected_attr].get("groups", {})
 
     if not b_groups or not m_groups:
-        b_inter = base_sub.get("intersectional") if isinstance(base_sub.get("intersectional"), dict) else {}
-        m_inter = mit_sub.get("intersectional") if isinstance(mit_sub.get("intersectional"), dict) else {}
+        b_inter = base_sub.get("intersectional") or base_sub.get("fairness") or {}
+        m_inter = mit_sub.get("intersectional") or mit_sub.get("fairness") or {}
         b_groups = b_inter.get("all_group_metrics", {}) if isinstance(b_inter.get("all_group_metrics"), dict) else b_groups
         m_groups = m_inter.get("all_group_metrics", {}) if isinstance(m_inter.get("all_group_metrics"), dict) else m_groups
 
@@ -1871,6 +1971,7 @@ def render_page_bias_mitigation(active_ds: str | None = None):
         "scope": scope_label,
         "baseline_performance": b_p,
         "mitigated_performance": m_p,
+        "fairness_gate": fgate,
         "fairness_gains": {"eod_gain": gain_eod, "dpd_gain": gain_dpd},
         "model_changes": model_changes
     }
@@ -1927,13 +2028,18 @@ def render_page_tradeoff_analysis(active_ds: str | None = None):
 
     available_attrs = step5_data.get("available_attrs", [])
     if len(available_attrs) > 1:
+        prot_attrs = st.session_state.get("confirmed_configs", {}).get(clean_ds, {}).get("protected_attributes", [])
+        if not prot_attrs:
+            saved_cfg = load_saved_dataset_configuration(clean_ds)
+            prot_attrs = saved_cfg.get("protected_attributes", []) if saved_cfg else []
+        inter_term = " × ".join([a.replace("_", " ").title() for a in prot_attrs]) if prot_attrs else "Compound"
         active_idx = available_attrs.index(preferred_attr) if preferred_attr in available_attrs else 0
         selected_attr = st.selectbox(
             "Attribute Scope for Trade-off Analysis:",
             available_attrs,
             index=active_idx,
             key=f"tradeoff_attr_select_{clean_ds}",
-            format_func=lambda a: f"{a.replace('_', ' ').title()} Scope"
+            format_func=lambda a: f"Intersectional Scope ({inter_term})" if "intersectional" in str(a).lower() else f"{a.replace('_', ' ').title()} Scope"
         )
         if selected_attr != preferred_attr:
             step5_data = get_step5_tradeoff_analysis_data(

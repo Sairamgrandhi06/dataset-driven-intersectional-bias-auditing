@@ -227,7 +227,7 @@ def retrain_dataset(
     mitigated_model = train_mitigated_model(
         X_train, y_train, sens_train,
         random_state=cfg.model_config.random_state,
-        max_iter=cfg.model_config.max_iter,
+        max_iter=min(50, cfg.model_config.max_iter) if hasattr(cfg.model_config, "max_iter") else 50,
         base_estimator_type=selected_key
     )
 

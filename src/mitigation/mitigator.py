@@ -217,11 +217,19 @@ def predict_mitigated_model(mitigated_model, X_test, random_state=0):
 
     y_pred = mitigated_model.predict(X_test)
 
+    # 1. Prioritize genuine soft probabilities from ensemble sub-predictors
     y_prob = None
-    if hasattr(mitigated_model, "_pmf_predict"):
+    if hasattr(mitigated_model, "predictors_") and hasattr(mitigated_model, "weights_"):
         try:
-            pmf = mitigated_model._pmf_predict(X_test)
-            y_prob = pmf[:, 1] if (isinstance(pmf, np.ndarray) and pmf.ndim > 1) else pmf
+            weights = getattr(mitigated_model, "weights_", [])
+            predictors = getattr(mitigated_model, "predictors_", [])
+            if len(weights) > 0 and len(predictors) > 0:
+                y_prob = np.zeros(len(X_test), dtype=float)
+                for w, p in zip(weights, predictors):
+                    if hasattr(p, "predict_proba"):
+                        y_prob += float(w) * p.predict_proba(X_test)[:, 1]
+                    else:
+                        y_prob += float(w) * p.predict(X_test)
         except Exception:
             y_prob = None
 
@@ -229,6 +237,13 @@ def predict_mitigated_model(mitigated_model, X_test, random_state=0):
         try:
             prob = mitigated_model.predict_proba(X_test)
             y_prob = prob[:, 1] if (isinstance(prob, np.ndarray) and prob.ndim > 1) else prob
+        except Exception:
+            y_prob = None
+
+    if y_prob is None and hasattr(mitigated_model, "_pmf_predict"):
+        try:
+            pmf = mitigated_model._pmf_predict(X_test)
+            y_prob = pmf[:, 1] if (isinstance(pmf, np.ndarray) and pmf.ndim > 1) else pmf
         except Exception:
             y_prob = None
 
@@ -240,18 +255,7 @@ def predict_mitigated_model(mitigated_model, X_test, random_state=0):
             y_prob = None
 
     if y_prob is None:
-        if hasattr(mitigated_model, "predictors_") and hasattr(mitigated_model, "weights_"):
-            try:
-                y_prob = np.zeros(len(X_test), dtype=float)
-                for w, p in zip(mitigated_model.weights_, mitigated_model.predictors_):
-                    if hasattr(p, "predict_proba"):
-                        y_prob += w * p.predict_proba(X_test)[:, 1]
-                    else:
-                        y_prob += w * p.predict(X_test)
-            except Exception:
-                y_prob = y_pred.astype(float)
-        else:
-            y_prob = y_pred.astype(float)
+        y_prob = y_pred.astype(float)
 
     if y_prob is not None:
         y_prob = np.asarray(y_prob, dtype=float)
@@ -279,6 +283,27 @@ def train_threshold_optimizer(
     if logger_callback:
         logger_callback(f"[INIT] Initializing Fairlearn ThresholdOptimizer post-processing...")
         logger_callback(f"[CONFIG] Constraint: {constraint} | Predict Method: {predict_method}")
+
+    # Check for degenerate single-class groups in sensitive features
+    if isinstance(sensitive_features, (pd.Series, np.ndarray, list)):
+        sens_s = pd.Series(sensitive_features).reset_index(drop=True)
+        y_s = pd.Series(y_train).reset_index(drop=True)
+        degenerate = []
+        for grp in sens_s.unique():
+            y_grp = y_s[sens_s == grp]
+            if y_grp.nunique() < 2:
+                degenerate.append(str(grp))
+        if degenerate:
+            err_msg = (
+                f"Fairlearn ThresholdOptimizer post-processing cannot construct ROC tradeoff curves "
+                f"for intersectional groups where all training labels belong to a single class "
+                f"(degenerate single-class labels detected in groups: {degenerate}). "
+                f"Please select In-Processing (ExponentiatedGradient), which supports one-sided class "
+                f"distributions across intersectional slices without requiring bilateral class curves."
+            )
+            if logger_callback:
+                logger_callback(f"[ERROR] {err_msg}")
+            raise ValueError(err_msg)
 
     t0 = time.time()
     optimizer = ThresholdOptimizer(
@@ -308,14 +333,28 @@ def predict_threshold_optimizer(optimizer, X_test, sensitive_features, random_st
         np.random.seed(random_state)
     y_pred = optimizer.predict(X_test, sensitive_features=sensitive_features, random_state=random_state)
     
-    # Estimate probabilities if underlying thresholder supports it
-    y_prob = y_pred.astype(float)
-    if hasattr(optimizer, "_pmf_predict"):
+    # Estimate genuine probabilities from underlying estimator if available
+    y_prob = None
+    if hasattr(optimizer, "estimator") and hasattr(optimizer.estimator, "predict_proba"):
+        try:
+            prob = optimizer.estimator.predict_proba(X_test)
+            y_prob = prob[:, 1] if (isinstance(prob, np.ndarray) and prob.ndim > 1) else prob
+        except Exception:
+            y_prob = None
+
+    if y_prob is None and hasattr(optimizer, "_pmf_predict"):
         try:
             pmf = optimizer._pmf_predict(X_test, sensitive_features=sensitive_features)
             y_prob = pmf[:, 1] if (isinstance(pmf, np.ndarray) and pmf.ndim > 1) else pmf
         except Exception:
-            pass
+            y_prob = None
+
+    if y_prob is None:
+        y_prob = y_pred.astype(float)
+
+    if y_prob is not None:
+        y_prob = np.asarray(y_prob, dtype=float)
+        y_prob = np.clip(y_prob, 0.0, 1.0)
 
     return y_pred, y_prob
 
